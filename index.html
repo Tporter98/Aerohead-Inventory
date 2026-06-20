@@ -403,9 +403,6 @@ var PW='N711VT', SK='inv_authed', DK='inv_v2_data';
 var S={rooms:[],locs:[],items:[],activity:[],eRoom:null,eLoc:null,eItem:null,bRoom:null,bLoc:null,curFilter:null};
 var dragSrc=null;
 
-document.getElementById('login-btn').addEventListener('click',tryLogin);
-document.getElementById('pw-input').addEventListener('keydown',function(e){if(e.key==='Enter')tryLogin();});
-
 function tryLogin(){
   var val=document.getElementById('pw-input').value.trim();
   if(val===PW){
@@ -428,10 +425,15 @@ function logout(){
   document.getElementById('login-error').style.display='none';
 }
 
-if(sessionStorage.getItem(SK)==='1'){
-  document.getElementById('login-screen').style.display='none';
-  document.getElementById('main-app').style.display='block';
-}
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('login-btn').addEventListener('click',tryLogin);
+  document.getElementById('pw-input').addEventListener('keydown',function(e){if(e.key==='Enter')tryLogin();});
+  if(sessionStorage.getItem(SK)==='1'){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('main-app').style.display='block';
+    load();
+  }
+});
 
 function load(){
   try{var d=JSON.parse(localStorage.getItem(DK)||'null');if(d){S.rooms=d.rooms||[];S.locs=d.locs||[];S.items=d.items||[];S.activity=d.activity||[];}}catch(e){}
@@ -934,11 +936,7 @@ function manualScan(val){
   if(loc){S.bRoom=loc.roomId;S.bLoc=loc.id;showPage('browse');}
 }
 
-if(sessionStorage.getItem(SK)==='1'){
-  document.getElementById('login-screen').style.display='none';
-  document.getElementById('main-app').style.display='block';
-  load();
-}
+
 </script>
 </body>
 </html>
