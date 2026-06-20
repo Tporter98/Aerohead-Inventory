@@ -608,7 +608,7 @@ function setActiveSidelink(id){
 function showPage(id){
   document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
   document.getElementById('page-'+id).classList.add('active');
-  var titles={dashboard:'Dashboard',browse:'Browse',all-items:'All items',scan:'Scan / QR'};
+  var titles={dashboard:'Dashboard',browse:'Browse','all-items':'All items',scan:'Scan / QR'};
   document.getElementById('page-title').textContent=titles[id]||id;
   setActiveSidelink('sl-'+id);
   if(id==='browse')renderBrowse();
