@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -156,10 +155,14 @@ tr:hover td{background:var(--bg3);}
 </div>
 
 <div id="main-app">
-<div class="app">
+<div class="app" style="position:relative;">
 <div class="topbar">
   <div class="topbar-title"><i class="ti ti-building-warehouse"></i> Inventory</div>
   <div class="topbar-right">
+    <div class="search-wrap" style="margin-bottom:0;">
+      <i class="ti ti-search"></i>
+      <input type="text" placeholder="Search inventory…" oninput="globalSearch(this.value)" id="global-search" style="width:200px;padding:7px 10px 7px 33px;">
+    </div><div class="global-search-wrap"><i class="ti ti-search"></i><input type="text" id="global-search" placeholder="Search inventory…" oninput="globalSearch(this.value)" onfocus="openSearchResults()" autocomplete="off"><div class="search-dropdown" id="search-dropdown"></div></div>
     <div class="tabs">
       <button class="tab active" onclick="showPage('dashboard')">Dashboard</button>
       <button class="tab" onclick="showPage('browse')">Browse</button>
@@ -169,6 +172,7 @@ tr:hover td{background:var(--bg3);}
     <button class="btn lock-btn" onclick="logout()" title="Lock"><i class="ti ti-lock"></i></button>
   </div>
 </div>
+<div id="global-search-results" style="display:none;position:absolute;top:60px;right:1rem;width:380px;max-width:calc(100vw - 2rem);background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--radius-lg);z-index:50;max-height:320px;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.4);"></div>
 
 <div class="metrics" id="metrics"></div>
 
@@ -652,6 +656,7 @@ function saveItem(){
 }
 
 function deleteItem(id){
+  if(!confirm("Are you sure you want to delete this item?"))return;
   var i=S.items.find(function(x){return x.id===id;});
   S.items=S.items.filter(function(x){return x.id!==id;});
   addActivity('"'+(i?i.name:id)+'" removed');
@@ -686,6 +691,44 @@ function manualScan(val){
   var loc=S.locs.find(function(l){return l.id===id||l.name.toLowerCase()===id.toLowerCase();});
   if(loc){S.browseRoom=loc.roomId;S.browseLoc=loc.id;showPage('browse');}
 }
+
+
+function globalSearch(q){
+  if(!q.trim()){document.getElementById('global-search-results').style.display='none';return;}
+  var results=S.items.filter(function(i){
+    var rId=locRoom(i.locId);
+    return[i.name,i.cat,locName(i.locId),roomName(rId)].some(function(s){return s.toLowerCase().includes(q.toLowerCase());});
+  });
+  var box=document.getElementById('global-search-results');
+  if(!results.length){box.innerHTML='<div style="padding:10px 14px;font-size:13px;color:var(--text2);">No results found</div>';box.style.display='block';return;}
+  box.innerHTML=results.map(function(i){
+    var rId=locRoom(i.locId);var e=expiryStatus(i);var s=stockStatus(i);
+    return'<div class="gs-result" onclick="goToItem(''+i.locId+'',''+i.id+'')" style="padding:10px 14px;cursor:pointer;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:10px;">'+
+      '<i class="ti ti-box" style="color:var(--accent-light);font-size:16px;"></i>'+
+      '<div style="flex:1;">'+
+        '<div style="font-size:13px;font-weight:500;color:var(--text);">'+i.name+'</div>'+
+        '<div style="font-size:12px;color:var(--text2);">'+roomName(rId)+' › '+locName(i.locId)+' · Qty: '+i.qty+'</div>'+
+      '</div>'+
+      '<span class="status '+s+'" style="font-size:11px;">'+stockLabel(s)+'</span>'+
+      (e?'<span class="status '+e.cls+'" style="font-size:11px;margin-left:4px;">'+e.label+'</span>':'')+
+    '</div>';
+  }).join('');
+  box.style.display='block';
+}
+
+function goToItem(locId,itemId){
+  var loc=S.locs.find(function(l){return l.id===locId;});
+  if(!loc)return;
+  S.browseRoom=loc.roomId;S.browseLoc=locId;
+  showPage('browse');
+  document.getElementById('global-search').value='';
+  document.getElementById('global-search-results').style.display='none';
+}
+
+document.addEventListener('click',function(e){
+  var box=document.getElementById('global-search-results');
+  if(box&&!box.contains(e.target)&&e.target.id!=='global-search'){box.style.display='none';}
+});
 
 if(sessionStorage.getItem(SESSION_KEY)==='1'){load();}
 </script>
