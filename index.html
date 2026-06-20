@@ -2,56 +2,52 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <title>Inventory Manager</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f1a2e;color:#e8edf5;min-height:100vh;}
 :root{
-  --bg:#162032;
-  --bg2:#0f1a2e;
-  --bg3:#1e2d45;
-  --bg4:#243452;
-  --text:#e8edf5;
-  --text2:#8fa3bf;
-  --text3:#4a6080;
-  --accent:#2d6bc4;
-  --accent2:#1a4d9c;
-  --accent-light:#3d7fd4;
-  --border:rgba(255,255,255,0.08);
-  --border2:rgba(255,255,255,0.15);
-  --border3:rgba(255,255,255,0.25);
-  --success-bg:#0d2e1a;--success-text:#4ade80;
-  --warn-bg:#2e1f00;--warn-text:#fbbf24;
-  --danger-bg:#2e0d0d;--danger-text:#f87171;
-  --expire-bg:#2a1040;--expire-text:#c084fc;
-  --info-bg:#0d1f3a;--info-text:#60a5fa;
-  --radius:8px;--radius-lg:12px;
+--bg:#162032;--bg2:#0f1a2e;--bg3:#1e2d45;--bg4:#243452;
+--text:#e8edf5;--text2:#8fa3bf;--text3:#4a6080;
+--accent:#2d6bc4;--accent2:#1a4d9c;--accent-light:#3d7fd4;
+--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.15);--border3:rgba(255,255,255,0.25);
+--success-bg:#0d2e1a;--success-text:#4ade80;
+--warn-bg:#2e1f00;--warn-text:#fbbf24;
+--danger-bg:#2e0d0d;--danger-text:#f87171;
+--expire-bg:#2a1040;--expire-text:#c084fc;
+--info-bg:#0d1f3a;--info-text:#60a5fa;
+--radius:8px;--radius-lg:12px;
 }
-#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--bg2);}
-.login-card{background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--radius-lg);padding:2.5rem 2rem;width:100%;max-width:340px;text-align:center;}
-.login-logo{font-size:36px;color:var(--accent-light);margin-bottom:12px;}
-.login-card h1{font-size:20px;font-weight:500;color:var(--text);margin-bottom:6px;}
-.login-card p{font-size:13px;color:var(--text2);margin-bottom:1.5rem;}
-.login-card input{width:100%;padding:10px 14px;border:0.5px solid var(--border2);border-radius:var(--radius);font-size:15px;font-family:inherit;background:var(--bg3);color:var(--text);text-align:center;letter-spacing:3px;margin-bottom:10px;}
-.login-card input:focus{outline:none;border-color:var(--accent-light);}
-.login-card button{width:100%;padding:10px;border-radius:var(--radius);border:none;background:var(--accent);color:#fff;font-size:14px;font-family:inherit;cursor:pointer;font-weight:500;}
-.login-card button:hover{background:var(--accent-light);}
-.login-error{font-size:13px;color:var(--danger-text);margin-top:8px;display:none;}
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#0f1a2e;}
+.login-card{background:#162032;border:0.5px solid rgba(255,255,255,0.15);border-radius:12px;padding:2.5rem 2rem;width:100%;max-width:340px;text-align:center;}
+.login-logo{font-size:36px;color:#3d7fd4;margin-bottom:12px;}
+.login-card h1{font-size:20px;font-weight:500;color:#e8edf5;margin-bottom:6px;}
+.login-card p{font-size:13px;color:#8fa3bf;margin-bottom:1.5rem;}
+.login-card input{width:100%;padding:10px 14px;border:0.5px solid rgba(255,255,255,0.15);border-radius:8px;font-size:16px;font-family:inherit;background:#1e2d45;color:#e8edf5;text-align:center;letter-spacing:3px;margin-bottom:10px;display:block;}
+.login-card button{width:100%;padding:10px;border-radius:8px;border:none;background:#2d6bc4;color:#fff;font-size:14px;font-family:inherit;cursor:pointer;font-weight:500;}
+.login-card button:hover{background:#3d7fd4;}
+.login-error{font-size:13px;color:#f87171;margin-top:8px;display:none;}
 #main-app{display:none;}
-.app{max-width:860px;margin:0 auto;padding:1.25rem 1rem;}
+.app{max-width:860px;margin:0 auto;padding:1.25rem 1rem;position:relative;}
 .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:8px;}
 .topbar-title{font-size:18px;font-weight:500;color:var(--text);display:flex;align-items:center;gap:8px;}
 .topbar-title i{color:var(--accent-light);}
-.topbar-right{display:flex;align-items:center;gap:8px;}
+.topbar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .tabs{display:flex;gap:3px;background:var(--bg3);border-radius:var(--radius);padding:3px;}
 .tab{padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;border:none;background:transparent;color:var(--text2);font-family:inherit;transition:all .15s;}
 .tab.active{background:var(--accent);color:#fff;font-weight:500;}
 .tab:hover:not(.active){background:var(--bg4);color:var(--text);}
+.gs-wrap{position:relative;}
+.gs-wrap input{padding:7px 10px 7px 33px;border:0.5px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;background:var(--bg3);color:var(--text);width:190px;}
+.gs-wrap input:focus{outline:none;border-color:var(--accent-light);}
+.gs-icon{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--text2);font-size:16px;pointer-events:none;}
+#gs-results{display:none;position:absolute;top:38px;right:0;width:360px;max-width:90vw;background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--radius-lg);z-index:200;max-height:300px;overflow-y:auto;}
+.gs-item{padding:10px 14px;cursor:pointer;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:10px;}
+.gs-item:hover{background:var(--bg3);}
+.gs-item:last-child{border-bottom:none;}
 .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:1.25rem;}
 .metric{background:var(--bg3);border-radius:var(--radius);padding:.875rem;border:0.5px solid var(--border);}
 .metric-label{font-size:12px;color:var(--text2);margin-bottom:4px;}
@@ -60,88 +56,85 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .metric-value.danger{color:var(--danger-text);}
 .metric-value.expire{color:var(--expire-text);}
 .breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2);margin-bottom:1rem;flex-wrap:wrap;}
-.breadcrumb span.link{cursor:pointer;color:var(--info-text);}
-.breadcrumb span.link:hover{text-decoration:underline;}
-.breadcrumb .sep{color:var(--text3);}
-.breadcrumb .current{color:var(--text);font-weight:500;}
-.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.section-header h2{font-size:15px;font-weight:500;color:var(--text);}
+.bc-link{cursor:pointer;color:var(--info-text);}
+.bc-link:hover{text-decoration:underline;}
+.bc-sep{color:var(--text3);}
+.bc-cur{color:var(--text);font-weight:500;}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.sh h2{font-size:15px;font-weight:500;color:var(--text);}
 .btn{display:inline-flex;align-items:center;gap:5px;padding:7px 13px;border-radius:var(--radius);border:0.5px solid var(--border2);background:var(--bg3);color:var(--text);font-size:13px;font-family:inherit;cursor:pointer;transition:all .12s;}
 .btn:hover{background:var(--bg4);border-color:var(--border3);}
 .btn:active{transform:scale(0.98);}
 .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent);}
-.btn.primary:hover{background:var(--accent-light);border-color:var(--accent-light);}
+.btn.primary:hover{background:var(--accent-light);}
 .btn.sm{padding:4px 10px;font-size:12px;}
-.btn.icon-btn{padding:5px 8px;}
-.btn.danger-btn{border-color:rgba(248,113,113,0.3);color:var(--danger-text);}
-.btn.danger-btn:hover{background:var(--danger-bg);}
-.btn.lock-btn{padding:6px 10px;color:var(--text2);}
+.btn.ib{padding:5px 8px;}
+.btn.db{border-color:rgba(248,113,113,0.3);color:var(--danger-text);}
+.btn.db:hover{background:var(--danger-bg);}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:1rem;}
 .card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:14px;cursor:pointer;transition:border-color .12s;}
 .card:hover{border-color:var(--accent);}
 .card-icon{font-size:20px;color:var(--accent-light);margin-bottom:8px;}
 .card-name{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px;}
 .card-sub{font-size:12px;color:var(--text2);}
-.card-actions{display:flex;gap:5px;margin-top:10px;}
-.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:99px;margin-top:5px;}
-.badge.low{background:var(--warn-bg);color:var(--warn-text);}
-.badge.out{background:var(--danger-bg);color:var(--danger-text);}
-.badge.expire{background:var(--expire-bg);color:var(--expire-text);}
-.table-wrap{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:1rem;overflow-x:auto;}
-table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed;min-width:520px;}
+.card-acts{display:flex;gap:5px;margin-top:10px;}
+.bdg{display:inline-block;font-size:11px;padding:2px 7px;border-radius:99px;margin-top:5px;}
+.bdg.low{background:var(--warn-bg);color:var(--warn-text);}
+.bdg.out{background:var(--danger-bg);color:var(--danger-text);}
+.bdg.exp{background:var(--expire-bg);color:var(--expire-text);}
+.tw{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:1rem;overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed;min-width:500px;}
 th{text-align:left;padding:8px 10px;color:var(--text2);font-weight:500;border-bottom:0.5px solid var(--border);background:var(--bg3);}
 td{padding:9px 10px;border-bottom:0.5px solid var(--border);color:var(--text);vertical-align:middle;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 tr:last-child td{border-bottom:none;}
 tr:hover td{background:var(--bg3);}
-.status{display:inline-block;font-size:11px;padding:2px 7px;border-radius:99px;}
-.status.ok{background:var(--success-bg);color:var(--success-text);}
-.status.low{background:var(--warn-bg);color:var(--warn-text);}
-.status.out{background:var(--danger-bg);color:var(--danger-text);}
-.status.expire{background:var(--expire-bg);color:var(--expire-text);}
-.qty-ctrl{display:inline-flex;align-items:center;gap:5px;}
-.qty-ctrl button{width:22px;height:22px;border-radius:50%;border:0.5px solid var(--border2);background:var(--bg3);color:var(--text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;}
-.qty-ctrl button:hover{border-color:var(--accent-light);color:var(--accent-light);}
-.qty-num{font-size:13px;font-weight:500;min-width:22px;text-align:center;color:var(--text);}
-.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:100;align-items:flex-start;justify-content:center;padding-top:50px;padding-left:1rem;padding-right:1rem;}
-.modal-overlay.open{display:flex;}
+.st{display:inline-block;font-size:11px;padding:2px 7px;border-radius:99px;}
+.st.ok{background:var(--success-bg);color:var(--success-text);}
+.st.low{background:var(--warn-bg);color:var(--warn-text);}
+.st.out{background:var(--danger-bg);color:var(--danger-text);}
+.st.exp{background:var(--expire-bg);color:var(--expire-text);}
+.qc{display:inline-flex;align-items:center;gap:5px;}
+.qc button{width:22px;height:22px;border-radius:50%;border:0.5px solid var(--border2);background:var(--bg3);color:var(--text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;}
+.qc button:hover{border-color:var(--accent-light);color:var(--accent-light);}
+.qn{font-size:13px;font-weight:500;min-width:22px;text-align:center;color:var(--text);}
+.ov{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:100;align-items:flex-start;justify-content:center;padding:50px 1rem 1rem;}
+.ov.open{display:flex;}
 .modal{background:var(--bg);border-radius:var(--radius-lg);border:0.5px solid var(--border2);padding:1.5rem;width:100%;max-width:420px;max-height:90vh;overflow-y:auto;}
 .modal h3{font-size:15px;font-weight:500;color:var(--text);margin-bottom:1rem;}
 .fg{margin-bottom:11px;}
 .fg label{display:block;font-size:12px;color:var(--text2);margin-bottom:4px;}
 .fg input,.fg select{width:100%;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;background:var(--bg3);color:var(--text);}
 .fg input:focus,.fg select:focus{outline:none;border-color:var(--accent-light);}
-.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.toggle-row{display:flex;align-items:center;gap:10px;padding:8px 0;}
-.toggle-row label{font-size:13px;color:var(--text);cursor:pointer;}
-.toggle{position:relative;width:38px;height:22px;cursor:pointer;}
-.toggle input{opacity:0;width:0;height:0;}
-.toggle-slider{position:absolute;top:0;left:0;right:0;bottom:0;background:var(--bg4);border-radius:99px;border:0.5px solid var(--border2);transition:.2s;}
-.toggle-slider:before{content:'';position:absolute;width:16px;height:16px;left:3px;top:2px;background:var(--text2);border-radius:50%;transition:.2s;}
-.toggle input:checked+.toggle-slider{background:var(--accent);}
-.toggle input:checked+.toggle-slider:before{transform:translateX(16px);background:#fff;}
-.expire-section{display:none;margin-top:4px;}
-.expire-section.show{display:block;}
-.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:1.25rem;}
-.alert-list{display:flex;flex-direction:column;gap:7px;margin-bottom:1.25rem;}
-.alert-item{display:flex;align-items:center;gap:10px;padding:9px 13px;border-radius:var(--radius);border:0.5px solid rgba(251,191,36,0.3);background:var(--warn-bg);}
-.alert-item.out{border-color:rgba(248,113,113,0.3);background:var(--danger-bg);}
-.alert-item.expire{border-color:rgba(192,132,252,0.3);background:var(--expire-bg);}
-.alert-text{font-size:13px;color:var(--text);flex:1;}
-.alert-text small{color:var(--text2);font-size:12px;display:block;margin-top:2px;}
-.activity-item{display:flex;align-items:center;gap:10px;font-size:13px;padding:8px 0;border-bottom:0.5px solid var(--border);}
-.activity-item:last-child{border-bottom:none;}
+.fgr{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.toggle-row{display:flex;align-items:center;gap:10px;}
+.toggle{position:relative;width:38px;height:22px;cursor:pointer;flex-shrink:0;}
+.toggle input{opacity:0;width:0;height:0;position:absolute;}
+.tslider{position:absolute;top:0;left:0;right:0;bottom:0;background:var(--bg4);border-radius:99px;border:0.5px solid var(--border2);transition:.2s;}
+.tslider:before{content:'';position:absolute;width:16px;height:16px;left:3px;top:2px;background:var(--text2);border-radius:50%;transition:.2s;}
+.toggle input:checked+.tslider{background:var(--accent);}
+.toggle input:checked+.tslider:before{transform:translateX(16px);background:#fff;}
+.exp-sec{display:none;margin-top:8px;}
+.exp-sec.show{display:block;}
+.ma{display:flex;gap:8px;justify-content:flex-end;margin-top:1.25rem;}
+.al{display:flex;flex-direction:column;gap:7px;margin-bottom:1.25rem;}
+.ai{display:flex;align-items:center;gap:10px;padding:9px 13px;border-radius:var(--radius);border:0.5px solid rgba(251,191,36,0.3);background:var(--warn-bg);}
+.ai.out{border-color:rgba(248,113,113,0.3);background:var(--danger-bg);}
+.ai.exp{border-color:rgba(192,132,252,0.3);background:var(--expire-bg);}
+.at{font-size:13px;color:var(--text);flex:1;}
+.at small{color:var(--text2);font-size:12px;display:block;margin-top:2px;}
+.aci{display:flex;align-items:center;gap:10px;font-size:13px;padding:8px 0;border-bottom:0.5px solid var(--border);}
+.aci:last-child{border-bottom:none;}
 .empty{text-align:center;padding:2rem;color:var(--text2);font-size:13px;}
 .page{display:none;}
 .page.active{display:block;}
-.search-wrap{position:relative;margin-bottom:1rem;}
-.search-wrap input{width:100%;padding:8px 10px 8px 34px;border:0.5px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;background:var(--bg3);color:var(--text);}
-.search-wrap input:focus{outline:none;border-color:var(--accent-light);}
-.search-wrap i{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text2);font-size:16px;}
-.qr-area{text-align:center;padding:.75rem 0;}
-.qr-note{font-size:12px;color:var(--text2);margin-top:7px;}
-.scan-box{border:1.5px dashed var(--border2);border-radius:var(--radius-lg);padding:2rem;text-align:center;cursor:pointer;transition:background .12s;}
-.scan-box:hover{background:var(--bg3);}
-.divider{height:0.5px;background:var(--border);margin:1.25rem 0;}
+.swrap{position:relative;margin-bottom:1rem;}
+.swrap input{width:100%;padding:8px 10px 8px 34px;border:0.5px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;background:var(--bg3);color:var(--text);}
+.swrap i{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text2);font-size:16px;}
+.qra{text-align:center;padding:.75rem 0;}
+.qrn{font-size:12px;color:var(--text2);margin-top:7px;}
+.scanbox{border:1.5px dashed var(--border2);border-radius:var(--radius-lg);padding:2rem;text-align:center;cursor:pointer;}
+.scanbox:hover{background:var(--bg3);}
+.div{height:0.5px;background:var(--border);margin:1.25rem 0;}
 </style>
 </head>
 <body>
@@ -151,39 +144,39 @@ tr:hover td{background:var(--bg3);}
     <div class="login-logo"><i class="ti ti-building-warehouse"></i></div>
     <h1>Inventory Manager</h1>
     <p>Enter your password to continue</p>
-    <input type="password" id="pw-input" placeholder="••••••" onkeydown="if(event.key==='Enter')tryLogin()">
-    <button onclick="tryLogin()">Unlock</button>
+    <input type="password" id="pw-input" placeholder="Password" autocomplete="current-password">
+    <button id="login-btn">Unlock</button>
     <div class="login-error" id="login-error">Incorrect password. Try again.</div>
   </div>
 </div>
 
 <div id="main-app">
-<div class="app" style="position:relative;">
+<div class="app">
 <div class="topbar">
   <div class="topbar-title"><i class="ti ti-building-warehouse"></i> Inventory</div>
   <div class="topbar-right">
-    <div class="search-wrap" style="margin-bottom:0;">
-      <i class="ti ti-search"></i>
-      <input type="text" placeholder="Search inventory…" oninput="globalSearch(this.value)" id="global-search" style="width:200px;padding:7px 10px 7px 33px;">
-    </div><div class="global-search-wrap"><i class="ti ti-search"></i><input type="text" id="global-search" placeholder="Search inventory…" oninput="globalSearch(this.value)" onfocus="openSearchResults()" autocomplete="off"><div class="search-dropdown" id="search-dropdown"></div></div>
+    <div class="gs-wrap">
+      <i class="ti ti-search gs-icon"></i>
+      <input type="text" id="gs-input" placeholder="Search inventory…" autocomplete="off">
+      <div id="gs-results"></div>
+    </div>
     <div class="tabs">
       <button class="tab active" onclick="showPage('dashboard')">Dashboard</button>
       <button class="tab" onclick="showPage('browse')">Browse</button>
       <button class="tab" onclick="showPage('all-items')">All items</button>
       <button class="tab" onclick="showPage('scan')">Scan</button>
     </div>
-    <button class="btn lock-btn" onclick="logout()" title="Lock"><i class="ti ti-lock"></i></button>
+    <button class="btn ib" onclick="logout()" title="Lock" style="color:var(--text2);"><i class="ti ti-lock"></i></button>
   </div>
 </div>
-<div id="global-search-results" style="display:none;position:absolute;top:60px;right:1rem;width:380px;max-width:calc(100vw - 2rem);background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--radius-lg);z-index:50;max-height:320px;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.4);"></div>
 
 <div class="metrics" id="metrics"></div>
 
 <div class="page active" id="page-dashboard">
-  <div class="section-header"><h2>Alerts</h2></div>
+  <div class="sh"><h2>Alerts</h2></div>
   <div id="alert-list"></div>
-  <div class="divider"></div>
-  <div class="section-header"><h2>Recent activity</h2></div>
+  <div class="div"></div>
+  <div class="sh"><h2>Recent activity</h2></div>
   <div id="activity-list"></div>
 </div>
 
@@ -193,92 +186,79 @@ tr:hover td{background:var(--bg3);}
 </div>
 
 <div class="page" id="page-all-items">
-  <div class="section-header"><h2>All items</h2><button class="btn primary" onclick="openItemModal()"><i class="ti ti-plus"></i> Add item</button></div>
-  <div class="search-wrap"><i class="ti ti-search"></i><input type="text" placeholder="Search items, rooms, locations…" oninput="renderAllItems(this.value)"></div>
-  <div class="table-wrap"><table><thead><tr><th style="width:28%">Item</th><th style="width:15%">Room</th><th style="width:15%">Location</th><th style="width:12%">Qty</th><th style="width:15%">Status</th><th style="width:10%">Expires</th><th style="width:5%"></th></tr></thead><tbody id="all-items-body"></tbody></table></div>
+  <div class="sh"><h2>All items</h2><button class="btn primary" onclick="openItemModal()"><i class="ti ti-plus"></i> Add item</button></div>
+  <div class="swrap"><i class="ti ti-search"></i><input type="text" placeholder="Search…" oninput="renderAllItems(this.value)"></div>
+  <div class="tw"><table><thead><tr><th style="width:25%">Item</th><th style="width:15%">Room</th><th style="width:15%">Location</th><th style="width:12%">Qty</th><th style="width:13%">Stock</th><th style="width:13%">Expires</th><th style="width:7%"></th></tr></thead><tbody id="all-items-body"></tbody></table></div>
 </div>
 
 <div class="page" id="page-scan">
-  <div class="section-header"><h2>Scan location</h2></div>
-  <p style="font-size:13px;color:var(--text2);margin-bottom:1rem;">Each location has a unique QR code. Scan to jump straight to it. Android users can also use NFC tags.</p>
-  <div class="scan-box" onclick="triggerScan()">
+  <div class="sh"><h2>Scan location</h2></div>
+  <p style="font-size:13px;color:var(--text2);margin-bottom:1rem;">Scan a location QR code to jump straight to it. Android users can also use NFC tags.</p>
+  <div class="scanbox" onclick="triggerScan()">
     <div style="font-size:32px;color:var(--accent-light);margin-bottom:8px;"><i class="ti ti-qrcode"></i></div>
-    <div style="font-size:13px;color:var(--text2);">Tap to scan a location QR code</div>
+    <div style="font-size:13px;color:var(--text2);">Tap to scan</div>
   </div>
   <div id="scan-result" style="margin-top:1rem;"></div>
-  <div class="divider"></div>
-  <div class="section-header"><h2>Generate QR for location</h2></div>
+  <div class="div"></div>
+  <div class="sh"><h2>Generate QR for location</h2></div>
   <div style="display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap;">
     <select id="qr-room-sel" onchange="populateQrLoc()" style="flex:1;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;background:var(--bg3);color:var(--text);"></select>
     <select id="qr-loc-sel" style="flex:1;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;background:var(--bg3);color:var(--text);"></select>
     <button class="btn" onclick="generateQR()"><i class="ti ti-refresh"></i> Generate</button>
   </div>
-  <div class="qr-area" id="qr-output"></div>
+  <div class="qra" id="qr-output"></div>
 </div>
 
-<!-- Room modal -->
-<div class="modal-overlay" id="modal-room">
+<div class="ov" id="modal-room">
   <div class="modal">
-    <h3 id="modal-room-title">Add room</h3>
-    <div class="fg"><label>Room name</label><input type="text" id="room-name" placeholder="e.g. Warehouse, Kitchen, Office"></div>
-    <div class="modal-actions">
-      <button class="btn" onclick="closeModal('modal-room')">Cancel</button>
-      <button class="btn primary" onclick="saveRoom()">Save</button>
-    </div>
+    <h3 id="mr-title">Add room</h3>
+    <div class="fg"><label>Room name</label><input type="text" id="room-name" placeholder="e.g. Warehouse, Kitchen"></div>
+    <div class="ma"><button class="btn" onclick="closeModal('modal-room')">Cancel</button><button class="btn primary" onclick="saveRoom()">Save</button></div>
   </div>
 </div>
 
-<!-- Location modal -->
-<div class="modal-overlay" id="modal-loc">
+<div class="ov" id="modal-loc">
   <div class="modal">
-    <h3 id="modal-loc-title">Add location</h3>
-    <div class="fg"><label>Location name</label><input type="text" id="loc-name" placeholder="e.g. Fridge, Cabinet 1, Drawer 2"></div>
+    <h3 id="ml-title">Add location</h3>
+    <div class="fg"><label>Location name</label><input type="text" id="loc-name" placeholder="e.g. Fridge, Cabinet 1"></div>
     <div class="fg"><label>Room</label><select id="loc-room"></select></div>
-    <div class="modal-actions">
-      <button class="btn" onclick="closeModal('modal-loc')">Cancel</button>
-      <button class="btn primary" onclick="saveLoc()">Save</button>
-    </div>
+    <div class="ma"><button class="btn" onclick="closeModal('modal-loc')">Cancel</button><button class="btn primary" onclick="saveLoc()">Save</button></div>
   </div>
 </div>
 
-<!-- Item modal -->
-<div class="modal-overlay" id="modal-item">
+<div class="ov" id="modal-item">
   <div class="modal">
-    <h3 id="modal-item-title">Add item</h3>
+    <h3 id="mi-title">Add item</h3>
     <div class="fg"><label>Item name</label><input type="text" id="item-name" placeholder="e.g. Coke, Box of screws"></div>
     <div class="fg"><label>Category</label><input type="text" id="item-cat" placeholder="e.g. Drinks, Hardware"></div>
-    <div class="fg-row">
+    <div class="fgr">
       <div class="fg"><label>Room</label><select id="item-room" onchange="populateItemLoc()"></select></div>
       <div class="fg"><label>Location</label><select id="item-loc"></select></div>
     </div>
-    <div class="fg-row">
+    <div class="fgr">
       <div class="fg"><label>Quantity</label><input type="number" id="item-qty" min="0" value="0"></div>
       <div class="fg"><label>Low stock at</label><input type="number" id="item-thresh" min="0" value="5"></div>
     </div>
     <div style="background:var(--bg3);border-radius:var(--radius);padding:10px 12px;margin-bottom:11px;border:0.5px solid var(--border);">
       <div class="toggle-row">
-        <label class="toggle"><input type="checkbox" id="item-perishable" onchange="toggleExpire()"><span class="toggle-slider"></span></label>
-        <label for="item-perishable" style="font-size:13px;color:var(--text);cursor:pointer;">Perishable item</label>
+        <label class="toggle"><input type="checkbox" id="item-perishable" onchange="toggleExpire()"><span class="tslider"></span></label>
+        <span style="font-size:13px;color:var(--text);cursor:pointer;" onclick="document.getElementById('item-perishable').click()">Perishable item</span>
       </div>
-      <div class="expire-section" id="expire-section">
+      <div class="exp-sec" id="exp-sec">
         <div class="fg" style="margin-bottom:0;margin-top:8px;"><label>Expiration date</label><input type="date" id="item-expiry"></div>
       </div>
     </div>
     <div class="fg"><label>Notes</label><input type="text" id="item-notes" placeholder="Optional"></div>
-    <div class="modal-actions">
-      <button class="btn" onclick="closeModal('modal-item')">Cancel</button>
-      <button class="btn primary" onclick="saveItem()">Save item</button>
-    </div>
+    <div class="ma"><button class="btn" onclick="closeModal('modal-item')">Cancel</button><button class="btn primary" onclick="saveItem()">Save item</button></div>
   </div>
 </div>
 
-<!-- QR modal -->
-<div class="modal-overlay" id="modal-qr">
+<div class="ov" id="modal-qr">
   <div class="modal">
-    <h3 id="modal-qr-title">QR code</h3>
-    <div class="qr-area" id="modal-qr-content"></div>
-    <p class="qr-note">Print and stick on the location. Android: write the location ID to an NFC tag using the NFC Tools app.</p>
-    <div class="modal-actions"><button class="btn" onclick="closeModal('modal-qr')">Close</button></div>
+    <h3 id="mq-title">QR code</h3>
+    <div class="qra" id="modal-qr-content"></div>
+    <p class="qrn">Print and stick on the location. Android: write the location ID to an NFC tag using the NFC Tools app.</p>
+    <div class="ma"><button class="btn" onclick="closeModal('modal-qr')">Close</button></div>
   </div>
 </div>
 </div>
@@ -286,251 +266,275 @@ tr:hover td{background:var(--bg3);}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-var PASSWORD='N711VT';
-var SESSION_KEY='inv_authed';
-var KEY='inv_v2_data';
+var PW = 'N711VT';
+var SK = 'inv_authed';
+var DK = 'inv_v2_data';
 
-function tryLogin(){
-  var val=document.getElementById('pw-input').value;
-  if(val===PASSWORD){
-    sessionStorage.setItem(SESSION_KEY,'1');
-    document.getElementById('login-screen').style.display='none';
-    document.getElementById('main-app').style.display='block';
+document.getElementById('login-btn').addEventListener('click', tryLogin);
+document.getElementById('pw-input').addEventListener('keydown', function(e){ if(e.key==='Enter') tryLogin(); });
+
+function tryLogin() {
+  var val = document.getElementById('pw-input').value.trim();
+  if (val === PW) {
+    sessionStorage.setItem(SK, '1');
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('main-app').style.display = 'block';
     load();
   } else {
-    document.getElementById('login-error').style.display='block';
-    document.getElementById('pw-input').value='';
+    document.getElementById('login-error').style.display = 'block';
+    document.getElementById('pw-input').value = '';
     document.getElementById('pw-input').focus();
   }
 }
 
-function logout(){
-  sessionStorage.removeItem(SESSION_KEY);
-  document.getElementById('main-app').style.display='none';
-  document.getElementById('login-screen').style.display='flex';
-  document.getElementById('pw-input').value='';
-  document.getElementById('login-error').style.display='none';
+function logout() {
+  sessionStorage.removeItem(SK);
+  document.getElementById('main-app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('pw-input').value = '';
+  document.getElementById('login-error').style.display = 'none';
 }
 
-if(sessionStorage.getItem(SESSION_KEY)==='1'){
-  document.getElementById('login-screen').style.display='none';
-  document.getElementById('main-app').style.display='block';
+if (sessionStorage.getItem(SK) === '1') {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('main-app').style.display = 'block';
 }
 
-var S={rooms:[],locs:[],items:[],activity:[],editRoom:null,editLoc:null,editItem:null,browseRoom:null,browseLoc:null};
+var S = {rooms:[], locs:[], items:[], activity:[], eRoom:null, eLoc:null, eItem:null, bRoom:null, bLoc:null};
 
-function load(){
-  try{var d=JSON.parse(localStorage.getItem(KEY)||'null');if(d){S.rooms=d.rooms||[];S.locs=d.locs||[];S.items=d.items||[];S.activity=d.activity||[];}}catch(e){}
-  if(!S.rooms.length)seed();
+function load() {
+  try {
+    var d = JSON.parse(localStorage.getItem(DK) || 'null');
+    if (d) { S.rooms=d.rooms||[]; S.locs=d.locs||[]; S.items=d.items||[]; S.activity=d.activity||[]; }
+  } catch(e) {}
+  if (!S.rooms.length) seed();
   render();
+  setupSearch();
 }
 
-function save(){
-  try{localStorage.setItem(KEY,JSON.stringify({rooms:S.rooms,locs:S.locs,items:S.items,activity:S.activity}));}catch(e){}
+function save() {
+  try { localStorage.setItem(DK, JSON.stringify({rooms:S.rooms, locs:S.locs, items:S.items, activity:S.activity})); } catch(e) {}
 }
 
-function seed(){
-  S.rooms=[{id:'r1',name:'Warehouse'},{id:'r2',name:'Office'},{id:'r3',name:'Kitchen'}];
-  S.locs=[{id:'l1',roomId:'r1',name:'Cabinet A'},{id:'l2',roomId:'r1',name:'Shelf 1'},{id:'l3',roomId:'r2',name:'Supply closet'},{id:'l4',roomId:'r3',name:'Fridge'},{id:'l5',roomId:'r3',name:'Pantry shelf'}];
-  S.items=[
+function seed() {
+  S.rooms = [{id:'r1',name:'Warehouse'},{id:'r2',name:'Office'},{id:'r3',name:'Kitchen'}];
+  S.locs = [{id:'l1',roomId:'r1',name:'Cabinet A'},{id:'l2',roomId:'r1',name:'Shelf 1'},{id:'l3',roomId:'r2',name:'Supply closet'},{id:'l4',roomId:'r3',name:'Fridge'},{id:'l5',roomId:'r3',name:'Pantry shelf'}];
+  S.items = [
     {id:'i1',locId:'l1',name:'Box of screws',cat:'Hardware',qty:3,thresh:10,notes:'',perishable:false,expiry:''},
     {id:'i2',locId:'l3',name:'A4 paper',cat:'Office',qty:12,thresh:5,notes:'',perishable:false,expiry:''},
     {id:'i3',locId:'l2',name:'Drill bits',cat:'Tools',qty:0,thresh:2,notes:'Check supplier',perishable:false,expiry:''},
-    {id:'i4',locId:'l4',name:'Coke',cat:'Drinks',qty:8,thresh:6,notes:'3/4 cases',perishable:true,expiry:'2026-09-01'},
+    {id:'i4',locId:'l4',name:'Coke',cat:'Drinks',qty:8,thresh:6,notes:'',perishable:true,expiry:'2026-09-01'},
     {id:'i5',locId:'l4',name:'Dr. Pepper',cat:'Drinks',qty:4,thresh:6,notes:'',perishable:true,expiry:'2026-08-15'},
     {id:'i6',locId:'l5',name:'Snack 1',cat:'Snacks',qty:2,thresh:5,notes:'',perishable:true,expiry:'2026-07-10'},
     {id:'i7',locId:'l5',name:'Snack 2',cat:'Snacks',qty:10,thresh:4,notes:'',perishable:false,expiry:''}
   ];
-  S.activity=[{text:'Inventory initialized with sample data',time:Date.now()}];
+  S.activity = [{text:'Inventory initialized with sample data', time:Date.now()}];
 }
 
-function uid(){return 'x'+Math.random().toString(36).slice(2,9);}
+function uid() { return 'x'+Math.random().toString(36).slice(2,9); }
 
-function expiryStatus(item){
-  if(!item.perishable||!item.expiry)return null;
-  var today=new Date();today.setHours(0,0,0,0);
-  var exp=new Date(item.expiry+'T00:00:00');
-  var diff=Math.floor((exp-today)/(1000*60*60*24));
-  if(diff<0)return{label:'Expired',cls:'out',days:diff};
-  if(diff<=7)return{label:'Expires in '+diff+'d',cls:'expire',days:diff};
-  if(diff<=30)return{label:'Exp '+formatDate(item.expiry),cls:'low',days:diff};
-  return{label:formatDate(item.expiry),cls:'ok',days:diff};
+function expSt(item) {
+  if (!item.perishable || !item.expiry) return null;
+  var today = new Date(); today.setHours(0,0,0,0);
+  var exp = new Date(item.expiry+'T00:00:00');
+  var diff = Math.floor((exp-today)/(86400000));
+  if (diff < 0) return {label:'Expired', cls:'out'};
+  if (diff <= 7) return {label:'Exp in '+diff+'d', cls:'exp'};
+  if (diff <= 30) return {label:'Exp '+fmtDate(item.expiry), cls:'low'};
+  return {label:fmtDate(item.expiry), cls:'ok'};
 }
 
-function formatDate(d){
-  if(!d)return'';
-  var p=d.split('-');return p[1]+'/'+p[2]+'/'+p[0].slice(2);
+function fmtDate(d) { if(!d) return ''; var p=d.split('-'); return p[1]+'/'+p[2]+'/'+p[0].slice(2); }
+function stkSt(i) { if(i.qty===0) return 'out'; if(i.qty<=i.thresh) return 'low'; return 'ok'; }
+function stkLbl(s) { return s==='out'?'Out of stock':s==='low'?'Low stock':'In stock'; }
+function rName(id) { var r=S.rooms.find(function(x){return x.id===id;}); return r?r.name:'?'; }
+function lName(id) { var l=S.locs.find(function(x){return x.id===id;}); return l?l.name:'?'; }
+function lRoom(id) { var l=S.locs.find(function(x){return x.id===id;}); return l?l.roomId:null; }
+function logAct(t) { S.activity.unshift({text:t, time:Date.now()}); if(S.activity.length>30) S.activity.pop(); }
+function tAgo(ts) { var d=Math.floor((Date.now()-ts)/60000); if(d<1) return 'just now'; if(d<60) return d+'m ago'; if(d<1440) return Math.floor(d/60)+'h ago'; return Math.floor(d/1440)+'d ago'; }
+function toggleExpire() { var c=document.getElementById('item-perishable').checked; document.getElementById('exp-sec').classList.toggle('show',c); }
+
+function setupSearch() {
+  var inp = document.getElementById('gs-input');
+  var box = document.getElementById('gs-results');
+  inp.addEventListener('input', function() {
+    var q = this.value.trim();
+    if (!q) { box.style.display='none'; return; }
+    var res = S.items.filter(function(i) {
+      return [i.name, i.cat, lName(i.locId), rName(lRoom(i.locId))].some(function(s){ return s.toLowerCase().indexOf(q.toLowerCase()) > -1; });
+    });
+    if (!res.length) { box.innerHTML='<div style="padding:12px 14px;font-size:13px;color:var(--text2);">No results found</div>'; box.style.display='block'; return; }
+    box.innerHTML = res.map(function(i) {
+      var s=stkSt(i); var e=expSt(i); var rId=lRoom(i.locId);
+      return '<div class="gs-item" onclick="goToItem(\''+i.locId+'\')">'+
+        '<i class="ti ti-box" style="color:var(--accent-light);font-size:16px;"></i>'+
+        '<div style="flex:1;min-width:0;">'+
+          '<div style="font-size:13px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+i.name+'</div>'+
+          '<div style="font-size:12px;color:var(--text2);">'+rName(rId)+' › '+lName(i.locId)+' · Qty: '+i.qty+'</div>'+
+        '</div>'+
+        '<span class="st '+s+'">'+stkLbl(s)+'</span>'+
+        (e && e.cls !== 'ok' ? '<span class="st '+e.cls+'" style="margin-left:4px;">'+e.label+'</span>' : '')+
+      '</div>';
+    }).join('');
+    box.style.display = 'block';
+  });
+  document.addEventListener('click', function(e) {
+    if (!box.contains(e.target) && e.target !== inp) box.style.display = 'none';
+  });
 }
 
-function stockStatus(item){if(item.qty===0)return'out';if(item.qty<=item.thresh)return'low';return'ok';}
-function stockLabel(s){return s==='out'?'Out of stock':s==='low'?'Low stock':'In stock';}
-function roomName(id){var r=S.rooms.find(function(x){return x.id===id;});return r?r.name:'?';}
-function locName(id){var l=S.locs.find(function(x){return x.id===id;});return l?l.name:'?';}
-function locRoom(id){var l=S.locs.find(function(x){return x.id===id;});return l?l.roomId:null;}
-function addActivity(text){S.activity.unshift({text:text,time:Date.now()});if(S.activity.length>30)S.activity.pop();}
-function timeAgo(ts){var d=Math.floor((Date.now()-ts)/60000);if(d<1)return'just now';if(d<60)return d+'m ago';if(d<1440)return Math.floor(d/60)+'h ago';return Math.floor(d/1440)+'d ago';}
-
-function toggleExpire(){
-  var checked=document.getElementById('item-perishable').checked;
-  document.getElementById('expire-section').classList.toggle('show',checked);
+function goToItem(locId) {
+  var loc = S.locs.find(function(l){return l.id===locId;});
+  if (!loc) return;
+  S.bRoom = loc.roomId; S.bLoc = locId;
+  showPage('browse');
+  document.getElementById('gs-input').value = '';
+  document.getElementById('gs-results').style.display = 'none';
 }
 
-function render(){renderMetrics();renderAlerts();renderActivityList();renderBrowse();renderAllItems('');renderQrSelects();}
+function render() { renderMetrics(); renderAlerts(); renderActivity(); renderBrowse(); renderAllItems(''); renderQrSels(); }
 
-function renderMetrics(){
-  var low=S.items.filter(function(i){return stockStatus(i)==='low';}).length;
-  var out=S.items.filter(function(i){return stockStatus(i)==='out';}).length;
-  var expiring=S.items.filter(function(i){var e=expiryStatus(i);return e&&(e.cls==='out'||e.cls==='expire');}).length;
+function renderMetrics() {
+  var low=S.items.filter(function(i){return stkSt(i)==='low';}).length;
+  var out=S.items.filter(function(i){return stkSt(i)==='out';}).length;
+  var exp=S.items.filter(function(i){var e=expSt(i);return e&&(e.cls==='out'||e.cls==='exp');}).length;
   document.getElementById('metrics').innerHTML=
     '<div class="metric"><div class="metric-label">Rooms</div><div class="metric-value">'+S.rooms.length+'</div></div>'+
     '<div class="metric"><div class="metric-label">Locations</div><div class="metric-value">'+S.locs.length+'</div></div>'+
     '<div class="metric"><div class="metric-label">Items</div><div class="metric-value">'+S.items.length+'</div></div>'+
     '<div class="metric"><div class="metric-label">Low stock</div><div class="metric-value warn">'+low+'</div></div>'+
     '<div class="metric"><div class="metric-label">Out of stock</div><div class="metric-value danger">'+out+'</div></div>'+
-    '<div class="metric"><div class="metric-label">Expiring soon</div><div class="metric-value expire">'+expiring+'</div></div>';
+    '<div class="metric"><div class="metric-label">Expiring soon</div><div class="metric-value expire">'+exp+'</div></div>';
 }
 
-function renderAlerts(){
-  var stockAlerts=S.items.filter(function(i){return stockStatus(i)!=='ok';});
-  var expiryAlerts=S.items.filter(function(i){var e=expiryStatus(i);return e&&e.cls!=='ok';});
+function renderAlerts() {
+  var sAlerts=S.items.filter(function(i){return stkSt(i)!=='ok';});
+  var eAlerts=S.items.filter(function(i){var e=expSt(i);return e&&e.cls!=='ok';});
   var el=document.getElementById('alert-list');
-  if(!stockAlerts.length&&!expiryAlerts.length){
-    el.innerHTML='<div class="empty"><i class="ti ti-circle-check" style="font-size:22px;color:var(--success-text);"></i><div style="margin-top:6px;">All items well stocked and fresh</div></div>';return;
-  }
-  var html='<div class="alert-list">';
-  expiryAlerts.forEach(function(i){
-    var e=expiryStatus(i);var rId=locRoom(i.locId);
-    html+='<div class="alert-item expire">'+
-      '<i class="ti ti-clock" style="font-size:17px;color:var(--expire-text);"></i>'+
-      '<div class="alert-text">'+i.name+' — '+e.label+'<small>'+roomName(rId)+' › '+locName(i.locId)+'</small></div>'+
-      '<button class="btn sm" onclick="editItem(\''+i.id+'\')">Edit</button></div>';
+  if (!sAlerts.length && !eAlerts.length) { el.innerHTML='<div class="empty"><i class="ti ti-circle-check" style="font-size:22px;color:var(--success-text);"></i><div style="margin-top:6px;">All items well stocked and fresh</div></div>'; return; }
+  var h='<div class="al">';
+  eAlerts.forEach(function(i){ var e=expSt(i); var rId=lRoom(i.locId);
+    h+='<div class="ai exp"><i class="ti ti-clock" style="font-size:17px;color:var(--expire-text);"></i><div class="at">'+i.name+' — '+e.label+'<small>'+rName(rId)+' › '+lName(i.locId)+'</small></div><button class="btn sm" onclick="editItem(\''+i.id+'\')">Edit</button></div>';
   });
-  stockAlerts.forEach(function(i){
-    var s=stockStatus(i);var rId=locRoom(i.locId);
-    html+='<div class="alert-item '+(s==='out'?'out':'')+'">'+
-      '<i class="ti ti-alert-triangle" style="font-size:17px;color:var('+(s==='out'?'--danger-text':'--warn-text')+');"></i>'+
-      '<div class="alert-text">'+i.name+' — '+stockLabel(s)+'<small>'+roomName(rId)+' › '+locName(i.locId)+' · Qty: '+i.qty+' (min: '+i.thresh+')</small></div>'+
-      '<button class="btn sm" onclick="editItem(\''+i.id+'\')">Edit</button></div>';
+  sAlerts.forEach(function(i){ var s=stkSt(i); var rId=lRoom(i.locId);
+    h+='<div class="ai '+(s==='out'?'out':'')+'"><i class="ti ti-alert-triangle" style="font-size:17px;color:var('+(s==='out'?'--danger-text':'--warn-text')+');"></i><div class="at">'+i.name+' — '+stkLbl(s)+'<small>'+rName(rId)+' › '+lName(i.locId)+' · Qty: '+i.qty+' (min: '+i.thresh+')</small></div><button class="btn sm" onclick="editItem(\''+i.id+'\')">Edit</button></div>';
   });
-  el.innerHTML=html+'</div>';
+  el.innerHTML = h+'</div>';
 }
 
-function renderActivityList(){
+function renderActivity() {
   var el=document.getElementById('activity-list');
-  if(!S.activity.length){el.innerHTML='<div class="empty">No activity yet</div>';return;}
-  el.innerHTML=S.activity.slice(0,10).map(function(a){
-    return'<div class="activity-item"><i class="ti ti-clock" style="color:var(--text2);font-size:15px;"></i><span style="flex:1;">'+a.text+'</span><span style="color:var(--text2);">'+timeAgo(a.time)+'</span></div>';
+  if (!S.activity.length) { el.innerHTML='<div class="empty">No activity yet</div>'; return; }
+  el.innerHTML = S.activity.slice(0,10).map(function(a){
+    return '<div class="aci"><i class="ti ti-clock" style="color:var(--text2);font-size:15px;"></i><span style="flex:1;">'+a.text+'</span><span style="color:var(--text2);">'+tAgo(a.time)+'</span></div>';
   }).join('');
 }
 
-function renderBrowse(){
+function renderBrowse() {
   var bc=document.getElementById('breadcrumb');
-  var content=document.getElementById('browse-content');
-  if(!S.browseRoom){
-    bc.innerHTML='<span class="current">All rooms</span>';
-    var header='<div class="section-header"><h2>Rooms</h2><button class="btn primary" onclick="openRoomModal()"><i class="ti ti-plus"></i> Add room</button></div>';
-    if(!S.rooms.length){content.innerHTML=header+'<div class="empty">No rooms yet. Add one to get started.</div>';return;}
-    content.innerHTML=header+'<div class="grid">'+S.rooms.map(function(r){
-      var lCount=S.locs.filter(function(l){return l.roomId===r.id;}).length;
-      var rItems=S.items.filter(function(i){var l=S.locs.find(function(l){return l.id===i.locId;});return l&&l.roomId===r.id;});
-      var stockAlerts=rItems.filter(function(i){return stockStatus(i)!=='ok';}).length;
-      var expAlerts=rItems.filter(function(i){var e=expiryStatus(i);return e&&e.cls!=='ok';}).length;
-      return'<div class="card" onclick="drillRoom(\''+r.id+'\')">'+
+  var ct=document.getElementById('browse-content');
+  if (!S.bRoom) {
+    bc.innerHTML='<span class="bc-cur">All rooms</span>';
+    var hdr='<div class="sh"><h2>Rooms</h2><button class="btn primary" onclick="openRoomModal()"><i class="ti ti-plus"></i> Add room</button></div>';
+    if (!S.rooms.length) { ct.innerHTML=hdr+'<div class="empty">No rooms yet.</div>'; return; }
+    ct.innerHTML=hdr+'<div class="grid">'+S.rooms.map(function(r){
+      var lc=S.locs.filter(function(l){return l.roomId===r.id;}).length;
+      var ri=S.items.filter(function(i){var l=S.locs.find(function(l){return l.id===i.locId;});return l&&l.roomId===r.id;});
+      var sa=ri.filter(function(i){return stkSt(i)!=='ok';}).length;
+      var ea=ri.filter(function(i){var e=expSt(i);return e&&e.cls!=='ok';}).length;
+      return '<div class="card" onclick="drillRoom(\''+r.id+'\')">'+
         '<div class="card-icon"><i class="ti ti-door"></i></div>'+
         '<div class="card-name">'+r.name+'</div>'+
-        '<div class="card-sub">'+lCount+' location'+(lCount!==1?'s':'')+' · '+rItems.length+' item'+(rItems.length!==1?'s':'')+'</div>'+
-        (stockAlerts?'<span class="badge low">'+stockAlerts+' stock alert'+(stockAlerts!==1?'s':'')+'</span>':'')+
-        (expAlerts?'<span class="badge expire" style="margin-left:4px;">'+expAlerts+' expiring</span>':'')+
-        '<div class="card-actions">'+
-          '<button class="btn icon-btn" onclick="event.stopPropagation();openRoomModal(\''+r.id+'\')" title="Edit"><i class="ti ti-edit"></i></button>'+
-          '<button class="btn icon-btn danger-btn" onclick="event.stopPropagation();deleteRoom(\''+r.id+'\')" title="Delete"><i class="ti ti-trash"></i></button>'+
+        '<div class="card-sub">'+lc+' location'+(lc!==1?'s':'')+' · '+ri.length+' item'+(ri.length!==1?'s':'')+'</div>'+
+        (sa?'<span class="bdg low">'+sa+' alert'+(sa!==1?'s':'')+'</span>':'')+
+        (ea?'<span class="bdg exp" style="margin-left:4px;">'+ea+' expiring</span>':'')+
+        '<div class="card-acts">'+
+          '<button class="btn ib" onclick="event.stopPropagation();openRoomModal(\''+r.id+'\')" title="Edit"><i class="ti ti-edit"></i></button>'+
+          '<button class="btn ib db" onclick="event.stopPropagation();deleteRoom(\''+r.id+'\')" title="Delete"><i class="ti ti-trash"></i></button>'+
         '</div></div>';
     }).join('')+'</div>';
     return;
   }
-  if(!S.browseLoc){
-    var room=S.rooms.find(function(r){return r.id===S.browseRoom;});
-    if(!room){S.browseRoom=null;renderBrowse();return;}
-    bc.innerHTML='<span class="link" onclick="drillRoom(null)">All rooms</span><span class="sep">›</span><span class="current">'+room.name+'</span>';
-    var roomLocs=S.locs.filter(function(l){return l.roomId===S.browseRoom;});
-    var header='<div class="section-header"><h2>Locations in '+room.name+'</h2><button class="btn" onclick="openLocModal(\''+room.id+'\')"><i class="ti ti-plus"></i> Add location</button></div>';
-    if(!roomLocs.length){content.innerHTML=header+'<div class="empty">No locations in this room yet.</div>';return;}
-    content.innerHTML=header+'<div class="grid">'+roomLocs.map(function(l){
-      var lItems=S.items.filter(function(i){return i.locId===l.id;});
-      var stockAlerts=lItems.filter(function(i){return stockStatus(i)!=='ok';}).length;
-      var expAlerts=lItems.filter(function(i){var e=expiryStatus(i);return e&&e.cls!=='ok';}).length;
-      return'<div class="card" onclick="drillLoc(\''+l.id+'\')">'+
+  if (!S.bLoc) {
+    var room=S.rooms.find(function(r){return r.id===S.bRoom;});
+    if (!room) { S.bRoom=null; renderBrowse(); return; }
+    bc.innerHTML='<span class="bc-link" onclick="drillRoom(null)">All rooms</span><span class="bc-sep">›</span><span class="bc-cur">'+room.name+'</span>';
+    var rl=S.locs.filter(function(l){return l.roomId===S.bRoom;});
+    var hdr='<div class="sh"><h2>Locations in '+room.name+'</h2><button class="btn" onclick="openLocModal(\''+room.id+'\')"><i class="ti ti-plus"></i> Add location</button></div>';
+    if (!rl.length) { ct.innerHTML=hdr+'<div class="empty">No locations yet.</div>'; return; }
+    ct.innerHTML=hdr+'<div class="grid">'+rl.map(function(l){
+      var li=S.items.filter(function(i){return i.locId===l.id;});
+      var sa=li.filter(function(i){return stkSt(i)!=='ok';}).length;
+      var ea=li.filter(function(i){var e=expSt(i);return e&&e.cls!=='ok';}).length;
+      return '<div class="card" onclick="drillLoc(\''+l.id+'\')">'+
         '<div class="card-icon"><i class="ti ti-archive"></i></div>'+
         '<div class="card-name">'+l.name+'</div>'+
-        '<div class="card-sub">'+lItems.length+' item'+(lItems.length!==1?'s':'')+'</div>'+
-        (stockAlerts?'<span class="badge low">'+stockAlerts+' alert'+(stockAlerts!==1?'s':'')+'</span>':'')+
-        (expAlerts?'<span class="badge expire" style="margin-left:4px;">'+expAlerts+' expiring</span>':'')+
-        '<div class="card-actions">'+
-          '<button class="btn icon-btn" onclick="event.stopPropagation();showLocQr(\''+l.id+'\')" title="QR code"><i class="ti ti-qrcode"></i></button>'+
-          '<button class="btn icon-btn" onclick="event.stopPropagation();openLocModal(null,\''+l.id+'\')" title="Edit"><i class="ti ti-edit"></i></button>'+
-          '<button class="btn icon-btn danger-btn" onclick="event.stopPropagation();deleteLoc(\''+l.id+'\')" title="Delete"><i class="ti ti-trash"></i></button>'+
+        '<div class="card-sub">'+li.length+' item'+(li.length!==1?'s':'')+'</div>'+
+        (sa?'<span class="bdg low">'+sa+' alert'+(sa!==1?'s':'')+'</span>':'')+
+        (ea?'<span class="bdg exp" style="margin-left:4px;">'+ea+' expiring</span>':'')+
+        '<div class="card-acts">'+
+          '<button class="btn ib" onclick="event.stopPropagation();showLocQr(\''+l.id+'\')" title="QR"><i class="ti ti-qrcode"></i></button>'+
+          '<button class="btn ib" onclick="event.stopPropagation();openLocModal(null,\''+l.id+'\')" title="Edit"><i class="ti ti-edit"></i></button>'+
+          '<button class="btn ib db" onclick="event.stopPropagation();deleteLoc(\''+l.id+'\')" title="Delete"><i class="ti ti-trash"></i></button>'+
         '</div></div>';
     }).join('')+'</div>';
     return;
   }
-  var loc=S.locs.find(function(l){return l.id===S.browseLoc;});
-  if(!loc){S.browseLoc=null;renderBrowse();return;}
-  var room2=S.rooms.find(function(r){return r.id===loc.roomId;});
-  bc.innerHTML='<span class="link" onclick="drillRoom(null)">All rooms</span><span class="sep">›</span>'+
-    '<span class="link" onclick="drillRoom(\''+loc.roomId+'\')">'+(room2?room2.name:'?')+'</span>'+
-    '<span class="sep">›</span><span class="current">'+loc.name+'</span>';
-  var locItems=S.items.filter(function(i){return i.locId===S.browseLoc;});
-  var header='<div class="section-header"><h2>Items in '+loc.name+'</h2>'+
-    '<button class="btn primary" onclick="openItemModal(\''+loc.id+'\')"><i class="ti ti-plus"></i> Add item</button></div>';
-  if(!locItems.length){content.innerHTML=header+'<div class="empty">No items in this location yet.</div>';return;}
-  content.innerHTML=header+'<div class="table-wrap"><table><thead><tr>'+
-    '<th style="width:30%">Item</th><th style="width:18%">Category</th><th style="width:14%">Qty</th><th style="width:18%">Stock</th><th style="width:15%">Expires</th><th style="width:5%"></th>'+
-    '</tr></thead><tbody>'+
-    locItems.map(function(i){
-      var s=stockStatus(i);var e=expiryStatus(i);
-      return'<tr><td>'+i.name+(i.notes?'<div style="font-size:11px;color:var(--text2);">'+i.notes+'</div>':'')+'</td>'+
+  var loc=S.locs.find(function(l){return l.id===S.bLoc;});
+  if (!loc) { S.bLoc=null; renderBrowse(); return; }
+  var r2=S.rooms.find(function(r){return r.id===loc.roomId;});
+  bc.innerHTML='<span class="bc-link" onclick="drillRoom(null)">All rooms</span><span class="bc-sep">›</span>'+
+    '<span class="bc-link" onclick="drillRoom(\''+loc.roomId+'\')">'+(r2?r2.name:'?')+'</span>'+
+    '<span class="bc-sep">›</span><span class="bc-cur">'+loc.name+'</span>';
+  var li=S.items.filter(function(i){return i.locId===S.bLoc;});
+  var hdr='<div class="sh"><h2>Items in '+loc.name+'</h2><button class="btn primary" onclick="openItemModal(\''+loc.id+'\')"><i class="ti ti-plus"></i> Add item</button></div>';
+  if (!li.length) { ct.innerHTML=hdr+'<div class="empty">No items here yet.</div>'; return; }
+  ct.innerHTML=hdr+'<div class="tw"><table><thead><tr><th style="width:30%">Item</th><th style="width:18%">Category</th><th style="width:14%">Qty</th><th style="width:17%">Stock</th><th style="width:14%">Expires</th><th style="width:7%"></th></tr></thead><tbody>'+
+    li.map(function(i){
+      var s=stkSt(i); var e=expSt(i);
+      return '<tr><td>'+i.name+(i.notes?'<div style="font-size:11px;color:var(--text2);">'+i.notes+'</div>':'')+'</td>'+
         '<td style="color:var(--text2);">'+i.cat+'</td>'+
-        '<td><div class="qty-ctrl"><button onclick="adj(\''+i.id+'\',-1)">−</button><span class="qty-num">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',1)">+</button></div></td>'+
-        '<td><span class="status '+s+'">'+stockLabel(s)+'</span></td>'+
-        '<td>'+(e?'<span class="status '+e.cls+'">'+e.label+'</span>':'<span style="color:var(--text3);font-size:12px;">—</span>')+'</td>'+
-        '<td style="white-space:nowrap;"><button class="btn icon-btn" onclick="editItem(\''+i.id+'\')" title="Edit"><i class="ti ti-edit"></i></button> '+
-        '<button class="btn icon-btn danger-btn" onclick="deleteItem(\''+i.id+'\')" title="Delete"><i class="ti ti-trash"></i></button></td></tr>';
+        '<td><div class="qc"><button onclick="adj(\''+i.id+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',1)">+</button></div></td>'+
+        '<td><span class="st '+s+'">'+stkLbl(s)+'</span></td>'+
+        '<td>'+(e?'<span class="st '+e.cls+'">'+e.label+'</span>':'<span style="color:var(--text3);">—</span>')+'</td>'+
+        '<td style="white-space:nowrap;"><button class="btn ib" onclick="editItem(\''+i.id+'\')" title="Edit"><i class="ti ti-edit"></i></button> '+
+        '<button class="btn ib db" onclick="deleteItem(\''+i.id+'\')" title="Delete"><i class="ti ti-trash"></i></button></td></tr>';
     }).join('')+'</tbody></table></div>';
 }
 
-function renderAllItems(q){
-  var filtered=S.items.filter(function(i){
-    if(!q)return true;
-    var rId=locRoom(i.locId);
-    return[i.name,i.cat,locName(i.locId),roomName(rId)].some(function(s){return s.toLowerCase().includes(q.toLowerCase());});
+function renderAllItems(q) {
+  var f=S.items.filter(function(i){
+    if(!q) return true;
+    var rId=lRoom(i.locId);
+    return [i.name,i.cat,lName(i.locId),rName(rId)].some(function(s){return s.toLowerCase().indexOf(q.toLowerCase())>-1;});
   });
-  var body=document.getElementById('all-items-body');if(!body)return;
-  if(!filtered.length){body.innerHTML='<tr><td colspan="7" class="empty">No items found</td></tr>';return;}
-  body.innerHTML=filtered.map(function(i){
-    var s=stockStatus(i);var e=expiryStatus(i);var rId=locRoom(i.locId);
-    return'<tr><td>'+i.name+'</td><td>'+roomName(rId)+'</td><td>'+locName(i.locId)+'</td>'+
-      '<td><div class="qty-ctrl"><button onclick="adj(\''+i.id+'\',-1)">−</button><span class="qty-num">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',1)">+</button></div></td>'+
-      '<td><span class="status '+s+'">'+stockLabel(s)+'</span></td>'+
-      '<td>'+(e?'<span class="status '+e.cls+'">'+e.label+'</span>':'<span style="color:var(--text3);font-size:12px;">—</span>')+'</td>'+
-      '<td><button class="btn icon-btn" onclick="editItem(\''+i.id+'\')" title="Edit"><i class="ti ti-edit"></i></button> '+
-      '<button class="btn icon-btn danger-btn" onclick="deleteItem(\''+i.id+'\')" title="Delete"><i class="ti ti-trash"></i></button></td></tr>';
+  var body=document.getElementById('all-items-body'); if(!body) return;
+  if (!f.length) { body.innerHTML='<tr><td colspan="7" class="empty">No items found</td></tr>'; return; }
+  body.innerHTML=f.map(function(i){
+    var s=stkSt(i); var e=expSt(i); var rId=lRoom(i.locId);
+    return '<tr><td>'+i.name+'</td><td>'+rName(rId)+'</td><td>'+lName(i.locId)+'</td>'+
+      '<td><div class="qc"><button onclick="adj(\''+i.id+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',1)">+</button></div></td>'+
+      '<td><span class="st '+s+'">'+stkLbl(s)+'</span></td>'+
+      '<td>'+(e?'<span class="st '+e.cls+'">'+e.label+'</span>':'<span style="color:var(--text3);">—</span>')+'</td>'+
+      '<td><button class="btn ib" onclick="editItem(\''+i.id+'\')" title="Edit"><i class="ti ti-edit"></i></button> '+
+      '<button class="btn ib db" onclick="deleteItem(\''+i.id+'\')" title="Delete"><i class="ti ti-trash"></i></button></td></tr>';
   }).join('');
 }
 
-function renderQrSelects(){
-  var rSel=document.getElementById('qr-room-sel');if(!rSel)return;
-  rSel.innerHTML=S.rooms.map(function(r){return'<option value="'+r.id+'">'+r.name+'</option>';}).join('');
+function renderQrSels() {
+  var rs=document.getElementById('qr-room-sel'); if(!rs) return;
+  rs.innerHTML=S.rooms.map(function(r){return '<option value="'+r.id+'">'+r.name+'</option>';}).join('');
   populateQrLoc();
 }
 
-function populateQrLoc(){
+function populateQrLoc() {
   var rId=document.getElementById('qr-room-sel').value;
   var sel=document.getElementById('qr-loc-sel');
-  sel.innerHTML=S.locs.filter(function(l){return l.roomId===rId;}).map(function(l){return'<option value="'+l.id+'">'+l.name+'</option>';}).join('');
+  sel.innerHTML=S.locs.filter(function(l){return l.roomId===rId;}).map(function(l){return '<option value="'+l.id+'">'+l.name+'</option>';}).join('');
 }
 
-function drillRoom(id){S.browseRoom=id;S.browseLoc=null;renderBrowse();}
-function drillLoc(id){S.browseLoc=id;renderBrowse();}
+function drillRoom(id){S.bRoom=id;S.bLoc=null;renderBrowse();}
+function drillLoc(id){S.bLoc=id;renderBrowse();}
 
 function showPage(id){
   document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
@@ -538,202 +542,148 @@ function showPage(id){
   document.getElementById('page-'+id).classList.add('active');
   var names=['dashboard','browse','all-items','scan'];
   document.querySelectorAll('.tab')[names.indexOf(id)].classList.add('active');
-  if(id==='browse')renderBrowse();
-  if(id==='all-items')renderAllItems('');
-  if(id==='scan')renderQrSelects();
+  if(id==='browse') renderBrowse();
+  if(id==='all-items') renderAllItems('');
+  if(id==='scan') renderQrSels();
 }
 
 function adj(id,delta){
-  var item=S.items.find(function(i){return i.id===id;});if(!item)return;
+  var item=S.items.find(function(i){return i.id===id;}); if(!item) return;
   item.qty=Math.max(0,item.qty+delta);
-  addActivity(item.name+' qty → '+item.qty);
-  save();render();
+  logAct(item.name+' qty → '+item.qty);
+  save(); render();
 }
 
 function openModal(id){document.getElementById(id).classList.add('open');}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
 
 function openRoomModal(editId){
-  S.editRoom=editId?S.rooms.find(function(r){return r.id===editId;}):null;
-  document.getElementById('modal-room-title').textContent=S.editRoom?'Edit room':'Add room';
-  document.getElementById('room-name').value=S.editRoom?S.editRoom.name:'';
+  S.eRoom=editId?S.rooms.find(function(r){return r.id===editId;}):null;
+  document.getElementById('mr-title').textContent=S.eRoom?'Edit room':'Add room';
+  document.getElementById('room-name').value=S.eRoom?S.eRoom.name:'';
   openModal('modal-room');
 }
-
 function saveRoom(){
-  var name=document.getElementById('room-name').value.trim();if(!name)return;
-  if(S.editRoom){S.editRoom.name=name;addActivity('Room "'+name+'" renamed');}
-  else{S.rooms.push({id:uid(),name:name});addActivity('Room "'+name+'" added');}
+  var name=document.getElementById('room-name').value.trim(); if(!name) return;
+  if(S.eRoom){S.eRoom.name=name;logAct('Room "'+name+'" renamed');}
+  else{S.rooms.push({id:uid(),name:name});logAct('Room "'+name+'" added');}
   closeModal('modal-room');save();render();
 }
-
 function deleteRoom(id){
-  if(!confirm('Delete this room and all its locations and items?'))return;
+  if(!confirm('Delete this room and all its locations and items?')) return;
   var r=S.rooms.find(function(x){return x.id===id;});
   var lIds=S.locs.filter(function(l){return l.roomId===id;}).map(function(l){return l.id;});
-  S.items=S.items.filter(function(i){return!lIds.includes(i.locId);});
+  S.items=S.items.filter(function(i){return lIds.indexOf(i.locId)===-1;});
   S.locs=S.locs.filter(function(l){return l.roomId!==id;});
   S.rooms=S.rooms.filter(function(x){return x.id!==id;});
-  if(S.browseRoom===id){S.browseRoom=null;S.browseLoc=null;}
-  addActivity('Room "'+(r?r.name:id)+'" deleted');
+  if(S.bRoom===id){S.bRoom=null;S.bLoc=null;}
+  logAct('Room "'+(r?r.name:id)+'" deleted');
   save();render();
 }
 
 function openLocModal(presetRoomId,editId){
-  S.editLoc=editId?S.locs.find(function(l){return l.id===editId;}):null;
-  document.getElementById('modal-loc-title').textContent=S.editLoc?'Edit location':'Add location';
-  document.getElementById('loc-name').value=S.editLoc?S.editLoc.name:'';
-  var rSel=document.getElementById('loc-room');
-  rSel.innerHTML=S.rooms.map(function(r){return'<option value="'+r.id+'">'+r.name+'</option>';}).join('');
-  rSel.value=S.editLoc?S.editLoc.roomId:(presetRoomId||S.browseRoom||(S.rooms[0]&&S.rooms[0].id));
+  S.eLoc=editId?S.locs.find(function(l){return l.id===editId;}):null;
+  document.getElementById('ml-title').textContent=S.eLoc?'Edit location':'Add location';
+  document.getElementById('loc-name').value=S.eLoc?S.eLoc.name:'';
+  var rs=document.getElementById('loc-room');
+  rs.innerHTML=S.rooms.map(function(r){return '<option value="'+r.id+'">'+r.name+'</option>';}).join('');
+  rs.value=S.eLoc?S.eLoc.roomId:(presetRoomId||S.bRoom||(S.rooms[0]&&S.rooms[0].id));
   openModal('modal-loc');
 }
-
 function saveLoc(){
-  var name=document.getElementById('loc-name').value.trim();if(!name)return;
+  var name=document.getElementById('loc-name').value.trim(); if(!name) return;
   var roomId=document.getElementById('loc-room').value;
-  if(S.editLoc){S.editLoc.name=name;S.editLoc.roomId=roomId;addActivity('Location "'+name+'" updated');}
-  else{S.locs.push({id:uid(),roomId:roomId,name:name});addActivity('Location "'+name+'" added to '+roomName(roomId));}
+  if(S.eLoc){S.eLoc.name=name;S.eLoc.roomId=roomId;logAct('Location "'+name+'" updated');}
+  else{S.locs.push({id:uid(),roomId:roomId,name:name});logAct('Location "'+name+'" added to '+rName(roomId));}
   closeModal('modal-loc');save();render();
 }
-
 function deleteLoc(id){
-  if(!confirm('Delete this location and all its items?'))return;
+  if(!confirm('Delete this location and all its items?')) return;
   var l=S.locs.find(function(x){return x.id===id;});
   S.items=S.items.filter(function(i){return i.locId!==id;});
   S.locs=S.locs.filter(function(x){return x.id!==id;});
-  if(S.browseLoc===id)S.browseLoc=null;
-  addActivity('Location "'+(l?l.name:id)+'" deleted');
+  if(S.bLoc===id) S.bLoc=null;
+  logAct('Location "'+(l?l.name:id)+'" deleted');
   save();render();
 }
 
 function populateItemLoc(){
   var rId=document.getElementById('item-room').value;
   var sel=document.getElementById('item-loc');
-  sel.innerHTML=S.locs.filter(function(l){return l.roomId===rId;}).map(function(l){return'<option value="'+l.id+'">'+l.name+'</option>';}).join('');
+  sel.innerHTML=S.locs.filter(function(l){return l.roomId===rId;}).map(function(l){return '<option value="'+l.id+'">'+l.name+'</option>';}).join('');
 }
-
 function openItemModal(presetLocId,editId){
-  S.editItem=editId?S.items.find(function(i){return i.id===editId;}):null;
-  document.getElementById('modal-item-title').textContent=S.editItem?'Edit item':'Add item';
-  document.getElementById('item-name').value=S.editItem?S.editItem.name:'';
-  document.getElementById('item-cat').value=S.editItem?S.editItem.cat:'';
-  document.getElementById('item-qty').value=S.editItem?S.editItem.qty:0;
-  document.getElementById('item-thresh').value=S.editItem?S.editItem.thresh:5;
-  document.getElementById('item-notes').value=S.editItem?S.editItem.notes:'';
-  var perishable=S.editItem?!!S.editItem.perishable:false;
-  document.getElementById('item-perishable').checked=perishable;
-  document.getElementById('item-expiry').value=S.editItem?S.editItem.expiry||'':'';
-  document.getElementById('expire-section').classList.toggle('show',perishable);
-  var rSel=document.getElementById('item-room');
-  rSel.innerHTML=S.rooms.map(function(r){return'<option value="'+r.id+'">'+r.name+'</option>';}).join('');
-  var presetRoom=null;
-  if(S.editItem){var el=S.locs.find(function(l){return l.id===S.editItem.locId;});if(el)presetRoom=el.roomId;}
-  else if(presetLocId){var el2=S.locs.find(function(l){return l.id===presetLocId;});if(el2)presetRoom=el2.roomId;}
-  else if(S.browseRoom)presetRoom=S.browseRoom;
-  if(presetRoom)rSel.value=presetRoom;
+  S.eItem=editId?S.items.find(function(i){return i.id===editId;}):null;
+  document.getElementById('mi-title').textContent=S.eItem?'Edit item':'Add item';
+  document.getElementById('item-name').value=S.eItem?S.eItem.name:'';
+  document.getElementById('item-cat').value=S.eItem?S.eItem.cat:'';
+  document.getElementById('item-qty').value=S.eItem?S.eItem.qty:0;
+  document.getElementById('item-thresh').value=S.eItem?S.eItem.thresh:5;
+  document.getElementById('item-notes').value=S.eItem?S.eItem.notes:'';
+  var p=S.eItem?!!S.eItem.perishable:false;
+  document.getElementById('item-perishable').checked=p;
+  document.getElementById('item-expiry').value=S.eItem?S.eItem.expiry||'':'';
+  document.getElementById('exp-sec').classList.toggle('show',p);
+  var rs=document.getElementById('item-room');
+  rs.innerHTML=S.rooms.map(function(r){return '<option value="'+r.id+'">'+r.name+'</option>';}).join('');
+  var pr=null;
+  if(S.eItem){var el=S.locs.find(function(l){return l.id===S.eItem.locId;});if(el)pr=el.roomId;}
+  else if(presetLocId){var el2=S.locs.find(function(l){return l.id===presetLocId;});if(el2)pr=el2.roomId;}
+  else if(S.bRoom)pr=S.bRoom;
+  if(pr)rs.value=pr;
   populateItemLoc();
-  if(S.editItem)document.getElementById('item-loc').value=S.editItem.locId;
+  if(S.eItem)document.getElementById('item-loc').value=S.eItem.locId;
   else if(presetLocId)document.getElementById('item-loc').value=presetLocId;
   openModal('modal-item');
 }
-
 function editItem(id){openItemModal(null,id);}
-
 function saveItem(){
-  var name=document.getElementById('item-name').value.trim();if(!name)return;
-  var perishable=document.getElementById('item-perishable').checked;
-  var data={
-    name:name,
-    cat:document.getElementById('item-cat').value.trim()||'General',
-    locId:document.getElementById('item-loc').value,
-    qty:parseInt(document.getElementById('item-qty').value)||0,
-    thresh:parseInt(document.getElementById('item-thresh').value)||5,
-    notes:document.getElementById('item-notes').value.trim(),
-    perishable:perishable,
-    expiry:perishable?document.getElementById('item-expiry').value:''
-  };
-  if(S.editItem){Object.assign(S.editItem,data);addActivity('"'+name+'" updated in '+locName(data.locId));}
-  else{S.items.push(Object.assign({id:uid()},data));addActivity('"'+name+'" added to '+locName(data.locId));}
+  var name=document.getElementById('item-name').value.trim(); if(!name) return;
+  var p=document.getElementById('item-perishable').checked;
+  var data={name:name,cat:document.getElementById('item-cat').value.trim()||'General',locId:document.getElementById('item-loc').value,qty:parseInt(document.getElementById('item-qty').value)||0,thresh:parseInt(document.getElementById('item-thresh').value)||5,notes:document.getElementById('item-notes').value.trim(),perishable:p,expiry:p?document.getElementById('item-expiry').value:''};
+  if(S.eItem){Object.assign(S.eItem,data);logAct('"'+name+'" updated in '+lName(data.locId));}
+  else{S.items.push(Object.assign({id:uid()},data));logAct('"'+name+'" added to '+lName(data.locId));}
   closeModal('modal-item');save();render();
 }
-
 function deleteItem(id){
-  if(!confirm("Are you sure you want to delete this item?"))return;
+  if(!confirm('Are you sure you want to delete this item?')) return;
   var i=S.items.find(function(x){return x.id===id;});
   S.items=S.items.filter(function(x){return x.id!==id;});
-  addActivity('"'+(i?i.name:id)+'" removed');
+  logAct('"'+(i?i.name:id)+'" removed');
   save();render();
 }
 
 function showLocQr(locId){
-  var l=S.locs.find(function(x){return x.id===locId;});if(!l)return;
-  document.getElementById('modal-qr-title').textContent='QR — '+l.name;
-  var cont=document.getElementById('modal-qr-content');cont.innerHTML='';
-  var d=document.createElement('div');cont.appendChild(d);
+  var l=S.locs.find(function(x){return x.id===locId;}); if(!l) return;
+  document.getElementById('mq-title').textContent='QR — '+l.name;
+  var cont=document.getElementById('modal-qr-content'); cont.innerHTML='';
+  var d=document.createElement('div'); cont.appendChild(d);
   try{new QRCode(d,{text:'inv:loc:'+locId,width:160,height:160,correctLevel:QRCode.CorrectLevel.M});}catch(e){}
   openModal('modal-qr');
 }
-
 function generateQR(){
   var locId=document.getElementById('qr-loc-sel').value;
-  var l=S.locs.find(function(x){return x.id===locId;});if(!l)return;
-  var out=document.getElementById('qr-output');out.innerHTML='';
-  var d=document.createElement('div');out.appendChild(d);
+  var l=S.locs.find(function(x){return x.id===locId;}); if(!l) return;
+  var out=document.getElementById('qr-output'); out.innerHTML='';
+  var d=document.createElement('div'); out.appendChild(d);
   try{new QRCode(d,{text:'inv:loc:'+locId,width:180,height:180,correctLevel:QRCode.CorrectLevel.M});}catch(e){}
-  var p=document.createElement('p');p.className='qr-note';p.textContent=l.name+' · '+roomName(l.roomId)+' · ID: '+locId;out.appendChild(p);
-  var n=document.createElement('p');n.className='qr-note';n.style.marginTop='5px';n.textContent='Android: write "inv:loc:'+locId+'" to an NFC tag.';out.appendChild(n);
+  var p=document.createElement('p');p.className='qrn';p.textContent=l.name+' · '+rName(l.roomId)+' · ID: '+locId;out.appendChild(p);
+  var n=document.createElement('p');n.className='qrn';n.style.marginTop='5px';n.textContent='Android: write "inv:loc:'+locId+'" to an NFC tag.';out.appendChild(n);
 }
-
 function triggerScan(){
-  document.getElementById('scan-result').innerHTML='<div style="font-size:13px;color:var(--text2);padding:.75rem 0;">Camera scanning requires a native app. Enter a location name to navigate manually:<br><input type="text" placeholder="Location name or ID…" style="width:100%;margin-top:8px;padding:7px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;background:var(--bg3);color:var(--text);" oninput="manualScan(this.value)"></div>';
+  document.getElementById('scan-result').innerHTML='<div style="font-size:13px;color:var(--text2);padding:.75rem 0;">Enter a location name to navigate manually:<br><input type="text" placeholder="Location name or ID…" style="width:100%;margin-top:8px;padding:7px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;background:var(--bg3);color:var(--text);" oninput="manualScan(this.value)"></div>';
 }
-
 function manualScan(val){
   var id=val.replace('inv:loc:','').trim();
   var loc=S.locs.find(function(l){return l.id===id||l.name.toLowerCase()===id.toLowerCase();});
-  if(loc){S.browseRoom=loc.roomId;S.browseLoc=loc.id;showPage('browse');}
+  if(loc){S.bRoom=loc.roomId;S.bLoc=loc.id;showPage('browse');}
 }
 
-
-function globalSearch(q){
-  if(!q.trim()){document.getElementById('global-search-results').style.display='none';return;}
-  var results=S.items.filter(function(i){
-    var rId=locRoom(i.locId);
-    return[i.name,i.cat,locName(i.locId),roomName(rId)].some(function(s){return s.toLowerCase().includes(q.toLowerCase());});
-  });
-  var box=document.getElementById('global-search-results');
-  if(!results.length){box.innerHTML='<div style="padding:10px 14px;font-size:13px;color:var(--text2);">No results found</div>';box.style.display='block';return;}
-  box.innerHTML=results.map(function(i){
-    var rId=locRoom(i.locId);var e=expiryStatus(i);var s=stockStatus(i);
-    return'<div class="gs-result" onclick="goToItem(''+i.locId+'',''+i.id+'')" style="padding:10px 14px;cursor:pointer;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:10px;">'+
-      '<i class="ti ti-box" style="color:var(--accent-light);font-size:16px;"></i>'+
-      '<div style="flex:1;">'+
-        '<div style="font-size:13px;font-weight:500;color:var(--text);">'+i.name+'</div>'+
-        '<div style="font-size:12px;color:var(--text2);">'+roomName(rId)+' › '+locName(i.locId)+' · Qty: '+i.qty+'</div>'+
-      '</div>'+
-      '<span class="status '+s+'" style="font-size:11px;">'+stockLabel(s)+'</span>'+
-      (e?'<span class="status '+e.cls+'" style="font-size:11px;margin-left:4px;">'+e.label+'</span>':'')+
-    '</div>';
-  }).join('');
-  box.style.display='block';
+if(sessionStorage.getItem(SK)==='1'){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('main-app').style.display='block';
+  load();
 }
-
-function goToItem(locId,itemId){
-  var loc=S.locs.find(function(l){return l.id===locId;});
-  if(!loc)return;
-  S.browseRoom=loc.roomId;S.browseLoc=locId;
-  showPage('browse');
-  document.getElementById('global-search').value='';
-  document.getElementById('global-search-results').style.display='none';
-}
-
-document.addEventListener('click',function(e){
-  var box=document.getElementById('global-search-results');
-  if(box&&!box.contains(e.target)&&e.target.id!=='global-search'){box.style.display='none';}
-});
-
-if(sessionStorage.getItem(SESSION_KEY)==='1'){load();}
 </script>
 </body>
 </html>
