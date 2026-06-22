@@ -376,7 +376,7 @@ function sortedBy(arr){return arr.slice().sort(function(a,b){return(a.order||0)-
 // subcats for a location
 function locSubcats(locId,ctx){var arr=ctx==='aircraft'?S.acSubcats:S.subcats;return sortedBy(arr.filter(function(s){return s.locId===locId;}));}
 // items in a location, optionally filtered by subcatId
-function locItems(locId,subcatId,ctx){var arr=ctx==='aircraft'?S.acItems:S.items;return sortedBy(arr.filter(function(i){return i.locId===locId&&(subcatId===undefined||i.subcatId===(subcatId||null));}));}
+function locItems(locId,subcatId,ctx){var arr=ctx==='aircraft'?S.acItems:S.items;return sortedBy(arr.filter(function(i){if(i.locId!==locId)return false;if(subcatId===undefined)return true;var isc=i.subcatId||null;var wsc=subcatId||null;return isc===wsc;}));}
 
 function render(){updateSidebar();renderStatCards();renderAlerts();renderActivity();renderRooms();renderAircraft();renderAllItems('');}
 function updateSidebar(){
