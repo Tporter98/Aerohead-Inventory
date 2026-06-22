@@ -425,7 +425,7 @@ function seed(){
 function uid(){return 'x'+Math.random().toString(36).slice(2,9);}
 function expSt(item){if(!item.perishable||!item.expiry)return null;var today=new Date();today.setHours(0,0,0,0);var exp=new Date(item.expiry+'T00:00:00');var diff=Math.floor((exp-today)/86400000);if(diff<0)return{label:'Expired',cls:'out'};if(diff<=7)return{label:'Exp in '+diff+'d',cls:'exp'};if(diff<=30)return{label:'Exp '+fmtDate(item.expiry),cls:'low'};return{label:fmtDate(item.expiry),cls:'ok'};}
 function fmtDate(d){if(!d)return'';var p=d.split('-');return p[1]+'/'+p[2]+'/'+p[0].slice(2);}
-function stkSt(i){if(i.type==='label')return'lbl';if(i.qty===0)return'out';if(i.qty<=i.thresh)return'low';return'ok';}
+function stkSt(i){if(i.type==='label')return'lbl';if(i.qty===0&&i.thresh===0)return'ok';if(i.qty===0)return'out';if(i.thresh>0&&i.qty<=i.thresh)return'low';return'ok';}
 function stkLbl(s){return s==='out'?'Out of stock':s==='low'?'Low stock':s==='lbl'?'Asset':'In stock';}
 function rName(id){var r=S.rooms.find(function(x){return x.id===id;});return r?r.name:'?';}
 function lName(id){var l=S.locs.find(function(x){return x.id===id;});return l?l.name:'?';}
@@ -831,7 +831,7 @@ function saveItem(){
     data={type:'label',ctx:ctx,name:name,locId:locId,notes:document.getElementById('label-notes').value.trim(),cat:'',qty:0,thresh:0,perishable:false,expiry:'',order:S.eItem?S.eItem.order:(maxOrder+1)};
   }else{
     var p=document.getElementById('item-perishable').checked;
-    data={type:'stock',ctx:ctx,name:name,cat:document.getElementById('item-cat').value.trim()||'General',locId:locId,qty:parseInt(document.getElementById('item-qty').value)||0,thresh:parseInt(document.getElementById('item-thresh').value)||5,notes:document.getElementById('item-notes').value.trim(),perishable:p,expiry:p?document.getElementById('item-expiry').value:'',order:S.eItem?S.eItem.order:(maxOrder+1)};
+    data={type:'stock',ctx:ctx,name:name,cat:document.getElementById('item-cat').value.trim()||'General',locId:locId,qty:parseInt(document.getElementById('item-qty').value)||0,thresh:Math.max(0,parseInt(document.getElementById('item-thresh').value)||0),notes:document.getElementById('item-notes').value.trim(),perishable:p,expiry:p?document.getElementById('item-expiry').value:'',order:S.eItem?S.eItem.order:(maxOrder+1)};
   }
   if(S.eItem){Object.assign(S.eItem,data);logAct('"'+name+'" updated');}
   else{arr.push(Object.assign({id:uid()},data));logAct('"'+name+'" added');}
