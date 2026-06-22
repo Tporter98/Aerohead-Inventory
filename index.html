@@ -677,8 +677,9 @@ function showPage(id){
   var titles={dashboard:'Dashboard',aircraft:'Aircraft',rooms:'Rooms','all-items':'All items',scan:'Scan / QR'};
   document.getElementById('page-title').textContent=titles[id]||id;
   setActiveSidelink('sl-'+id);
-  if(id==='aircraft')renderAircraft();
-  if(id==='rooms')renderRooms();
+  // Reset breadcrumb state when navigating from sidebar
+  if(id==='aircraft'){S.bAc=null;S.bAcLoc=null;renderAircraft();}
+  if(id==='rooms'){S.bRoom=null;S.bLoc=null;renderRooms();}
   if(id==='all-items')renderAllItems('');
   if(id==='scan'){populateQrParent();}
   if(id==='dashboard'){renderStatCards();renderAlerts();renderActivity();}
