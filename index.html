@@ -204,6 +204,11 @@ tr:hover td{background:var(--bg3);}
 .type-btn{flex:1;padding:7px;border-radius:var(--radius);border:0.5px solid var(--border2);background:var(--bg3);color:var(--text2);font-size:13px;font-family:inherit;cursor:pointer;text-align:center;}
 .type-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
 .hint{font-size:12px;color:var(--text3);margin-bottom:8px;}
+.ac-wrap{position:relative;}
+.ac-list{position:absolute;top:100%;left:0;right:0;background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--radius);z-index:400;max-height:160px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,.2);}
+.ac-item{padding:8px 10px;font-size:13px;color:var(--text);cursor:pointer;}
+.ac-item:hover{background:var(--bg3);}
+.ac-item em{color:var(--accent-light);font-style:normal;font-weight:600;}
 
 @media(max-width:640px){
   .sidebar{width:56px;}
@@ -339,9 +344,9 @@ tr:hover td{background:var(--bg3);}
       <button class="type-btn active" id="type-btn-stock" onclick="setItemType('stock')"><i class="ti ti-box"></i> Stock item</button>
       <button class="type-btn" id="type-btn-label" onclick="setItemType('label')"><i class="ti ti-tag"></i> Label / asset</button>
     </div>
-    <div class="fg"><label>Name</label><input type="text" id="item-name" placeholder="e.g. Coke, Travis's Ski Equipment"></div>
+    <div class="fg ac-wrap"><label>Name</label><input type="text" id="item-name" placeholder="e.g. Coke, Travis's Ski Equipment" autocomplete="off" oninput="acShow('item-name','names')" onkeydown="acKey(event,'item-name')" onblur="acHide('item-name',200)"><div class="ac-list" id="ac-item-name" style="display:none;"></div></div>
     <div id="stock-fields">
-      <div class="fg"><label>Category</label><input type="text" id="item-cat" placeholder="e.g. Drinks, Hardware"></div>
+      <div class="fg ac-wrap"><label>Category</label><input type="text" id="item-cat" placeholder="e.g. Drinks, Hardware" autocomplete="off" oninput="acShow('item-cat','cats')" onkeydown="acKey(event,'item-cat')" onblur="acHide('item-cat',200)"><div class="ac-list" id="ac-item-cat" style="display:none;"></div></div>
       <div class="fgr">
         <div class="fg"><label id="item-parent-label">Room</label><select id="item-parent" onchange="populateItemLoc()"></select></div>
         <div class="fg"><label>Location</label><select id="item-loc"></select></div>
@@ -923,3 +928,90 @@ function manualScan(val){
 </script>
 </body>
 </html>
+<script>
+// ── Autocomplete ──
+var acIdx=-1;
+
+function acGetSuggestions(type, q) {
+  var all = S.items.concat(S.acItems);
+  var vals;
+  if(type==='names') {
+    vals = all.map(function(i){return i.name;});
+  } else {
+    vals = all.map(function(i){return i.cat||'';}).filter(Boolean);
+  }
+  // unique, case-insensitive filter
+  var seen={}, results=[];
+  vals.forEach(function(v){
+    var lv=v.toLowerCase();
+    if(!seen[lv] && lv.indexOf(q.toLowerCase())===0 && lv!==q.toLowerCase()){
+      seen[lv]=true; results.push(v);
+    }
+  });
+  // also show contains matches after startsWith
+  vals.forEach(function(v){
+    var lv=v.toLowerCase();
+    if(!seen[lv] && lv.indexOf(q.toLowerCase())>0){
+      seen[lv]=true; results.push(v);
+    }
+  });
+  return results.slice(0,8);
+}
+
+function acShow(inputId, type) {
+  var inp = document.getElementById(inputId);
+  var box = document.getElementById('ac-'+inputId);
+  var q = inp.value.trim();
+  acIdx = -1;
+  if(!q){box.style.display='none';return;}
+  var suggestions = acGetSuggestions(type, q);
+  if(!suggestions.length){box.style.display='none';return;}
+  box.innerHTML = suggestions.map(function(s,i){
+    // bold the matching portion
+    var lo=s.toLowerCase(), lq=q.toLowerCase();
+    var idx=lo.indexOf(lq);
+    var highlighted = idx>=0 ? s.slice(0,idx)+'<em>'+s.slice(idx,idx+q.length)+'</em>'+s.slice(idx+q.length) : s;
+    return '<div class="ac-item" data-idx="'+i+'" onmousedown="acPick(\''+inputId+'\',this)">'+highlighted+'</div>';
+  }).join('');
+  box.style.display='block';
+}
+
+function acPick(inputId, el) {
+  var inp = document.getElementById(inputId);
+  // strip HTML tags to get plain text
+  inp.value = el.textContent || el.innerText;
+  document.getElementById('ac-'+inputId).style.display='none';
+  acIdx=-1;
+}
+
+function acHide(inputId, delay) {
+  setTimeout(function(){
+    var box=document.getElementById('ac-'+inputId);
+    if(box) box.style.display='none';
+    acIdx=-1;
+  }, delay||0);
+}
+
+function acKey(e, inputId) {
+  var box = document.getElementById('ac-'+inputId);
+  if(box.style.display==='none') return;
+  var items = box.querySelectorAll('.ac-item');
+  if(!items.length) return;
+  if(e.key==='ArrowDown'){
+    e.preventDefault();
+    acIdx=Math.min(acIdx+1,items.length-1);
+    items.forEach(function(el,i){el.style.background=i===acIdx?'var(--bg4)':'';});
+  } else if(e.key==='ArrowUp'){
+    e.preventDefault();
+    acIdx=Math.max(acIdx-1,0);
+    items.forEach(function(el,i){el.style.background=i===acIdx?'var(--bg4)':'';});
+  } else if(e.key==='Enter'||e.key==='Tab'){
+    if(acIdx>=0&&items[acIdx]){
+      e.preventDefault();
+      acPick(inputId,items[acIdx]);
+    }
+  } else if(e.key==='Escape'){
+    acHide(inputId,0);
+  }
+}
+</script>
