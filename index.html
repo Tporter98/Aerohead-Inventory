@@ -9,33 +9,10 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh;}
-body.dark{
---bg:#162032;--bg2:#0f1a2e;--bg3:#1e2d45;--bg4:#243452;
---text:#e8edf5;--text2:#8fa3bf;--text3:#4a6080;
---accent:#2d6bc4;--accent-light:#3d7fd4;
---border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.15);--border3:rgba(255,255,255,0.25);
---success-bg:#0d2e1a;--success-text:#4ade80;
---warn-bg:#2e1f00;--warn-text:#fbbf24;
---danger-bg:#2e0d0d;--danger-text:#f87171;
---expire-bg:#2a1040;--expire-text:#c084fc;
---info-bg:#0d1f3a;--info-text:#60a5fa;
---body-bg:#0f1a2e;
-}
-body.light{
---bg:#ffffff;--bg2:#f0f4f8;--bg3:#e8edf5;--bg4:#dce4f0;
---text:#1a2540;--text2:#4a6080;--text3:#8fa3bf;
---accent:#2d6bc4;--accent-light:#3d7fd4;
---border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.15);--border3:rgba(0,0,0,0.25);
---success-bg:#d1fae5;--success-text:#065f46;
---warn-bg:#fef3c7;--warn-text:#92400e;
---danger-bg:#fee2e2;--danger-text:#991b1b;
---expire-bg:#ede9fe;--expire-text:#5b21b6;
---info-bg:#dbeafe;--info-text:#1e40af;
---body-bg:#f0f4f8;
-}
+body.dark{--bg:#162032;--bg2:#0f1a2e;--bg3:#1e2d45;--bg4:#243452;--text:#e8edf5;--text2:#8fa3bf;--text3:#4a6080;--accent:#2d6bc4;--accent-light:#3d7fd4;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.15);--border3:rgba(255,255,255,0.25);--success-bg:#0d2e1a;--success-text:#4ade80;--warn-bg:#2e1f00;--warn-text:#fbbf24;--danger-bg:#2e0d0d;--danger-text:#f87171;--expire-bg:#2a1040;--expire-text:#c084fc;--info-bg:#0d1f3a;--info-text:#60a5fa;--body-bg:#0f1a2e;}
+body.light{--bg:#ffffff;--bg2:#f0f4f8;--bg3:#e8edf5;--bg4:#dce4f0;--text:#1a2540;--text2:#4a6080;--text3:#8fa3bf;--accent:#2d6bc4;--accent-light:#3d7fd4;--border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.15);--border3:rgba(0,0,0,0.25);--success-bg:#d1fae5;--success-text:#065f46;--warn-bg:#fef3c7;--warn-text:#92400e;--danger-bg:#fee2e2;--danger-text:#991b1b;--expire-bg:#ede9fe;--expire-text:#5b21b6;--info-bg:#dbeafe;--info-text:#1e40af;--body-bg:#f0f4f8;}
 body{background:var(--body-bg);color:var(--text);}
 :root{--radius:8px;--radius-lg:12px;--sidebar:220px;}
-
 #login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--body-bg);}
 .login-card{background:var(--bg);border:0.5px solid var(--border2);border-radius:12px;padding:2.5rem 2rem;width:100%;max-width:340px;text-align:center;}
 .login-logo{font-size:36px;color:var(--accent-light);margin-bottom:12px;}
@@ -45,13 +22,11 @@ body{background:var(--body-bg);color:var(--text);}
 .login-card button{width:100%;padding:10px;border-radius:8px;border:none;background:var(--accent);color:#fff;font-size:14px;font-family:inherit;cursor:pointer;font-weight:500;}
 .login-card button:hover{background:var(--accent-light);}
 .login-error{font-size:13px;color:var(--danger-text);margin-top:8px;display:none;}
-
 #sync-indicator{position:fixed;top:10px;right:10px;z-index:999;font-size:12px;padding:4px 10px;border-radius:99px;background:var(--bg3);border:0.5px solid var(--border2);color:var(--text2);display:none;align-items:center;gap:5px;}
 #sync-indicator.show{display:flex;}
 #sync-indicator.saving{color:var(--warn-text);}
 #sync-indicator.saved{color:var(--success-text);}
 #sync-indicator.error{color:var(--danger-text);}
-
 #main-app{display:none;}
 .layout{display:flex;min-height:100vh;}
 .sidebar{width:var(--sidebar);background:var(--bg);border-right:0.5px solid var(--border2);display:flex;flex-direction:column;flex-shrink:0;position:sticky;top:0;height:100vh;overflow-y:auto;}
@@ -75,7 +50,6 @@ body{background:var(--body-bg);color:var(--text);}
 .sidebar-bottom{margin-top:auto;padding:1rem;border-top:0.5px solid var(--border);display:flex;flex-direction:column;gap:6px;}
 .sidebar-bottom button{width:100%;display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:var(--radius);border:0.5px solid var(--border2);background:transparent;color:var(--text2);font-size:13px;font-family:inherit;cursor:pointer;}
 .sidebar-bottom button:hover{background:var(--bg3);color:var(--text);}
-
 .main{flex:1;min-width:0;padding:1.25rem 1.5rem;overflow-x:hidden;}
 .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:8px;}
 .topbar h1{font-size:17px;font-weight:500;color:var(--text);}
@@ -87,10 +61,8 @@ body{background:var(--body-bg);color:var(--text);}
 .gs-item{padding:10px 14px;cursor:pointer;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:10px;}
 .gs-item:hover{background:var(--bg3);}
 .gs-item:last-child{border-bottom:none;}
-
 .page{display:none;}
 .page.active{display:block;}
-
 .stat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:1.5rem;}
 .stat-card{background:var(--bg3);border-radius:var(--radius);padding:.875rem;border:0.5px solid var(--border);cursor:pointer;transition:border-color .12s;}
 .stat-card:hover{border-color:var(--accent);}
@@ -99,10 +71,8 @@ body{background:var(--body-bg);color:var(--text);}
 .stat-value.warn{color:var(--warn-text);}
 .stat-value.danger{color:var(--danger-text);}
 .stat-value.exp{color:var(--expire-text);}
-
 .sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
 .sh h2{font-size:15px;font-weight:500;color:var(--text);}
-
 .btn{display:inline-flex;align-items:center;gap:5px;padding:7px 13px;border-radius:var(--radius);border:0.5px solid var(--border2);background:var(--bg3);color:var(--text);font-size:13px;font-family:inherit;cursor:pointer;transition:all .12s;}
 .btn:hover{background:var(--bg4);border-color:var(--border3);}
 .btn:active{transform:scale(0.98);}
@@ -112,13 +82,11 @@ body{background:var(--body-bg);color:var(--text);}
 .btn.ib{padding:5px 8px;}
 .btn.db{border-color:rgba(248,113,113,0.3);color:var(--danger-text);}
 .btn.db:hover{background:var(--danger-bg);}
-
 .breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2);margin-bottom:1rem;flex-wrap:wrap;}
 .bc-link{cursor:pointer;color:var(--info-text);}
 .bc-link:hover{text-decoration:underline;}
 .bc-sep{color:var(--text3);}
 .bc-cur{color:var(--text);font-weight:500;}
-
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:1rem;}
 .card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:14px;cursor:pointer;transition:border-color .12s;position:relative;}
 .card:hover{border-color:var(--accent);}
@@ -131,8 +99,8 @@ body{background:var(--body-bg);color:var(--text);}
 .card-acts{display:flex;gap:5px;margin-top:10px;flex-wrap:wrap;}
 .bdg{display:inline-block;font-size:11px;padding:2px 7px;border-radius:99px;margin-top:5px;}
 .bdg.low{background:var(--warn-bg);color:var(--warn-text);}
-.bdg.out{background:var(--danger-bg);color:var(--danger-text);}
-
+/* subcategory card accent */
+.card.subcat-card{border-left:3px solid var(--accent);}
 .tw{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:1rem;overflow-x:auto;}
 table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed;min-width:480px;}
 th{text-align:left;padding:8px 10px;color:var(--text2);font-weight:500;border-bottom:0.5px solid var(--border);background:var(--bg3);}
@@ -145,24 +113,30 @@ tr:hover td{background:var(--bg3);}
 .st.out{background:var(--danger-bg);color:var(--danger-text);}
 .st.exp{background:var(--expire-bg);color:var(--expire-text);}
 .st.lbl{background:var(--info-bg);color:var(--info-text);}
-
 .qc{display:inline-flex;align-items:center;gap:5px;}
 .qc button{width:22px;height:22px;border-radius:50%;border:0.5px solid var(--border2);background:var(--bg3);color:var(--text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;}
 .qc button:hover{border-color:var(--accent-light);color:var(--accent-light);}
 .qn{font-size:13px;font-weight:500;min-width:22px;text-align:center;color:var(--text);}
-
+/* Items DnD list */
 .items-dnd{display:flex;flex-direction:column;background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:1rem;}
 .dnd-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:0.5px solid var(--border);cursor:grab;transition:background .1s;user-select:none;}
 .dnd-item:last-child{border-bottom:none;}
 .dnd-item:hover{background:var(--bg3);}
-.dnd-item.dragging{opacity:.4;background:var(--bg4);}
-.dnd-item.drag-over{background:var(--bg4);border-top:2px solid var(--accent-light);}
-.drag-handle{color:var(--text3);font-size:16px;cursor:grab;flex-shrink:0;}
+.dnd-item.dragging{opacity:.4;}
+.dnd-item.drag-over{border-top:2px solid var(--accent-light);background:var(--bg4);}
+.drag-handle{color:var(--text3);font-size:16px;flex-shrink:0;}
 .dnd-name{flex:1;font-size:13px;font-weight:500;color:var(--text);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .dnd-meta{font-size:12px;color:var(--text2);}
 .dnd-acts{display:flex;gap:5px;flex-shrink:0;align-items:center;}
 .label-tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:2px 8px;border-radius:99px;background:var(--info-bg);color:var(--info-text);margin-left:6px;}
-
+/* Location view with subcats + loose items */
+.loc-section{margin-bottom:1.25rem;}
+.loc-section-header{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--bg3);border-radius:var(--radius);margin-bottom:6px;cursor:default;}
+.loc-section-header .sh-title{font-size:13px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:6px;}
+.loc-section-header .sh-acts{display:flex;gap:5px;}
+/* drop zone for dragging into subcategory */
+.subcat-drop-zone{min-height:40px;border:1.5px dashed var(--border2);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text3);margin-bottom:4px;transition:background .1s,border-color .1s;}
+.subcat-drop-zone.drag-active{background:var(--bg4);border-color:var(--accent-light);color:var(--accent-light);}
 .al{display:flex;flex-direction:column;gap:7px;margin-bottom:1.25rem;}
 .ai{display:flex;align-items:center;gap:10px;padding:9px 13px;border-radius:var(--radius);border:0.5px solid rgba(251,191,36,0.3);background:var(--warn-bg);}
 .ai.out{border-color:rgba(248,113,113,0.3);background:var(--danger-bg);}
@@ -171,7 +145,6 @@ tr:hover td{background:var(--bg3);}
 .at small{color:var(--text2);font-size:12px;display:block;margin-top:2px;}
 .aci{display:flex;align-items:center;gap:10px;font-size:13px;padding:8px 0;border-bottom:0.5px solid var(--border);}
 .aci:last-child{border-bottom:none;}
-
 .ov{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:300;align-items:flex-start;justify-content:center;padding:50px 1rem 1rem;}
 .ov.open{display:flex;}
 .modal{background:var(--bg);border-radius:var(--radius-lg);border:0.5px solid var(--border2);padding:1.5rem;width:100%;max-width:420px;max-height:90vh;overflow-y:auto;}
@@ -200,16 +173,15 @@ tr:hover td{background:var(--bg3);}
 .qrn{font-size:12px;color:var(--text2);margin-top:7px;}
 .scanbox{border:1.5px dashed var(--border2);border-radius:var(--radius-lg);padding:2rem;text-align:center;cursor:pointer;}
 .scanbox:hover{background:var(--bg3);}
+.hint{font-size:12px;color:var(--text3);margin-bottom:8px;}
 .type-toggle{display:flex;gap:8px;margin-bottom:12px;}
 .type-btn{flex:1;padding:7px;border-radius:var(--radius);border:0.5px solid var(--border2);background:var(--bg3);color:var(--text2);font-size:13px;font-family:inherit;cursor:pointer;text-align:center;}
 .type-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
-.hint{font-size:12px;color:var(--text3);margin-bottom:8px;}
 .ac-wrap{position:relative;}
 .ac-list{position:absolute;top:100%;left:0;right:0;background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--radius);z-index:400;max-height:160px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,.2);}
 .ac-item{padding:8px 10px;font-size:13px;color:var(--text);cursor:pointer;}
-.ac-item:hover{background:var(--bg3);}
+.ac-item:hover,.ac-item.active{background:var(--bg3);}
 .ac-item em{color:var(--accent-light);font-style:normal;font-weight:600;}
-
 @media(max-width:640px){
   .sidebar{width:56px;}
   .sidebar-logo span,.slink-label,.slink-badge,.sidebar-section-label,.sidebar-bottom button span{display:none;}
@@ -223,9 +195,7 @@ tr:hover td{background:var(--bg3);}
 </style>
 </head>
 <body class="dark">
-
 <div id="sync-indicator"><i class="ti ti-cloud"></i><span id="sync-text">Syncing…</span></div>
-
 <div id="login-screen">
   <div class="login-card">
     <div class="login-logo"><i class="ti ti-building-warehouse"></i></div>
@@ -236,7 +206,6 @@ tr:hover td{background:var(--bg3);}
     <div class="login-error" id="login-error">Incorrect password. Try again.</div>
   </div>
 </div>
-
 <div id="main-app">
 <div class="layout">
 <div class="sidebar">
@@ -266,44 +235,25 @@ tr:hover td{background:var(--bg3);}
     <button onclick="logout()"><i class="ti ti-lock"></i><span>Lock</span></button>
   </div>
 </div>
-
 <div class="main">
   <div class="topbar">
     <h1 id="page-title">Dashboard</h1>
     <div class="gs-wrap"><i class="ti ti-search gs-icon"></i><input type="text" id="gs-input" placeholder="Search inventory…" autocomplete="off"><div id="gs-results"></div></div>
   </div>
-
-  <!-- Dashboard -->
   <div class="page active" id="page-dashboard">
     <div class="stat-cards" id="stat-cards"></div>
     <div class="sh"><h2>Alerts</h2></div><div id="alert-list"></div>
     <div class="div"></div>
     <div class="sh"><h2>Recent activity</h2></div><div id="activity-list"></div>
   </div>
-
-  <!-- Aircraft browser -->
-  <div class="page" id="page-aircraft">
-    <div class="breadcrumb" id="ac-breadcrumb"></div>
-    <div id="ac-content"></div>
-  </div>
-
-  <!-- Rooms browser -->
-  <div class="page" id="page-rooms">
-    <div class="breadcrumb" id="rm-breadcrumb"></div>
-    <div id="rm-content"></div>
-  </div>
-
-  <!-- Filter -->
+  <div class="page" id="page-aircraft"><div class="breadcrumb" id="ac-breadcrumb"></div><div id="ac-content"></div></div>
+  <div class="page" id="page-rooms"><div class="breadcrumb" id="rm-breadcrumb"></div><div id="rm-content"></div></div>
   <div class="page" id="page-filter"><div id="filter-content"></div></div>
-
-  <!-- All items -->
   <div class="page" id="page-all-items">
     <div class="sh"><h2>All items</h2><button class="btn primary" onclick="openItemModal(null,null,null)"><i class="ti ti-plus"></i> Add item</button></div>
     <div class="swrap"><i class="ti ti-search"></i><input type="text" placeholder="Search…" oninput="renderAllItems(this.value)"></div>
-    <div class="tw"><table><thead><tr><th style="width:22%">Item</th><th style="width:14%">Parent</th><th style="width:14%">Location</th><th style="width:10%">Qty</th><th style="width:11%">Stock</th><th style="width:11%">Expires</th><th style="width:8%">Type</th><th style="width:10%"></th></tr></thead><tbody id="all-items-body"></tbody></table></div>
+    <div class="tw"><table><thead><tr><th style="width:20%">Item</th><th style="width:12%">Parent</th><th style="width:12%">Location</th><th style="width:12%">Subcat</th><th style="width:10%">Qty</th><th style="width:10%">Stock</th><th style="width:10%">Expires</th><th style="width:7%">Src</th><th style="width:7%"></th></tr></thead><tbody id="all-items-body"></tbody></table></div>
   </div>
-
-  <!-- Scan -->
   <div class="page" id="page-scan">
     <div class="sh"><h2>Scan location</h2></div>
     <p style="font-size:13px;color:var(--text2);margin-bottom:1rem;">Scan a QR code to jump to a location.</p>
@@ -312,10 +262,7 @@ tr:hover td{background:var(--bg3);}
     <div class="div"></div>
     <div class="sh"><h2>Generate QR</h2></div>
     <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
-      <select id="qr-type-sel" onchange="populateQrParent()" style="flex:1;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;background:var(--bg3);color:var(--text);">
-        <option value="room">Room location</option>
-        <option value="aircraft">Aircraft location</option>
-      </select>
+      <select id="qr-type-sel" onchange="populateQrParent()" style="flex:1;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;background:var(--bg3);color:var(--text);"><option value="room">Room location</option><option value="aircraft">Aircraft location</option></select>
     </div>
     <div style="display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap;">
       <select id="qr-parent-sel" onchange="populateQrLoc()" style="flex:1;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;background:var(--bg3);color:var(--text);"></select>
@@ -329,14 +276,11 @@ tr:hover td{background:var(--bg3);}
 </div>
 
 <!-- Modals -->
-<div class="ov" id="modal-room"><div class="modal"><h3 id="mr-title">Add room</h3><div class="fg"><label>Room name</label><input type="text" id="room-name" placeholder="e.g. Warehouse, Kitchen"></div><div class="ma"><button class="btn" onclick="closeModal('modal-room')">Cancel</button><button class="btn primary" onclick="saveRoom()">Save</button></div></div></div>
-
-<div class="ov" id="modal-rmloc"><div class="modal"><h3 id="mrl-title">Add location</h3><div class="fg"><label>Location name</label><input type="text" id="rmloc-name" placeholder="e.g. Fridge, Shelf 1"></div><div class="fg"><label>Room</label><select id="rmloc-room"></select></div><div class="ma"><button class="btn" onclick="closeModal('modal-rmloc')">Cancel</button><button class="btn primary" onclick="saveRmLoc()">Save</button></div></div></div>
-
-<div class="ov" id="modal-aircraft"><div class="modal"><h3 id="mac-title">Add aircraft</h3><div class="fg"><label>Tail number</label><input type="text" id="ac-tail" placeholder="e.g. N711VT"></div><div class="fg"><label>Aircraft type (optional)</label><input type="text" id="ac-type" placeholder="e.g. Cessna 172"></div><div class="fg"><label>Notes (optional)</label><input type="text" id="ac-notes" placeholder=""></div><div class="ma"><button class="btn" onclick="closeModal('modal-aircraft')">Cancel</button><button class="btn primary" onclick="saveAircraft()">Save</button></div></div></div>
-
-<div class="ov" id="modal-acloc"><div class="modal"><h3 id="mal-title">Add location</h3><div class="fg"><label>Location name</label><input type="text" id="acloc-name" placeholder="e.g. Cargo bay, Seat pocket"></div><div class="fg"><label>Aircraft</label><select id="acloc-ac"></select></div><div class="ma"><button class="btn" onclick="closeModal('modal-acloc')">Cancel</button><button class="btn primary" onclick="saveAcLoc()">Save</button></div></div></div>
-
+<div class="ov" id="modal-room"><div class="modal"><h3 id="mr-title">Add room</h3><div class="fg"><label>Room name</label><input type="text" id="room-name" placeholder="e.g. Warehouse"></div><div class="ma"><button class="btn" onclick="closeModal('modal-room')">Cancel</button><button class="btn primary" onclick="saveRoom()">Save</button></div></div></div>
+<div class="ov" id="modal-rmloc"><div class="modal"><h3 id="mrl-title">Add location</h3><div class="fg"><label>Location name</label><input type="text" id="rmloc-name" placeholder="e.g. Cabinet 3"></div><div class="fg"><label>Room</label><select id="rmloc-room"></select></div><div class="ma"><button class="btn" onclick="closeModal('modal-rmloc')">Cancel</button><button class="btn primary" onclick="saveRmLoc()">Save</button></div></div></div>
+<div class="ov" id="modal-subcat"><div class="modal"><h3 id="msc-title">Add subcategory</h3><div class="fg"><label>Name</label><input type="text" id="subcat-name" placeholder="e.g. Sodas, Snacks, Tools"></div><div class="ma"><button class="btn" onclick="closeModal('modal-subcat')">Cancel</button><button class="btn primary" onclick="saveSubcat()">Save</button></div></div></div>
+<div class="ov" id="modal-aircraft"><div class="modal"><h3 id="mac-title">Add aircraft</h3><div class="fg"><label>Tail number</label><input type="text" id="ac-tail" placeholder="e.g. N711VT"></div><div class="fg"><label>Type (optional)</label><input type="text" id="ac-type" placeholder="e.g. Cessna 172"></div><div class="fg"><label>Notes (optional)</label><input type="text" id="ac-notes"></div><div class="ma"><button class="btn" onclick="closeModal('modal-aircraft')">Cancel</button><button class="btn primary" onclick="saveAircraft()">Save</button></div></div></div>
+<div class="ov" id="modal-acloc"><div class="modal"><h3 id="mal-title">Add location</h3><div class="fg"><label>Location name</label><input type="text" id="acloc-name" placeholder="e.g. Cargo bay"></div><div class="fg"><label>Aircraft</label><select id="acloc-ac"></select></div><div class="ma"><button class="btn" onclick="closeModal('modal-acloc')">Cancel</button><button class="btn primary" onclick="saveAcLoc()">Save</button></div></div></div>
 <div class="ov" id="modal-item">
   <div class="modal">
     <h3 id="mi-title">Add item</h3>
@@ -344,13 +288,14 @@ tr:hover td{background:var(--bg3);}
       <button class="type-btn active" id="type-btn-stock" onclick="setItemType('stock')"><i class="ti ti-box"></i> Stock item</button>
       <button class="type-btn" id="type-btn-label" onclick="setItemType('label')"><i class="ti ti-tag"></i> Label / asset</button>
     </div>
-    <div class="fg ac-wrap"><label>Name</label><input type="text" id="item-name" placeholder="e.g. Coke, Travis's Ski Equipment" autocomplete="off" oninput="acShow('item-name','names')" onkeydown="acKey(event,'item-name')" onblur="acHide('item-name',200)"><div class="ac-list" id="ac-item-name" style="display:none;"></div></div>
+    <div class="fg ac-wrap"><label>Name</label><input type="text" id="item-name" placeholder="e.g. Coke" autocomplete="off" oninput="acShow('item-name','names')" onkeydown="acKey(event,'item-name')" onblur="acHide('item-name',200)"><div class="ac-list" id="ac-item-name" style="display:none;"></div></div>
     <div id="stock-fields">
-      <div class="fg ac-wrap"><label>Category</label><input type="text" id="item-cat" placeholder="e.g. Drinks, Hardware" autocomplete="off" oninput="acShow('item-cat','cats')" onkeydown="acKey(event,'item-cat')" onblur="acHide('item-cat',200)"><div class="ac-list" id="ac-item-cat" style="display:none;"></div></div>
+      <div class="fg ac-wrap"><label>Category</label><input type="text" id="item-cat" placeholder="e.g. Drinks" autocomplete="off" oninput="acShow('item-cat','cats')" onkeydown="acKey(event,'item-cat')" onblur="acHide('item-cat',200)"><div class="ac-list" id="ac-item-cat" style="display:none;"></div></div>
       <div class="fgr">
         <div class="fg"><label id="item-parent-label">Room</label><select id="item-parent" onchange="populateItemLoc()"></select></div>
-        <div class="fg"><label>Location</label><select id="item-loc"></select></div>
+        <div class="fg"><label>Location</label><select id="item-loc" onchange="populateItemSubcat()"></select></div>
       </div>
+      <div class="fg"><label>Subcategory <span style="color:var(--text3);font-weight:400;">(optional)</span></label><select id="item-subcat"></select></div>
       <div class="fgr"><div class="fg"><label>Quantity</label><input type="number" id="item-qty" min="0" value="0"></div><div class="fg"><label>Low stock at</label><input type="number" id="item-thresh" min="0" value="5"></div></div>
       <div style="background:var(--bg3);border-radius:var(--radius);padding:10px 12px;margin-bottom:11px;border:0.5px solid var(--border);">
         <div class="toggle-row"><label class="toggle"><input type="checkbox" id="item-perishable" onchange="toggleExpire()"><span class="tslider"></span></label><span style="font-size:13px;color:var(--text);cursor:pointer;" onclick="document.getElementById('item-perishable').click()">Perishable item</span></div>
@@ -361,40 +306,38 @@ tr:hover td{background:var(--bg3);}
     <div id="label-fields" style="display:none;">
       <div class="fgr">
         <div class="fg"><label id="label-parent-label">Room</label><select id="label-parent" onchange="populateLabelLoc()"></select></div>
-        <div class="fg"><label>Location</label><select id="label-loc"></select></div>
+        <div class="fg"><label>Location</label><select id="label-loc" onchange="populateLabelSubcat()"></select></div>
       </div>
+      <div class="fg"><label>Subcategory <span style="color:var(--text3);font-weight:400;">(optional)</span></label><select id="label-subcat"></select></div>
       <div class="fg"><label>Description (optional)</label><input type="text" id="label-notes" placeholder="e.g. Stored in blue bin"></div>
     </div>
     <div class="ma"><button class="btn" onclick="closeModal('modal-item')">Cancel</button><button class="btn primary" onclick="saveItem()">Save</button></div>
   </div>
 </div>
-
 <div class="ov" id="modal-qr"><div class="modal"><h3 id="mq-title">QR code</h3><div class="qra" id="modal-qr-content"></div><p class="qrn">Print and stick on the location.</p><div class="ma"><button class="btn" onclick="closeModal('modal-qr')">Close</button></div></div></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 const firebaseConfig={apiKey:"AIzaSyAP_TPP07MRWl3lCxEemOhofMD3D9xYQQ8I",authDomain:"aerohead-inventory.firebaseapp.com",projectId:"aerohead-inventory",storageBucket:"aerohead-inventory.firebasestorage.app",messagingSenderId:"991664130463",appId:"1:991664130463:web:f7f18e679091d95e1655aa"};
-const app=initializeApp(firebaseConfig);
-const db=getFirestore(app);
-const DATA_DOC=doc(db,'inventory','main');
+const app=initializeApp(firebaseConfig);const db=getFirestore(app);const DATA_DOC=doc(db,'inventory','main');
 function showSync(s){var el=document.getElementById('sync-indicator'),tx=document.getElementById('sync-text');el.className='show '+s;if(s==='saving')tx.textContent='Saving…';if(s==='saved'){tx.textContent='Saved';setTimeout(function(){el.className='';},2000);}if(s==='error')tx.textContent='Sync error';}
 window.fbSave=async function(data){showSync('saving');try{await setDoc(DATA_DOC,data);showSync('saved');}catch(e){console.error(e);showSync('error');}};
 window.fbListen=function(cb){return onSnapshot(DATA_DOC,function(snap){cb(snap.exists()?snap.data():null);},function(e){console.error(e);showSync('error');});};
 window.fbReady=true;window.dispatchEvent(new Event('fbReady'));
 </script>
-
 <script>
 var PW='N711VT',SK='inv_authed',TK='inv_theme';
-// State: rooms/locs/items for room hierarchy; aircraft/acLocs/acItems for aircraft hierarchy
-var S={rooms:[],locs:[],items:[],aircraft:[],acLocs:[],acItems:[],activity:[],
-  eRoom:null,eLoc:null,eItem:null,eAircraft:null,eAcLoc:null,
+var S={
+  rooms:[],locs:[],subcats:[],items:[],
+  aircraft:[],acLocs:[],acSubcats:[],acItems:[],
+  activity:[],
+  eRoom:null,eLoc:null,eSubcat:null,eItem:null,eAircraft:null,eAcLoc:null,eAcSubcat:null,
   bRoom:null,bLoc:null,bAc:null,bAcLoc:null,
-  itemCtx:null, // 'room' or 'aircraft' - context when opening item modal
-  curFilter:null};
-var dragSrc=null,cardDragSrc=null,fbUnsub=null,saveTimer=null,currentItemType='stock';
+  itemCtx:null, subcatCtx:null
+};
+var dragSrc=null,cardDragSrc=null,itemDragSrc=null,fbUnsub=null,saveTimer=null,currentItemType='stock',acIdx=-1;
 
 function applyTheme(t){document.body.className=t;document.getElementById('theme-icon').className='ti ti-'+(t==='dark'?'sun':'moon');document.getElementById('theme-label').textContent=t==='dark'?'Light mode':'Dark mode';localStorage.setItem(TK,t);}
 function toggleTheme(){applyTheme(document.body.className==='dark'?'light':'dark');}
@@ -406,29 +349,22 @@ window.onload=function(){if(sessionStorage.getItem(SK)==='1'){document.getElemen
 
 function startApp(){if(!window.fbListen){window.addEventListener('fbReady',startApp,{once:true});return;}if(fbUnsub){fbUnsub();fbUnsub=null;}
   fbUnsub=window.fbListen(function(data){
-    if(data){S.rooms=data.rooms||[];S.locs=data.locs||[];S.items=data.items||[];S.aircraft=data.aircraft||[];S.acLocs=data.acLocs||[];S.acItems=data.acItems||[];S.activity=data.activity||[];}
+    if(data){S.rooms=data.rooms||[];S.locs=data.locs||[];S.subcats=data.subcats||[];S.items=data.items||[];S.aircraft=data.aircraft||[];S.acLocs=data.acLocs||[];S.acSubcats=data.acSubcats||[];S.acItems=data.acItems||[];S.activity=data.activity||[];}
     else{seed();save();}
     render();setupSearch();
   });
 }
-
-function save(){if(saveTimer)clearTimeout(saveTimer);saveTimer=setTimeout(function(){window.fbSave({rooms:S.rooms,locs:S.locs,items:S.items,aircraft:S.aircraft,acLocs:S.acLocs,acItems:S.acItems,activity:S.activity});},800);}
-
-function seed(){
-  S.rooms=[{id:'r1',name:'Warehouse',order:0},{id:'r2',name:'Office',order:1}];
-  S.locs=[{id:'l1',roomId:'r1',name:'Cabinet A',order:0},{id:'l2',roomId:'r2',name:'Supply closet',order:0}];
-  S.items=[{id:'i1',locId:'l1',name:'Box of screws',cat:'Hardware',qty:5,thresh:10,notes:'',perishable:false,expiry:'',order:0,type:'stock',ctx:'room'}];
-  S.aircraft=[];S.acLocs=[];S.acItems=[];
-  S.activity=[{text:'Inventory initialized',time:Date.now()}];
-}
+function save(){if(saveTimer)clearTimeout(saveTimer);saveTimer=setTimeout(function(){window.fbSave({rooms:S.rooms,locs:S.locs,subcats:S.subcats,items:S.items,aircraft:S.aircraft,acLocs:S.acLocs,acSubcats:S.acSubcats,acItems:S.acItems,activity:S.activity});},800);}
+function seed(){S.rooms=[{id:'r1',name:'Warehouse',order:0}];S.locs=[{id:'l1',roomId:'r1',name:'Cabinet A',order:0}];S.subcats=[];S.items=[{id:'i1',locId:'l1',subcatId:null,name:'Box of screws',cat:'Hardware',qty:5,thresh:10,notes:'',perishable:false,expiry:'',order:0,type:'stock',ctx:'room'}];S.aircraft=[];S.acLocs=[];S.acSubcats=[];S.acItems=[];S.activity=[{text:'Inventory initialized',time:Date.now()}];}
 
 function uid(){return 'x'+Math.random().toString(36).slice(2,9);}
 function expSt(item){if(!item.perishable||!item.expiry)return null;var today=new Date();today.setHours(0,0,0,0);var exp=new Date(item.expiry+'T00:00:00');var diff=Math.floor((exp-today)/86400000);if(diff<0)return{label:'Expired',cls:'out'};if(diff<=7)return{label:'Exp in '+diff+'d',cls:'exp'};if(diff<=30)return{label:'Exp '+fmtDate(item.expiry),cls:'low'};return{label:fmtDate(item.expiry),cls:'ok'};}
 function fmtDate(d){if(!d)return'';var p=d.split('-');return p[1]+'/'+p[2]+'/'+p[0].slice(2);}
-function stkSt(i){if(i.type==='label')return'lbl';if(i.qty===0&&i.thresh===0)return'ok';if(i.qty===0)return'out';if(i.thresh>0&&i.qty<=i.thresh)return'low';return'ok';}
+function stkSt(i){if(i.type==='label')return'lbl';if(i.qty===0&&(i.thresh||0)===0)return'ok';if(i.qty===0)return'out';if((i.thresh||0)>0&&i.qty<=i.thresh)return'low';return'ok';}
 function stkLbl(s){return s==='out'?'Out of stock':s==='low'?'Low stock':s==='lbl'?'Asset':'In stock';}
 function rName(id){var r=S.rooms.find(function(x){return x.id===id;});return r?r.name:'?';}
 function lName(id){var l=S.locs.find(function(x){return x.id===id;});return l?l.name:'?';}
+function scName(id){if(!id)return'—';var sc=S.subcats.find(function(x){return x.id===id;})||S.acSubcats.find(function(x){return x.id===id;});return sc?sc.name:'—';}
 function acName(id){var a=S.aircraft.find(function(x){return x.id===id;});return a?a.tail:'?';}
 function alName(id){var l=S.acLocs.find(function(x){return x.id===id;});return l?l.name:'?';}
 function lRoom(id){var l=S.locs.find(function(x){return x.id===id;});return l?l.roomId:null;}
@@ -437,14 +373,17 @@ function logAct(t){S.activity.unshift({text:t,time:Date.now()});if(S.activity.le
 function tAgo(ts){var d=Math.floor((Date.now()-ts)/60000);if(d<1)return'just now';if(d<60)return d+'m ago';if(d<1440)return Math.floor(d/60)+'h ago';return Math.floor(d/1440)+'d ago';}
 function toggleExpire(){document.getElementById('exp-sec').classList.toggle('show',document.getElementById('item-perishable').checked);}
 function sortedBy(arr){return arr.slice().sort(function(a,b){return(a.order||0)-(b.order||0);});}
-function locItems(locId){return S.items.filter(function(i){return i.locId===locId;}).sort(function(a,b){return(a.order||0)-(b.order||0);});}
-function acLocItems(locId){return S.acItems.filter(function(i){return i.locId===locId;}).sort(function(a,b){return(a.order||0)-(b.order||0);});}
+// subcats for a location
+function locSubcats(locId,ctx){var arr=ctx==='aircraft'?S.acSubcats:S.subcats;return sortedBy(arr.filter(function(s){return s.locId===locId;}));}
+// items in a location, optionally filtered by subcatId
+function locItems(locId,subcatId,ctx){var arr=ctx==='aircraft'?S.acItems:S.items;return sortedBy(arr.filter(function(i){return i.locId===locId&&(subcatId===undefined||i.subcatId===(subcatId||null));}));}
 
 function render(){updateSidebar();renderStatCards();renderAlerts();renderActivity();renderRooms();renderAircraft();renderAllItems('');}
 function updateSidebar(){
-  var low=S.items.filter(function(i){return stkSt(i)==='low';}).length+S.acItems.filter(function(i){return stkSt(i)==='low';}).length;
-  var out=S.items.filter(function(i){return stkSt(i)==='out';}).length+S.acItems.filter(function(i){return stkSt(i)==='out';}).length;
-  var exp=S.items.concat(S.acItems).filter(function(i){var e=expSt(i);return e&&(e.cls==='out'||e.cls==='exp');}).length;
+  var allItems=S.items.concat(S.acItems);
+  var low=allItems.filter(function(i){return stkSt(i)==='low';}).length;
+  var out=allItems.filter(function(i){return stkSt(i)==='out';}).length;
+  var exp=allItems.filter(function(i){var e=expSt(i);return e&&(e.cls==='out'||e.cls==='exp');}).length;
   document.getElementById('sb-aircraft').textContent=S.aircraft.length;
   document.getElementById('sb-rooms').textContent=S.rooms.length;
   document.getElementById('sb-low').textContent=low;
@@ -452,10 +391,11 @@ function updateSidebar(){
   document.getElementById('sb-expiring').textContent=exp;
 }
 function renderStatCards(){
-  var low=S.items.concat(S.acItems).filter(function(i){return stkSt(i)==='low';}).length;
-  var out=S.items.concat(S.acItems).filter(function(i){return stkSt(i)==='out';}).length;
-  var exp=S.items.concat(S.acItems).filter(function(i){var e=expSt(i);return e&&e.cls!=='ok';}).length;
-  var total=S.items.concat(S.acItems).filter(function(i){return i.type!=='label';}).length;
+  var allItems=S.items.concat(S.acItems);
+  var low=allItems.filter(function(i){return stkSt(i)==='low';}).length;
+  var out=allItems.filter(function(i){return stkSt(i)==='out';}).length;
+  var exp=allItems.filter(function(i){var e=expSt(i);return e&&e.cls!=='ok';}).length;
+  var total=allItems.filter(function(i){return i.type!=='label';}).length;
   document.getElementById('stat-cards').innerHTML=
     '<div class="stat-card" onclick="showPage(\'aircraft\')"><div class="stat-label">Aircraft</div><div class="stat-value">'+S.aircraft.length+'</div></div>'+
     '<div class="stat-card" onclick="showPage(\'rooms\')"><div class="stat-label">Rooms</div><div class="stat-value">'+S.rooms.length+'</div></div>'+
@@ -471,104 +411,13 @@ function renderAlerts(){
   var el=document.getElementById('alert-list');
   if(!sA.length&&!eA.length){el.innerHTML='<div class="empty"><i class="ti ti-circle-check" style="font-size:22px;color:var(--success-text);"></i><div style="margin-top:6px;">All items well stocked</div></div>';return;}
   var h='<div class="al">';
-  eA.forEach(function(i){var e=expSt(i);var ctx=i.ctx==='aircraft'?acName(alAc(i.locId))+' › '+alName(i.locId):rName(lRoom(i.locId))+' › '+lName(i.locId);h+='<div class="ai exp"><i class="ti ti-clock" style="font-size:17px;color:var(--expire-text);"></i><div class="at">'+i.name+' — '+e.label+'<small>'+ctx+'</small></div><button class="btn sm" onclick="editItem(\''+i.id+'\',\''+i.ctx+'\')">Edit</button></div>';});
-  sA.forEach(function(i){var s=stkSt(i);var ctx=i.ctx==='aircraft'?acName(alAc(i.locId))+' › '+alName(i.locId):rName(lRoom(i.locId))+' › '+lName(i.locId);h+='<div class="ai '+(s==='out'?'out':'')+'"><i class="ti ti-alert-triangle" style="font-size:17px;color:var('+(s==='out'?'--danger-text':'--warn-text')+');"></i><div class="at">'+i.name+' — '+stkLbl(s)+'<small>'+ctx+' · Qty: '+i.qty+' (min: '+i.thresh+')</small></div><button class="btn sm" onclick="editItem(\''+i.id+'\',\''+i.ctx+'\')">Edit</button></div>';});
+  eA.forEach(function(i){var e=expSt(i);var ctx=i.ctx==='aircraft'?acName(alAc(i.locId))+' › '+alName(i.locId):rName(lRoom(i.locId))+' › '+lName(i.locId);if(i.subcatId)ctx+=' › '+scName(i.subcatId);h+='<div class="ai exp"><i class="ti ti-clock" style="font-size:17px;color:var(--expire-text);"></i><div class="at">'+i.name+' — '+e.label+'<small>'+ctx+'</small></div><button class="btn sm" onclick="editItem(\''+i.id+'\',\''+i.ctx+'\')">Edit</button></div>';});
+  sA.forEach(function(i){var s=stkSt(i);var ctx=i.ctx==='aircraft'?acName(alAc(i.locId))+' › '+alName(i.locId):rName(lRoom(i.locId))+' › '+lName(i.locId);if(i.subcatId)ctx+=' › '+scName(i.subcatId);h+='<div class="ai '+(s==='out'?'out':'')+'"><i class="ti ti-alert-triangle" style="font-size:17px;color:var('+(s==='out'?'--danger-text':'--warn-text')+');"></i><div class="at">'+i.name+' — '+stkLbl(s)+'<small>'+ctx+' · Qty: '+i.qty+'</small></div><button class="btn sm" onclick="editItem(\''+i.id+'\',\''+i.ctx+'\')">Edit</button></div>';});
   el.innerHTML=h+'</div>';
 }
 function renderActivity(){var el=document.getElementById('activity-list');if(!S.activity.length){el.innerHTML='<div class="empty">No activity yet</div>';return;}el.innerHTML=S.activity.slice(0,10).map(function(a){return'<div class="aci"><i class="ti ti-clock" style="color:var(--text2);font-size:15px;"></i><span style="flex:1;">'+a.text+'</span><span style="color:var(--text2);">'+tAgo(a.time)+'</span></div>';}).join('');}
 
-/* ── ROOMS browser ── */
-function renderRooms(){
-  var bc=document.getElementById('rm-breadcrumb');
-  var ct=document.getElementById('rm-content');
-  if(!bc||!ct)return;
-  if(!S.bRoom){
-    bc.innerHTML='<span class="bc-cur">Rooms</span>';
-    var hdr='<div class="sh"><h2>Rooms</h2><button class="btn primary" onclick="openRoomModal()"><i class="ti ti-plus"></i> Add room</button></div>';
-    var rooms=sortedBy(S.rooms);
-    if(!rooms.length){ct.innerHTML=hdr+'<div class="empty">No rooms yet.</div>';return;}
-    ct.innerHTML=hdr+'<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag to reorder</p><div class="grid" id="rooms-grid">'+rooms.map(function(r){
-      var lc=S.locs.filter(function(l){return l.roomId===r.id;}).length;
-      var ri=S.items.filter(function(i){var l=S.locs.find(function(l){return l.id===i.locId;});return l&&l.roomId===r.id;});
-      var sa=ri.filter(function(i){return i.type!=='label'&&stkSt(i)!=='ok';}).length;
-      return cardHtml(r.id,'room','ti-door',r.name,lc+' loc · '+ri.length+' item'+(ri.length!==1?'s':''),sa,
-        'openRoomModal(\''+r.id+'\')',null,'deleteRoom(\''+r.id+'\')','drillRoom(\''+r.id+'\')');
-    }).join('')+'</div>';
-    initCardDnd('rooms-grid','room');return;
-  }
-  var room=S.rooms.find(function(r){return r.id===S.bRoom;});
-  if(!S.bLoc){
-    bc.innerHTML='<span class="bc-link" onclick="S.bRoom=null;renderRooms()">Rooms</span><span class="bc-sep">›</span><span class="bc-cur">'+(room?room.name:'')+'</span>';
-    var locs=sortedBy(S.locs.filter(function(l){return l.roomId===S.bRoom;}));
-    var hdr2='<div class="sh"><h2>'+(room?room.name:'')+'</h2><button class="btn primary" onclick="openRmLocModal(\''+S.bRoom+'\')"><i class="ti ti-plus"></i> Add location</button></div>';
-    if(!locs.length){ct.innerHTML=hdr2+'<div class="empty">No locations yet.</div>';return;}
-    ct.innerHTML=hdr2+'<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag to reorder</p><div class="grid" id="rmlocs-grid">'+locs.map(function(l){
-      var li=S.items.filter(function(i){return i.locId===l.id;});
-      var sa=li.filter(function(i){return i.type!=='label'&&stkSt(i)!=='ok';}).length;
-      return cardHtml(l.id,'rmloc','ti-archive',l.name,li.length+' item'+(li.length!==1?'s':''),sa,
-        'openRmLocModal(null,\''+l.id+'\')',
-        'showLocQr(\''+l.id+'\',\'room\')',
-        'deleteRmLoc(\''+l.id+'\')',
-        'drillLoc(\''+l.id+'\')');
-    }).join('')+'</div>';
-    initCardDnd('rmlocs-grid','rmloc');return;
-  }
-  var loc=S.locs.find(function(l){return l.id===S.bLoc;});
-  bc.innerHTML='<span class="bc-link" onclick="S.bRoom=null;S.bLoc=null;renderRooms()">Rooms</span><span class="bc-sep">›</span><span class="bc-link" onclick="S.bLoc=null;renderRooms()">'+(room?room.name:'')+'</span><span class="bc-sep">›</span><span class="bc-cur">'+(loc?loc.name:'')+'</span>';
-  var li=locItems(S.bLoc);
-  var hdr3='<div class="sh"><h2>'+(loc?loc.name:'')+'</h2><button class="btn primary" onclick="openItemModal(\''+S.bLoc+'\',null,\'room\')"><i class="ti ti-plus"></i> Add item</button></div>';
-  if(!li.length){ct.innerHTML=hdr3+'<div class="empty">No items here yet.</div>';return;}
-  ct.innerHTML=hdr3+'<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag to reorder</p>'+itemsListHtml(li,'room');
-  initItemDnd('dnd-list','room');
-}
-
-/* ── AIRCRAFT browser ── */
-function renderAircraft(){
-  var bc=document.getElementById('ac-breadcrumb');
-  var ct=document.getElementById('ac-content');
-  if(!bc||!ct)return;
-  if(!S.bAc){
-    bc.innerHTML='<span class="bc-cur">Aircraft</span>';
-    var hdr='<div class="sh"><h2>Aircraft</h2><button class="btn primary" onclick="openAircraftModal()"><i class="ti ti-plus"></i> Add aircraft</button></div>';
-    var ac=sortedBy(S.aircraft);
-    if(!ac.length){ct.innerHTML=hdr+'<div class="empty">No aircraft added yet.</div>';return;}
-    ct.innerHTML=hdr+'<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag to reorder</p><div class="grid" id="ac-grid">'+ac.map(function(a){
-      var lc=S.acLocs.filter(function(l){return l.acId===a.id;}).length;
-      var ai=S.acItems.filter(function(i){var l=S.acLocs.find(function(l){return l.id===i.locId;});return l&&l.acId===a.id;});
-      var sa=ai.filter(function(i){return i.type!=='label'&&stkSt(i)!=='ok';}).length;
-      return cardHtml(a.id,'aircraft','ti-plane',a.tail,(a.actype?a.actype+' · ':'')+lc+' loc · '+ai.length+' item'+(ai.length!==1?'s':''),sa,
-        'openAircraftModal(\''+a.id+'\')',null,'deleteAircraft(\''+a.id+'\')',
-        'drillAc(\''+a.id+'\')');
-    }).join('')+'</div>';
-    initCardDnd('ac-grid','aircraft');return;
-  }
-  var acObj=S.aircraft.find(function(a){return a.id===S.bAc;});
-  if(!S.bAcLoc){
-    bc.innerHTML='<span class="bc-link" onclick="S.bAc=null;renderAircraft()">Aircraft</span><span class="bc-sep">›</span><span class="bc-cur">'+(acObj?acObj.tail:'')+'</span>';
-    var acLocs=sortedBy(S.acLocs.filter(function(l){return l.acId===S.bAc;}));
-    var hdr2='<div class="sh"><h2>'+(acObj?acObj.tail:'')+'</h2><button class="btn primary" onclick="openAcLocModal(\''+S.bAc+'\')"><i class="ti ti-plus"></i> Add location</button></div>';
-    if(!acLocs.length){ct.innerHTML=hdr2+'<div class="empty">No locations yet.</div>';return;}
-    ct.innerHTML=hdr2+'<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag to reorder</p><div class="grid" id="aclocs-grid">'+acLocs.map(function(l){
-      var li=S.acItems.filter(function(i){return i.locId===l.id;});
-      var sa=li.filter(function(i){return i.type!=='label'&&stkSt(i)!=='ok';}).length;
-      return cardHtml(l.id,'acloc','ti-archive',l.name,li.length+' item'+(li.length!==1?'s':''),sa,
-        'openAcLocModal(null,\''+l.id+'\')',
-        'showLocQr(\''+l.id+'\',\'aircraft\')',
-        'deleteAcLoc(\''+l.id+'\')',
-        'drillAcLoc(\''+l.id+'\')');
-    }).join('')+'</div>';
-    initCardDnd('aclocs-grid','acloc');return;
-  }
-  var acLoc=S.acLocs.find(function(l){return l.id===S.bAcLoc;});
-  bc.innerHTML='<span class="bc-link" onclick="S.bAc=null;S.bAcLoc=null;renderAircraft()">Aircraft</span><span class="bc-sep">›</span><span class="bc-link" onclick="S.bAcLoc=null;renderAircraft()">'+(acObj?acObj.tail:'')+'</span><span class="bc-sep">›</span><span class="bc-cur">'+(acLoc?acLoc.name:'')+'</span>';
-  var li=acLocItems(S.bAcLoc);
-  var hdr3='<div class="sh"><h2>'+(acLoc?acLoc.name:'')+'</h2><button class="btn primary" onclick="openItemModal(null,\''+S.bAcLoc+'\',\'aircraft\')"><i class="ti ti-plus"></i> Add item</button></div>';
-  if(!li.length){ct.innerHTML=hdr3+'<div class="empty">No items here yet.</div>';return;}
-  ct.innerHTML=hdr3+'<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag to reorder</p>'+itemsListHtml(li,'aircraft');
-  initItemDnd('dnd-list','aircraft');
-}
-
-/* ── shared card HTML builder ── */
+/* ── card HTML builder ── */
 function cardHtml(id,dtype,icon,name,sub,alerts,editFn,qrFn,delFn,clickFn){
   return'<div class="card" draggable="true" data-id="'+id+'" data-type="'+dtype+'" onclick="'+clickFn+'">'+
     '<i class="ti ti-grip-vertical card-drag-handle" onclick="event.stopPropagation()"></i>'+
@@ -583,26 +432,209 @@ function cardHtml(id,dtype,icon,name,sub,alerts,editFn,qrFn,delFn,clickFn){
     '</div></div>';
 }
 
-/* ── shared items list HTML ── */
-function itemsListHtml(li,ctx){
-  return'<div class="items-dnd" id="dnd-list">'+li.map(function(i){
-    var s=stkSt(i);var e=expSt(i);var isLabel=i.type==='label';
-    return'<div class="dnd-item" draggable="true" data-id="'+i.id+'">'+
-      '<i class="ti ti-grip-vertical drag-handle"></i>'+
-      '<div style="flex:1;min-width:0;">'+
-        '<div class="dnd-name">'+i.name+(isLabel?'<span class="label-tag"><i class="ti ti-tag"></i> Asset</span>':'')+(i.notes&&!isLabel?' <span style="font-size:11px;color:var(--text2);">— '+i.notes+'</span>':'')+(isLabel&&i.notes?' <span style="font-size:11px;color:var(--text2);">'+i.notes+'</span>':'')+'</div>'+
-        (!isLabel?'<div class="dnd-meta">'+(i.cat||'')+' · Qty: '+i.qty+' <span class="st '+s+'" style="font-size:11px;">'+stkLbl(s)+'</span>'+(e?' <span class="st '+e.cls+'" style="font-size:11px;">'+e.label+'</span>':'')+'</div>':'')+
+/* ── Location detail view (shared for rooms + aircraft) ── */
+function renderLocDetail(locId, ctx) {
+  var isAc = ctx === 'aircraft';
+  var loc = isAc ? S.acLocs.find(function(l){return l.id===locId;}) : S.locs.find(function(l){return l.id===locId;});
+  if (!loc) return '';
+  var subcats = locSubcats(locId, ctx);
+  var looseItems = locItems(locId, null, ctx); // items with no subcat
+  var totalItems = (isAc ? S.acItems : S.items).filter(function(i){return i.locId===locId;}).length;
+  var hdr = '<div class="sh"><h2>'+(loc?loc.name:'')+'</h2>'+
+    '<div style="display:flex;gap:6px;flex-wrap:wrap;">'+
+    '<button class="btn" onclick="openSubcatModal(\''+locId+'\',\''+ctx+'\')"><i class="ti ti-folder-plus"></i> Add subcategory</button>'+
+    '<button class="btn primary" onclick="openItemModal(\''+locId+'\',\''+locId+'\',\''+ctx+'\')"><i class="ti ti-plus"></i> Add item</button>'+
+    '</div></div>';
+  if (!subcats.length && !looseItems.length) return hdr + '<div class="empty">No items here yet.</div>';
+  var html = hdr + '<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag items between subcategories</p>';
+
+  // Subcategories
+  subcats.forEach(function(sc) {
+    var scItems = locItems(locId, sc.id, ctx);
+    html += '<div class="loc-section">'+
+      '<div class="loc-section-header">'+
+        '<div class="sh-title"><i class="ti ti-folder" style="color:var(--accent-light);"></i>'+sc.name+'<span style="font-size:11px;color:var(--text3);font-weight:400;">'+scItems.length+' item'+(scItems.length!==1?'s':'')+'</span></div>'+
+        '<div class="sh-acts">'+
+          '<button class="btn sm" onclick="openItemModal(\''+locId+'\',\''+locId+'\',\''+ctx+'\',\''+sc.id+'\')"><i class="ti ti-plus"></i> Add</button>'+
+          '<button class="btn ib" onclick="openSubcatModal(\''+locId+'\',\''+ctx+'\',\''+sc.id+'\')"><i class="ti ti-edit"></i></button>'+
+          '<button class="btn ib db" onclick="deleteSubcat(\''+sc.id+'\',\''+ctx+'\')"><i class="ti ti-trash"></i></button>'+
+        '</div>'+
       '</div>'+
-      '<div class="dnd-acts">'+
-        (!isLabel?'<div class="qc"><button onclick="adj(\''+i.id+'\',\''+ctx+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',\''+ctx+'\',1)">+</button></div>':'')+
-        '<button class="btn ib" onclick="editItem(\''+i.id+'\',\''+ctx+'\')"><i class="ti ti-edit"></i></button>'+
-        '<button class="btn ib db" onclick="deleteItem(\''+i.id+'\',\''+ctx+'\')"><i class="ti ti-trash"></i></button>'+
+      '<div class="items-dnd subcat-items" id="dnd-sc-'+sc.id+'" data-subcat="'+sc.id+'" data-loc="'+locId+'" data-ctx="'+ctx+'">'+
+        scItems.map(function(i){return itemRowHtml(i,ctx);}).join('')+
       '</div>'+
+      '<div class="subcat-drop-zone" data-subcat="'+sc.id+'" data-loc="'+locId+'" data-ctx="'+ctx+'">Drop items here</div>'+
     '</div>';
-  }).join('')+'</div>';
+  });
+
+  // Loose items (no subcat)
+  if (looseItems.length || subcats.length) {
+    html += '<div class="loc-section">'+
+      (subcats.length ? '<div class="loc-section-header"><div class="sh-title"><i class="ti ti-inbox" style="color:var(--text3);"></i>Uncategorized</div></div>' : '')+
+      '<div class="items-dnd" id="dnd-loose" data-subcat="" data-loc="'+locId+'" data-ctx="'+ctx+'">'+
+        looseItems.map(function(i){return itemRowHtml(i,ctx);}).join('')+
+      '</div>'+
+      (subcats.length ? '<div class="subcat-drop-zone" data-subcat="" data-loc="'+locId+'" data-ctx="'+ctx+'">Drop items here (uncategorized)</div>' : '')+
+    '</div>';
+  }
+
+  return html;
 }
 
-/* ── Card drag-and-drop ── */
+function itemRowHtml(i, ctx) {
+  var s=stkSt(i);var e=expSt(i);var isLabel=i.type==='label';
+  return '<div class="dnd-item" draggable="true" data-id="'+i.id+'" data-ctx="'+ctx+'">'+
+    '<i class="ti ti-grip-vertical drag-handle"></i>'+
+    '<div style="flex:1;min-width:0;">'+
+      '<div class="dnd-name">'+i.name+(isLabel?'<span class="label-tag"><i class="ti ti-tag"></i> Asset</span>':'')+(i.notes&&!isLabel?' <span style="font-size:11px;color:var(--text2);">— '+i.notes+'</span>':'')+(isLabel&&i.notes?' <span style="font-size:11px;color:var(--text2);">'+i.notes+'</span>':'')+'</div>'+
+      (!isLabel?'<div class="dnd-meta">'+(i.cat||'')+(i.cat?' · ':'')+' Qty: '+i.qty+' <span class="st '+s+'" style="font-size:11px;">'+stkLbl(s)+'</span>'+(e?' <span class="st '+e.cls+'" style="font-size:11px;">'+e.label+'</span>':'')+'</div>':'')+
+    '</div>'+
+    '<div class="dnd-acts">'+
+      (!isLabel?'<div class="qc"><button onclick="adj(\''+i.id+'\',\''+ctx+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',\''+ctx+'\',1)">+</button></div>':'')+
+      '<button class="btn ib" onclick="editItem(\''+i.id+'\',\''+ctx+'\')"><i class="ti ti-edit"></i></button>'+
+      '<button class="btn ib db" onclick="deleteItem(\''+i.id+'\',\''+ctx+'\')"><i class="ti ti-trash"></i></button>'+
+    '</div>'+
+  '</div>';
+}
+
+/* ── Init drag and drop for location detail ── */
+function initLocDnd() {
+  // drag from item rows
+  document.querySelectorAll('.dnd-item').forEach(function(el){
+    el.addEventListener('dragstart',function(e){
+      itemDragSrc=this;
+      this.classList.add('dragging');
+      e.dataTransfer.effectAllowed='move';
+      e.dataTransfer.setData('text/plain',JSON.stringify({id:this.dataset.id,ctx:this.dataset.ctx}));
+    });
+    el.addEventListener('dragend',function(){
+      this.classList.remove('dragging');
+      document.querySelectorAll('.dnd-item').forEach(function(x){x.classList.remove('drag-over');});
+      document.querySelectorAll('.subcat-drop-zone').forEach(function(z){z.classList.remove('drag-active');});
+    });
+    el.addEventListener('dragover',function(e){
+      e.preventDefault();
+      document.querySelectorAll('.dnd-item').forEach(function(x){x.classList.remove('drag-over');});
+      if(this!==itemDragSrc)this.classList.add('drag-over');
+    });
+    el.addEventListener('drop',function(e){
+      e.preventDefault();
+      if(this===itemDragSrc)return;
+      var data=JSON.parse(e.dataTransfer.getData('text/plain'));
+      var ctx=data.ctx;
+      var arr=ctx==='aircraft'?S.acItems:S.items;
+      var srcItem=arr.find(function(i){return i.id===data.id;});
+      var tgtItem=arr.find(function(i){return i.id===this.dataset.id;}.bind(this));
+      if(!srcItem||!tgtItem)return;
+      // move to same subcat as target, reorder
+      srcItem.subcatId=tgtItem.subcatId||null;
+      var siblings=arr.filter(function(i){return i.locId===tgtItem.locId&&(i.subcatId||null)===(tgtItem.subcatId||null);}).sort(function(a,b){return(a.order||0)-(b.order||0);});
+      var si=siblings.findIndex(function(i){return i.id===srcItem.id;});
+      if(si>-1)siblings.splice(si,1);
+      var ti=siblings.findIndex(function(i){return i.id===tgtItem.id;});
+      siblings.splice(ti,0,srcItem);
+      siblings.forEach(function(x,idx){x.order=idx;});
+      save();renderCurrentLoc();
+    });
+  });
+
+  // drop zones for subcats
+  document.querySelectorAll('.subcat-drop-zone').forEach(function(zone){
+    zone.addEventListener('dragover',function(e){e.preventDefault();this.classList.add('drag-active');});
+    zone.addEventListener('dragleave',function(){this.classList.remove('drag-active');});
+    zone.addEventListener('drop',function(e){
+      e.preventDefault();this.classList.remove('drag-active');
+      var data=JSON.parse(e.dataTransfer.getData('text/plain'));
+      var ctx=data.ctx;
+      var arr=ctx==='aircraft'?S.acItems:S.items;
+      var srcItem=arr.find(function(i){return i.id===data.id;});
+      if(!srcItem)return;
+      var newSubcatId=this.dataset.subcat||null;
+      srcItem.subcatId=newSubcatId;
+      // put at end of target subcat
+      var siblings=arr.filter(function(i){return i.locId===srcItem.locId&&(i.subcatId||null)===(newSubcatId||null)&&i.id!==srcItem.id;});
+      srcItem.order=(siblings.length>0?Math.max.apply(null,siblings.map(function(x){return x.order||0;}))+1:0);
+      save();renderCurrentLoc();
+    });
+  });
+}
+
+function renderCurrentLoc() {
+  if(S.bLoc){var ct=document.getElementById('rm-content');if(ct)ct.innerHTML=renderLocDetail(S.bLoc,'room');initLocDnd();}
+  if(S.bAcLoc){var ct2=document.getElementById('ac-content');if(ct2)ct2.innerHTML=renderLocDetail(S.bAcLoc,'aircraft');initLocDnd();}
+}
+
+/* ── ROOMS browser ── */
+function renderRooms(){
+  var bc=document.getElementById('rm-breadcrumb'),ct=document.getElementById('rm-content');
+  if(!bc||!ct)return;
+  if(!S.bRoom){
+    bc.innerHTML='<span class="bc-cur">Rooms</span>';
+    var hdr='<div class="sh"><h2>Rooms</h2><button class="btn primary" onclick="openRoomModal()"><i class="ti ti-plus"></i> Add room</button></div>';
+    var rooms=sortedBy(S.rooms);
+    if(!rooms.length){ct.innerHTML=hdr+'<div class="empty">No rooms yet.</div>';return;}
+    ct.innerHTML=hdr+'<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag to reorder</p><div class="grid" id="rooms-grid">'+rooms.map(function(r){
+      var lc=S.locs.filter(function(l){return l.roomId===r.id;}).length;
+      var ri=S.items.filter(function(i){var l=S.locs.find(function(l){return l.id===i.locId;});return l&&l.roomId===r.id;});
+      var sa=ri.filter(function(i){return i.type!=='label'&&stkSt(i)!=='ok';}).length;
+      return cardHtml(r.id,'room','ti-door',r.name,lc+' loc · '+ri.length+' item'+(ri.length!==1?'s':''),sa,'openRoomModal(\''+r.id+'\')',null,'deleteRoom(\''+r.id+'\')','drillRoom(\''+r.id+'\')');
+    }).join('')+'</div>';
+    initCardDnd('rooms-grid','room');return;
+  }
+  var room=S.rooms.find(function(r){return r.id===S.bRoom;});
+  if(!S.bLoc){
+    bc.innerHTML='<span class="bc-link" onclick="S.bRoom=null;renderRooms()">Rooms</span><span class="bc-sep">›</span><span class="bc-cur">'+(room?room.name:'')+'</span>';
+    var locs=sortedBy(S.locs.filter(function(l){return l.roomId===S.bRoom;}));
+    var hdr2='<div class="sh"><h2>'+(room?room.name:'')+'</h2><button class="btn primary" onclick="openRmLocModal(\''+S.bRoom+'\')"><i class="ti ti-plus"></i> Add location</button></div>';
+    if(!locs.length){ct.innerHTML=hdr2+'<div class="empty">No locations yet.</div>';return;}
+    ct.innerHTML=hdr2+'<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag to reorder</p><div class="grid" id="rmlocs-grid">'+locs.map(function(l){
+      var li=S.items.filter(function(i){return i.locId===l.id;});
+      var sa=li.filter(function(i){return i.type!=='label'&&stkSt(i)!=='ok';}).length;
+      return cardHtml(l.id,'rmloc','ti-archive',l.name,li.length+' item'+(li.length!==1?'s':''),sa,'openRmLocModal(null,\''+l.id+'\')','showLocQr(\''+l.id+'\',\'room\')','deleteRmLoc(\''+l.id+'\')','drillLoc(\''+l.id+'\')');
+    }).join('')+'</div>';
+    initCardDnd('rmlocs-grid','rmloc');return;
+  }
+  bc.innerHTML='<span class="bc-link" onclick="S.bRoom=null;S.bLoc=null;renderRooms()">Rooms</span><span class="bc-sep">›</span><span class="bc-link" onclick="S.bLoc=null;renderRooms()">'+(room?room.name:'')+'</span><span class="bc-sep">›</span><span class="bc-cur">'+lName(S.bLoc)+'</span>';
+  ct.innerHTML=renderLocDetail(S.bLoc,'room');
+  initLocDnd();
+}
+
+/* ── AIRCRAFT browser ── */
+function renderAircraft(){
+  var bc=document.getElementById('ac-breadcrumb'),ct=document.getElementById('ac-content');
+  if(!bc||!ct)return;
+  if(!S.bAc){
+    bc.innerHTML='<span class="bc-cur">Aircraft</span>';
+    var hdr='<div class="sh"><h2>Aircraft</h2><button class="btn primary" onclick="openAircraftModal()"><i class="ti ti-plus"></i> Add aircraft</button></div>';
+    var ac=sortedBy(S.aircraft);
+    if(!ac.length){ct.innerHTML=hdr+'<div class="empty">No aircraft added yet.</div>';return;}
+    ct.innerHTML=hdr+'<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag to reorder</p><div class="grid" id="ac-grid">'+ac.map(function(a){
+      var lc=S.acLocs.filter(function(l){return l.acId===a.id;}).length;
+      var ai=S.acItems.filter(function(i){var l=S.acLocs.find(function(l){return l.id===i.locId;});return l&&l.acId===a.id;});
+      var sa=ai.filter(function(i){return i.type!=='label'&&stkSt(i)!=='ok';}).length;
+      return cardHtml(a.id,'aircraft','ti-plane',a.tail,(a.actype?a.actype+' · ':'')+lc+' loc · '+ai.length+' item'+(ai.length!==1?'s':''),sa,'openAircraftModal(\''+a.id+'\')',null,'deleteAircraft(\''+a.id+'\')','drillAc(\''+a.id+'\')');
+    }).join('')+'</div>';
+    initCardDnd('ac-grid','aircraft');return;
+  }
+  var acObj=S.aircraft.find(function(a){return a.id===S.bAc;});
+  if(!S.bAcLoc){
+    bc.innerHTML='<span class="bc-link" onclick="S.bAc=null;renderAircraft()">Aircraft</span><span class="bc-sep">›</span><span class="bc-cur">'+(acObj?acObj.tail:'')+'</span>';
+    var acLocs=sortedBy(S.acLocs.filter(function(l){return l.acId===S.bAc;}));
+    var hdr2='<div class="sh"><h2>'+(acObj?acObj.tail:'')+'</h2><button class="btn primary" onclick="openAcLocModal(\''+S.bAc+'\')"><i class="ti ti-plus"></i> Add location</button></div>';
+    if(!acLocs.length){ct.innerHTML=hdr2+'<div class="empty">No locations yet.</div>';return;}
+    ct.innerHTML=hdr2+'<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag to reorder</p><div class="grid" id="aclocs-grid">'+acLocs.map(function(l){
+      var li=S.acItems.filter(function(i){return i.locId===l.id;});
+      var sa=li.filter(function(i){return i.type!=='label'&&stkSt(i)!=='ok';}).length;
+      return cardHtml(l.id,'acloc','ti-archive',l.name,li.length+' item'+(li.length!==1?'s':''),sa,'openAcLocModal(null,\''+l.id+'\')','showLocQr(\''+l.id+'\',\'aircraft\')','deleteAcLoc(\''+l.id+'\')','drillAcLoc(\''+l.id+'\')');
+    }).join('')+'</div>';
+    initCardDnd('aclocs-grid','acloc');return;
+  }
+  bc.innerHTML='<span class="bc-link" onclick="S.bAc=null;S.bAcLoc=null;renderAircraft()">Aircraft</span><span class="bc-sep">›</span><span class="bc-link" onclick="S.bAcLoc=null;renderAircraft()">'+(acObj?acObj.tail:'')+'</span><span class="bc-sep">›</span><span class="bc-cur">'+alName(S.bAcLoc)+'</span>';
+  ct.innerHTML=renderLocDetail(S.bAcLoc,'aircraft');
+  initLocDnd();
+}
+
+/* ── Card DnD ── */
 function initCardDnd(gridId,type){
   var grid=document.getElementById(gridId);if(!grid)return;
   grid.querySelectorAll('.card').forEach(function(card){
@@ -620,33 +652,207 @@ function initCardDnd(gridId,type){
       var sorted=arr.slice().sort(function(a,b){return(a.order||0)-(b.order||0);});
       var si=sorted.findIndex(function(x){return x.id===srcId;}),ti=sorted.findIndex(function(x){return x.id===tgtId;});
       var m=sorted.splice(si,1)[0];sorted.splice(ti,0,m);sorted.forEach(function(x,i){x.order=i;});
-      save();
-      if(type==='room'||type==='rmloc')renderRooms();else renderAircraft();
+      save();if(type==='room'||type==='rmloc')renderRooms();else renderAircraft();
     });
   });
 }
 
-/* ── Item drag-and-drop ── */
-function initItemDnd(listId,ctx){
-  var list=document.getElementById(listId);if(!list)return;
-  list.querySelectorAll('.dnd-item').forEach(function(el){
-    el.addEventListener('dragstart',function(e){dragSrc=this;this.classList.add('dragging');e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain',this.dataset.id);});
-    el.addEventListener('dragend',function(){this.classList.remove('dragging');list.querySelectorAll('.dnd-item').forEach(function(i){i.classList.remove('drag-over');});});
-    el.addEventListener('dragover',function(e){e.preventDefault();list.querySelectorAll('.dnd-item').forEach(function(i){i.classList.remove('drag-over');});if(this!==dragSrc)this.classList.add('drag-over');});
-    el.addEventListener('drop',function(e){
-      e.preventDefault();if(this===dragSrc)return;
-      var srcId=e.dataTransfer.getData('text/plain'),tgtId=this.dataset.id;
-      var arr=ctx==='aircraft'?S.acItems:S.items;
-      var locId=ctx==='aircraft'?S.bAcLoc:S.bLoc;
-      var li=arr.filter(function(i){return i.locId===locId;}).sort(function(a,b){return(a.order||0)-(b.order||0);});
-      var si=li.findIndex(function(i){return i.id===srcId;}),ti=li.findIndex(function(i){return i.id===tgtId;});
-      var m=li.splice(si,1)[0];li.splice(ti,0,m);li.forEach(function(x,i){x.order=i;});
-      save();if(ctx==='aircraft')renderAircraft();else renderRooms();
-    });
-  });
+function setActiveSidelink(id){document.querySelectorAll('.slink').forEach(function(el){el.classList.remove('active');});var el=document.getElementById(id);if(el)el.classList.add('active');}
+function showPage(id){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+  document.getElementById('page-'+id).classList.add('active');
+  var titles={dashboard:'Dashboard',aircraft:'Aircraft',rooms:'Rooms','all-items':'All items',scan:'Scan / QR'};
+  document.getElementById('page-title').textContent=titles[id]||id;
+  setActiveSidelink('sl-'+id);
+  if(id==='aircraft'){S.bAc=null;S.bAcLoc=null;renderAircraft();}
+  if(id==='rooms'){S.bRoom=null;S.bLoc=null;renderRooms();}
+  if(id==='all-items')renderAllItems('');
+  if(id==='scan')populateQrParent();
+  if(id==='dashboard'){renderStatCards();renderAlerts();renderActivity();}
 }
 
-/* ── Filter page ── */
+function drillRoom(id){S.bRoom=id;S.bLoc=null;if(document.getElementById('page-rooms').classList.contains('active'))renderRooms();else showPage('rooms');}
+function drillLoc(id){S.bLoc=id;renderRooms();}
+function drillAc(id){S.bAc=id;S.bAcLoc=null;if(document.getElementById('page-aircraft').classList.contains('active'))renderAircraft();else showPage('aircraft');}
+function drillAcLoc(id){S.bAcLoc=id;renderAircraft();}
+
+function adj(id,ctx,delta){var arr=ctx==='aircraft'?S.acItems:S.items;var item=arr.find(function(i){return i.id===id;});if(!item)return;item.qty=Math.max(0,item.qty+delta);logAct(item.name+' qty → '+item.qty);save();render();}
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+
+/* ── Subcategory CRUD ── */
+function openSubcatModal(locId, ctx, editId) {
+  S.subcatCtx={locId:locId,ctx:ctx};
+  var arr=ctx==='aircraft'?S.acSubcats:S.subcats;
+  S.eSubcat=editId?arr.find(function(s){return s.id===editId;}):null;
+  document.getElementById('msc-title').textContent=S.eSubcat?'Edit subcategory':'Add subcategory';
+  document.getElementById('subcat-name').value=S.eSubcat?S.eSubcat.name:'';
+  openModal('modal-subcat');
+}
+function saveSubcat(){
+  var name=document.getElementById('subcat-name').value.trim();if(!name)return;
+  var ctx=S.subcatCtx.ctx,locId=S.subcatCtx.locId;
+  var arr=ctx==='aircraft'?S.acSubcats:S.subcats;
+  var mo=Math.max.apply(null,arr.filter(function(s){return s.locId===locId;}).map(function(s){return s.order||0;}).concat([-1]));
+  if(S.eSubcat){S.eSubcat.name=name;logAct('Subcategory "'+name+'" updated');}
+  else{arr.push({id:uid(),locId:locId,name:name,order:mo+1});logAct('Subcategory "'+name+'" added');}
+  closeModal('modal-subcat');save();render();
+  // re-render current loc
+  setTimeout(renderCurrentLoc,50);
+}
+function deleteSubcat(id,ctx){
+  if(!confirm('Delete this subcategory? Items inside will become uncategorized.'))return;
+  var arr=ctx==='aircraft'?S.acSubcats:S.subcats;
+  var iArr=ctx==='aircraft'?S.acItems:S.items;
+  // unassign items
+  iArr.forEach(function(i){if(i.subcatId===id)i.subcatId=null;});
+  if(ctx==='aircraft')S.acSubcats=S.acSubcats.filter(function(s){return s.id!==id;});
+  else S.subcats=S.subcats.filter(function(s){return s.id!==id;});
+  logAct('Subcategory deleted');save();render();setTimeout(renderCurrentLoc,50);
+}
+
+/* ── Room CRUD ── */
+function openRoomModal(editId){S.eRoom=editId?S.rooms.find(function(r){return r.id===editId;}):null;document.getElementById('mr-title').textContent=S.eRoom?'Edit room':'Add room';document.getElementById('room-name').value=S.eRoom?S.eRoom.name:'';openModal('modal-room');}
+function saveRoom(){var name=document.getElementById('room-name').value.trim();if(!name)return;var mo=Math.max.apply(null,S.rooms.map(function(r){return r.order||0;}).concat([-1]));if(S.eRoom){S.eRoom.name=name;logAct('Room "'+name+'" renamed');}else{S.rooms.push({id:uid(),name:name,order:mo+1});logAct('Room "'+name+'" added');}closeModal('modal-room');save();render();}
+function deleteRoom(id){if(!confirm('Delete this room and all its locations and items?'))return;var r=S.rooms.find(function(x){return x.id===id;});var lIds=S.locs.filter(function(l){return l.roomId===id;}).map(function(l){return l.id;});S.items=S.items.filter(function(i){return lIds.indexOf(i.locId)===-1;});S.subcats=S.subcats.filter(function(s){return lIds.indexOf(s.locId)===-1;});S.locs=S.locs.filter(function(l){return l.roomId!==id;});S.rooms=S.rooms.filter(function(x){return x.id!==id;});if(S.bRoom===id){S.bRoom=null;S.bLoc=null;}logAct('Room "'+(r?r.name:id)+'" deleted');save();render();}
+function openRmLocModal(presetRoomId,editId){S.eLoc=editId?S.locs.find(function(l){return l.id===editId;}):null;document.getElementById('mrl-title').textContent=S.eLoc?'Edit location':'Add location';document.getElementById('rmloc-name').value=S.eLoc?S.eLoc.name:'';var rs=document.getElementById('rmloc-room');rs.innerHTML=sortedBy(S.rooms).map(function(r){return'<option value="'+r.id+'">'+r.name+'</option>';}).join('');rs.value=S.eLoc?S.eLoc.roomId:(presetRoomId||S.bRoom||(S.rooms[0]&&S.rooms[0].id));openModal('modal-rmloc');}
+function saveRmLoc(){var name=document.getElementById('rmloc-name').value.trim();if(!name)return;var roomId=document.getElementById('rmloc-room').value;var mo=Math.max.apply(null,S.locs.filter(function(l){return l.roomId===roomId;}).map(function(l){return l.order||0;}).concat([-1]));if(S.eLoc){S.eLoc.name=name;S.eLoc.roomId=roomId;logAct('Location "'+name+'" updated');}else{S.locs.push({id:uid(),roomId:roomId,name:name,order:mo+1});logAct('Location "'+name+'" added to '+rName(roomId));}closeModal('modal-rmloc');save();render();}
+function deleteRmLoc(id){if(!confirm('Delete this location and all its items?'))return;var l=S.locs.find(function(x){return x.id===id;});S.items=S.items.filter(function(i){return i.locId!==id;});S.subcats=S.subcats.filter(function(s){return s.locId!==id;});S.locs=S.locs.filter(function(x){return x.id!==id;});if(S.bLoc===id)S.bLoc=null;logAct('Location "'+(l?l.name:id)+'" deleted');save();render();}
+
+/* ── Aircraft CRUD ── */
+function openAircraftModal(editId){S.eAircraft=editId?S.aircraft.find(function(a){return a.id===editId;}):null;document.getElementById('mac-title').textContent=S.eAircraft?'Edit aircraft':'Add aircraft';document.getElementById('ac-tail').value=S.eAircraft?S.eAircraft.tail:'';document.getElementById('ac-type').value=S.eAircraft?S.eAircraft.actype||'':'';document.getElementById('ac-notes').value=S.eAircraft?S.eAircraft.notes||'':'';openModal('modal-aircraft');}
+function saveAircraft(){var tail=document.getElementById('ac-tail').value.trim().toUpperCase();if(!tail)return;var mo=Math.max.apply(null,S.aircraft.map(function(a){return a.order||0;}).concat([-1]));if(S.eAircraft){Object.assign(S.eAircraft,{tail:tail,actype:document.getElementById('ac-type').value.trim(),notes:document.getElementById('ac-notes').value.trim()});logAct('Aircraft '+tail+' updated');}else{S.aircraft.push({id:uid(),tail:tail,actype:document.getElementById('ac-type').value.trim(),notes:document.getElementById('ac-notes').value.trim(),order:mo+1});logAct('Aircraft '+tail+' added');}closeModal('modal-aircraft');save();render();}
+function deleteAircraft(id){if(!confirm('Delete this aircraft and all its locations and items?'))return;var a=S.aircraft.find(function(x){return x.id===id;});var lIds=S.acLocs.filter(function(l){return l.acId===id;}).map(function(l){return l.id;});S.acItems=S.acItems.filter(function(i){return lIds.indexOf(i.locId)===-1;});S.acSubcats=S.acSubcats.filter(function(s){return lIds.indexOf(s.locId)===-1;});S.acLocs=S.acLocs.filter(function(l){return l.acId!==id;});S.aircraft=S.aircraft.filter(function(x){return x.id!==id;});if(S.bAc===id){S.bAc=null;S.bAcLoc=null;}logAct('Aircraft "'+(a?a.tail:id)+'" deleted');save();render();}
+function openAcLocModal(presetAcId,editId){S.eAcLoc=editId?S.acLocs.find(function(l){return l.id===editId;}):null;document.getElementById('mal-title').textContent=S.eAcLoc?'Edit location':'Add location';document.getElementById('acloc-name').value=S.eAcLoc?S.eAcLoc.name:'';var rs=document.getElementById('acloc-ac');rs.innerHTML=sortedBy(S.aircraft).map(function(a){return'<option value="'+a.id+'">'+a.tail+'</option>';}).join('');rs.value=S.eAcLoc?S.eAcLoc.acId:(presetAcId||S.bAc||(S.aircraft[0]&&S.aircraft[0].id));openModal('modal-acloc');}
+function saveAcLoc(){var name=document.getElementById('acloc-name').value.trim();if(!name)return;var acId=document.getElementById('acloc-ac').value;var mo=Math.max.apply(null,S.acLocs.filter(function(l){return l.acId===acId;}).map(function(l){return l.order||0;}).concat([-1]));if(S.eAcLoc){S.eAcLoc.name=name;S.eAcLoc.acId=acId;logAct('Location "'+name+'" updated');}else{S.acLocs.push({id:uid(),acId:acId,name:name,order:mo+1});logAct('Location "'+name+'" added to '+acName(acId));}closeModal('modal-acloc');save();render();}
+function deleteAcLoc(id){if(!confirm('Delete this location and all its items?'))return;var l=S.acLocs.find(function(x){return x.id===id;});S.acItems=S.acItems.filter(function(i){return i.locId!==id;});S.acSubcats=S.acSubcats.filter(function(s){return s.locId!==id;});S.acLocs=S.acLocs.filter(function(x){return x.id!==id;});if(S.bAcLoc===id)S.bAcLoc=null;logAct('Location "'+(l?l.name:id)+'" deleted');save();render();}
+
+/* ── Item type toggle ── */
+function setItemType(type){currentItemType=type;document.getElementById('type-btn-stock').classList.toggle('active',type==='stock');document.getElementById('type-btn-label').classList.toggle('active',type==='label');document.getElementById('stock-fields').style.display=type==='stock'?'':'none';document.getElementById('label-fields').style.display=type==='label'?'':'none';}
+
+function populateSubcatSelect(selId, locId, ctx, selectedId){
+  var scs=locSubcats(locId,ctx);
+  var sel=document.getElementById(selId);
+  sel.innerHTML='<option value="">None (uncategorized)</option>'+scs.map(function(s){return'<option value="'+s.id+'">'+s.name+'</option>';}).join('');
+  if(selectedId)sel.value=selectedId;
+}
+function populateItemLoc(){
+  var ctx=S.itemCtx,parentId=document.getElementById('item-parent').value;
+  var locs=ctx==='aircraft'?sortedBy(S.acLocs.filter(function(l){return l.acId===parentId;})):sortedBy(S.locs.filter(function(l){return l.roomId===parentId;}));
+  document.getElementById('item-loc').innerHTML=locs.map(function(l){return'<option value="'+l.id+'">'+l.name+'</option>';}).join('');
+  populateItemSubcat();
+}
+function populateItemSubcat(){var locId=document.getElementById('item-loc').value;populateSubcatSelect('item-subcat',locId,S.itemCtx,null);}
+function populateLabelLoc(){
+  var ctx=S.itemCtx,parentId=document.getElementById('label-parent').value;
+  var locs=ctx==='aircraft'?sortedBy(S.acLocs.filter(function(l){return l.acId===parentId;})):sortedBy(S.locs.filter(function(l){return l.roomId===parentId;}));
+  document.getElementById('label-loc').innerHTML=locs.map(function(l){return'<option value="'+l.id+'">'+l.name+'</option>';}).join('');
+  populateLabelSubcat();
+}
+function populateLabelSubcat(){var locId=document.getElementById('label-loc').value;populateSubcatSelect('label-subcat',locId,S.itemCtx,null);}
+
+function openItemModal(presetRmLocId, presetAcLocId, ctx, presetSubcatId){
+  S.itemCtx=ctx||'room';S.eItem=null;
+  document.getElementById('mi-title').textContent='Add item';
+  setItemType('stock');
+  ['item-name','item-cat','item-notes','label-notes'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('item-qty').value=0;document.getElementById('item-thresh').value=5;
+  document.getElementById('item-perishable').checked=false;document.getElementById('item-expiry').value='';
+  document.getElementById('exp-sec').classList.remove('show');
+  var isAc=S.itemCtx==='aircraft';
+  document.getElementById('item-parent-label').textContent=isAc?'Aircraft':'Room';
+  document.getElementById('label-parent-label').textContent=isAc?'Aircraft':'Room';
+  var parents=isAc?sortedBy(S.aircraft):sortedBy(S.rooms);
+  var ph=parents.map(function(p){return'<option value="'+p.id+'">'+(isAc?p.tail:p.name)+'</option>';}).join('');
+  document.getElementById('item-parent').innerHTML=ph;document.getElementById('label-parent').innerHTML=ph;
+  var presetLocId=isAc?presetAcLocId:presetRmLocId;
+  var presetParent=null;
+  if(presetLocId){var lArr=isAc?S.acLocs:S.locs;var lObj=lArr.find(function(l){return l.id===presetLocId;});if(lObj)presetParent=isAc?lObj.acId:lObj.roomId;}
+  else presetParent=isAc?S.bAc:S.bRoom;
+  if(presetParent){document.getElementById('item-parent').value=presetParent;document.getElementById('label-parent').value=presetParent;}
+  populateItemLoc();populateLabelLoc();
+  if(presetLocId){document.getElementById('item-loc').value=presetLocId;document.getElementById('label-loc').value=presetLocId;populateItemSubcat();populateLabelSubcat();}
+  if(presetSubcatId){document.getElementById('item-subcat').value=presetSubcatId;document.getElementById('label-subcat').value=presetSubcatId;}
+  openModal('modal-item');
+}
+
+function editItem(id,ctx){
+  S.itemCtx=ctx||'room';
+  var arr=ctx==='aircraft'?S.acItems:S.items;
+  S.eItem=arr.find(function(i){return i.id===id;});if(!S.eItem)return;
+  document.getElementById('mi-title').textContent='Edit item';
+  var type=S.eItem.type||'stock';setItemType(type);
+  document.getElementById('item-name').value=S.eItem.name;
+  document.getElementById('item-cat').value=S.eItem.cat||'';
+  document.getElementById('item-qty').value=S.eItem.qty||0;
+  document.getElementById('item-thresh').value=S.eItem.thresh||0;
+  document.getElementById('item-notes').value=S.eItem.notes||'';
+  var p=!!S.eItem.perishable;document.getElementById('item-perishable').checked=p;
+  document.getElementById('item-expiry').value=S.eItem.expiry||'';
+  document.getElementById('exp-sec').classList.toggle('show',p);
+  document.getElementById('label-notes').value=S.eItem.notes||'';
+  var isAc=ctx==='aircraft';
+  document.getElementById('item-parent-label').textContent=isAc?'Aircraft':'Room';
+  document.getElementById('label-parent-label').textContent=isAc?'Aircraft':'Room';
+  var parents=isAc?sortedBy(S.aircraft):sortedBy(S.rooms);
+  var ph=parents.map(function(pp){return'<option value="'+pp.id+'">'+(isAc?pp.tail:pp.name)+'</option>';}).join('');
+  document.getElementById('item-parent').innerHTML=ph;document.getElementById('label-parent').innerHTML=ph;
+  var lArr=isAc?S.acLocs:S.locs;
+  var loc=lArr.find(function(l){return l.id===S.eItem.locId;});
+  if(loc){var parentId=isAc?loc.acId:loc.roomId;document.getElementById('item-parent').value=parentId;document.getElementById('label-parent').value=parentId;}
+  populateItemLoc();populateLabelLoc();
+  document.getElementById('item-loc').value=S.eItem.locId;
+  document.getElementById('label-loc').value=S.eItem.locId;
+  populateSubcatSelect('item-subcat',S.eItem.locId,ctx,S.eItem.subcatId||'');
+  populateSubcatSelect('label-subcat',S.eItem.locId,ctx,S.eItem.subcatId||'');
+  openModal('modal-item');
+}
+
+function saveItem(){
+  var name=document.getElementById('item-name').value.trim();if(!name)return;
+  var type=currentItemType,ctx=S.itemCtx||'room';
+  var arr=ctx==='aircraft'?S.acItems:S.items;
+  var locId=type==='label'?document.getElementById('label-loc').value:document.getElementById('item-loc').value;
+  var subcatId=type==='label'?document.getElementById('label-subcat').value||null:document.getElementById('item-subcat').value||null;
+  var siblings=arr.filter(function(i){return i.locId===locId&&(i.subcatId||null)===(subcatId||null);});
+  var maxOrder=Math.max.apply(null,siblings.map(function(i){return i.order||0;}).concat([-1]));
+  var data;
+  if(type==='label'){data={type:'label',ctx:ctx,name:name,locId:locId,subcatId:subcatId,notes:document.getElementById('label-notes').value.trim(),cat:'',qty:0,thresh:0,perishable:false,expiry:'',order:S.eItem?S.eItem.order:(maxOrder+1)};}
+  else{var p=document.getElementById('item-perishable').checked;data={type:'stock',ctx:ctx,name:name,cat:document.getElementById('item-cat').value.trim()||'General',locId:locId,subcatId:subcatId,qty:parseInt(document.getElementById('item-qty').value)||0,thresh:Math.max(0,parseInt(document.getElementById('item-thresh').value)||0),notes:document.getElementById('item-notes').value.trim(),perishable:p,expiry:p?document.getElementById('item-expiry').value:'',order:S.eItem?S.eItem.order:(maxOrder+1)};}
+  if(S.eItem){Object.assign(S.eItem,data);logAct('"'+name+'" updated');}
+  else{arr.push(Object.assign({id:uid()},data));logAct('"'+name+'" added');}
+  closeModal('modal-item');save();render();setTimeout(renderCurrentLoc,50);
+}
+
+function deleteItem(id,ctx){
+  if(!confirm('Delete this item?'))return;
+  var arr=ctx==='aircraft'?S.acItems:S.items;
+  var i=arr.find(function(x){return x.id===id;});
+  if(ctx==='aircraft')S.acItems=S.acItems.filter(function(x){return x.id!==id;});
+  else S.items=S.items.filter(function(x){return x.id!==id;});
+  logAct('"'+(i?i.name:id)+'" removed');save();render();setTimeout(renderCurrentLoc,50);
+}
+
+/* ── All items ── */
+function renderAllItems(q){
+  var all=S.items.concat(S.acItems);
+  var f=all.filter(function(i){if(!q)return true;var pn=i.ctx==='aircraft'?acName(alAc(i.locId)):rName(lRoom(i.locId));var ln=i.ctx==='aircraft'?alName(i.locId):lName(i.locId);return[i.name,i.cat||'',ln,pn,scName(i.subcatId)].some(function(s){return s.toLowerCase().indexOf(q.toLowerCase())>-1;});});
+  var body=document.getElementById('all-items-body');if(!body)return;
+  if(!f.length){body.innerHTML='<tr><td colspan="9" class="empty">No items found</td></tr>';return;}
+  body.innerHTML=f.map(function(i){
+    var s=stkSt(i);var e=expSt(i);var isLabel=i.type==='label';
+    var pn=i.ctx==='aircraft'?acName(alAc(i.locId)):rName(lRoom(i.locId));
+    var ln=i.ctx==='aircraft'?alName(i.locId):lName(i.locId);
+    return'<tr><td>'+i.name+(isLabel?'<span class="label-tag" style="margin-left:5px;"><i class="ti ti-tag"></i></span>':'')+'</td><td>'+pn+'</td><td>'+ln+'</td><td>'+(i.subcatId?scName(i.subcatId):'<span style="color:var(--text3);">—</span>')+'</td>'+
+      '<td>'+(isLabel?'—':'<div class="qc"><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',1)">+</button></div>')+'</td>'+
+      '<td><span class="st '+s+'">'+stkLbl(s)+'</span></td>'+
+      '<td>'+(e?'<span class="st '+e.cls+'">'+e.label+'</span>':'—')+'</td>'+
+      '<td>'+(i.ctx==='aircraft'?'<i class="ti ti-plane" style="color:var(--accent-light);"></i>':'<i class="ti ti-door" style="color:var(--text3);"></i>')+'</td>'+
+      '<td><button class="btn ib" onclick="editItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-edit"></i></button> <button class="btn ib db" onclick="deleteItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-trash"></i></button></td></tr>';
+  }).join('');
+}
+
+/* ── Filter ── */
 function showFilter(type){
   S.curFilter=type;
   var titles={low:'Low stock',out:'Out of stock',expiring:'Expiring soon'};
@@ -662,208 +868,13 @@ function showFilter(type){
   else if(type==='expiring')filtered=allItems.filter(function(i){var e=expSt(i);return e&&e.cls!=='ok';});
   else filtered=[];
   if(!filtered.length){ct.innerHTML='<div class="empty">No items in this category</div>';return;}
-  ct.innerHTML='<div class="tw"><table><thead><tr><th style="width:24%">Item</th><th style="width:16%">Parent</th><th style="width:15%">Location</th><th style="width:11%">Qty</th><th style="width:12%">Stock</th><th style="width:12%">Expires</th><th style="width:10%"></th></tr></thead><tbody>'+
-    filtered.map(function(i){
-      var s=stkSt(i);var e=expSt(i);
-      var parentName=i.ctx==='aircraft'?acName(alAc(i.locId)):rName(lRoom(i.locId));
-      var locName=i.ctx==='aircraft'?alName(i.locId):lName(i.locId);
-      return'<tr><td>'+i.name+'</td><td>'+parentName+'</td><td>'+locName+'</td>'+
+  ct.innerHTML='<div class="tw"><table><thead><tr><th style="width:22%">Item</th><th style="width:14%">Parent</th><th style="width:13%">Location</th><th style="width:11%">Subcat</th><th style="width:10%">Qty</th><th style="width:11%">Stock</th><th style="width:11%">Expires</th><th style="width:8%"></th></tr></thead><tbody>'+
+    filtered.map(function(i){var s=stkSt(i);var e=expSt(i);var pn=i.ctx==='aircraft'?acName(alAc(i.locId)):rName(lRoom(i.locId));var ln=i.ctx==='aircraft'?alName(i.locId):lName(i.locId);
+      return'<tr><td>'+i.name+'</td><td>'+pn+'</td><td>'+ln+'</td><td>'+(i.subcatId?scName(i.subcatId):'—')+'</td>'+
         '<td>'+(i.type==='label'?'—':'<div class="qc"><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',1)">+</button></div>')+'</td>'+
-        '<td><span class="st '+s+'">'+stkLbl(s)+'</span></td>'+
-        '<td>'+(e?'<span class="st '+e.cls+'">'+e.label+'</span>':'—')+'</td>'+
+        '<td><span class="st '+s+'">'+stkLbl(s)+'</span></td><td>'+(e?'<span class="st '+e.cls+'">'+e.label+'</span>':'—')+'</td>'+
         '<td><button class="btn ib" onclick="editItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-edit"></i></button> <button class="btn ib db" onclick="deleteItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-trash"></i></button></td></tr>';
     }).join('')+'</tbody></table></div>';
-}
-
-function setActiveSidelink(id){document.querySelectorAll('.slink').forEach(function(el){el.classList.remove('active');});var el=document.getElementById(id);if(el)el.classList.add('active');}
-function showPage(id){
-  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
-  document.getElementById('page-'+id).classList.add('active');
-  var titles={dashboard:'Dashboard',aircraft:'Aircraft',rooms:'Rooms','all-items':'All items',scan:'Scan / QR'};
-  document.getElementById('page-title').textContent=titles[id]||id;
-  setActiveSidelink('sl-'+id);
-  // Reset breadcrumb state when navigating from sidebar
-  if(id==='aircraft'){S.bAc=null;S.bAcLoc=null;renderAircraft();}
-  if(id==='rooms'){S.bRoom=null;S.bLoc=null;renderRooms();}
-  if(id==='all-items')renderAllItems('');
-  if(id==='scan'){populateQrParent();}
-  if(id==='dashboard'){renderStatCards();renderAlerts();renderActivity();}
-}
-
-function drillRoom(id){S.bRoom=id;S.bLoc=null;if(document.getElementById('page-rooms').classList.contains('active'))renderRooms();else showPage('rooms');}
-function drillLoc(id){S.bLoc=id;renderRooms();}
-function drillAc(id){S.bAc=id;S.bAcLoc=null;if(document.getElementById('page-aircraft').classList.contains('active'))renderAircraft();else showPage('aircraft');}
-function drillAcLoc(id){S.bAcLoc=id;renderAircraft();}
-
-function adj(id,ctx,delta){
-  var arr=ctx==='aircraft'?S.acItems:S.items;
-  var item=arr.find(function(i){return i.id===id;});if(!item)return;
-  item.qty=Math.max(0,item.qty+delta);logAct(item.name+' qty → '+item.qty);save();render();
-}
-
-function openModal(id){document.getElementById(id).classList.add('open');}
-function closeModal(id){document.getElementById(id).classList.remove('open');}
-
-/* ── Room CRUD ── */
-function openRoomModal(editId){S.eRoom=editId?S.rooms.find(function(r){return r.id===editId;}):null;document.getElementById('mr-title').textContent=S.eRoom?'Edit room':'Add room';document.getElementById('room-name').value=S.eRoom?S.eRoom.name:'';openModal('modal-room');}
-function saveRoom(){var name=document.getElementById('room-name').value.trim();if(!name)return;var mo=Math.max.apply(null,S.rooms.map(function(r){return r.order||0;}).concat([-1]));if(S.eRoom){S.eRoom.name=name;logAct('Room "'+name+'" renamed');}else{S.rooms.push({id:uid(),name:name,order:mo+1});logAct('Room "'+name+'" added');}closeModal('modal-room');save();render();}
-function deleteRoom(id){if(!confirm('Delete this room and all its locations and items?'))return;var r=S.rooms.find(function(x){return x.id===id;});var lIds=S.locs.filter(function(l){return l.roomId===id;}).map(function(l){return l.id;});S.items=S.items.filter(function(i){return lIds.indexOf(i.locId)===-1;});S.locs=S.locs.filter(function(l){return l.roomId!==id;});S.rooms=S.rooms.filter(function(x){return x.id!==id;});if(S.bRoom===id){S.bRoom=null;S.bLoc=null;}logAct('Room "'+(r?r.name:id)+'" deleted');save();render();}
-
-/* ── Room Location CRUD ── */
-function openRmLocModal(presetRoomId,editId){S.eLoc=editId?S.locs.find(function(l){return l.id===editId;}):null;document.getElementById('mrl-title').textContent=S.eLoc?'Edit location':'Add location';document.getElementById('rmloc-name').value=S.eLoc?S.eLoc.name:'';var rs=document.getElementById('rmloc-room');rs.innerHTML=sortedBy(S.rooms).map(function(r){return'<option value="'+r.id+'">'+r.name+'</option>';}).join('');rs.value=S.eLoc?S.eLoc.roomId:(presetRoomId||S.bRoom||(S.rooms[0]&&S.rooms[0].id));openModal('modal-rmloc');}
-function saveRmLoc(){var name=document.getElementById('rmloc-name').value.trim();if(!name)return;var roomId=document.getElementById('rmloc-room').value;var mo=Math.max.apply(null,S.locs.filter(function(l){return l.roomId===roomId;}).map(function(l){return l.order||0;}).concat([-1]));if(S.eLoc){S.eLoc.name=name;S.eLoc.roomId=roomId;logAct('Location "'+name+'" updated');}else{S.locs.push({id:uid(),roomId:roomId,name:name,order:mo+1});logAct('Location "'+name+'" added to '+rName(roomId));}closeModal('modal-rmloc');save();render();}
-function deleteRmLoc(id){if(!confirm('Delete this location and all its items?'))return;var l=S.locs.find(function(x){return x.id===id;});S.items=S.items.filter(function(i){return i.locId!==id;});S.locs=S.locs.filter(function(x){return x.id!==id;});if(S.bLoc===id)S.bLoc=null;logAct('Location "'+(l?l.name:id)+'" deleted');save();render();}
-
-/* ── Aircraft CRUD ── */
-function openAircraftModal(editId){S.eAircraft=editId?S.aircraft.find(function(a){return a.id===editId;}):null;document.getElementById('mac-title').textContent=S.eAircraft?'Edit aircraft':'Add aircraft';document.getElementById('ac-tail').value=S.eAircraft?S.eAircraft.tail:'';document.getElementById('ac-type').value=S.eAircraft?S.eAircraft.actype||'':'';document.getElementById('ac-notes').value=S.eAircraft?S.eAircraft.notes||'':'';openModal('modal-aircraft');}
-function saveAircraft(){var tail=document.getElementById('ac-tail').value.trim().toUpperCase();if(!tail)return;var mo=Math.max.apply(null,S.aircraft.map(function(a){return a.order||0;}).concat([-1]));if(S.eAircraft){Object.assign(S.eAircraft,{tail:tail,actype:document.getElementById('ac-type').value.trim(),notes:document.getElementById('ac-notes').value.trim()});logAct('Aircraft '+tail+' updated');}else{S.aircraft.push({id:uid(),tail:tail,actype:document.getElementById('ac-type').value.trim(),notes:document.getElementById('ac-notes').value.trim(),order:mo+1});logAct('Aircraft '+tail+' added');}closeModal('modal-aircraft');save();render();}
-function deleteAircraft(id){if(!confirm('Delete this aircraft and all its locations and items?'))return;var a=S.aircraft.find(function(x){return x.id===id;});var lIds=S.acLocs.filter(function(l){return l.acId===id;}).map(function(l){return l.id;});S.acItems=S.acItems.filter(function(i){return lIds.indexOf(i.locId)===-1;});S.acLocs=S.acLocs.filter(function(l){return l.acId!==id;});S.aircraft=S.aircraft.filter(function(x){return x.id!==id;});if(S.bAc===id){S.bAc=null;S.bAcLoc=null;}logAct('Aircraft "'+(a?a.tail:id)+'" deleted');save();render();}
-
-/* ── Aircraft Location CRUD ── */
-function openAcLocModal(presetAcId,editId){S.eAcLoc=editId?S.acLocs.find(function(l){return l.id===editId;}):null;document.getElementById('mal-title').textContent=S.eAcLoc?'Edit location':'Add location';document.getElementById('acloc-name').value=S.eAcLoc?S.eAcLoc.name:'';var rs=document.getElementById('acloc-ac');rs.innerHTML=sortedBy(S.aircraft).map(function(a){return'<option value="'+a.id+'">'+a.tail+'</option>';}).join('');rs.value=S.eAcLoc?S.eAcLoc.acId:(presetAcId||S.bAc||(S.aircraft[0]&&S.aircraft[0].id));openModal('modal-acloc');}
-function saveAcLoc(){var name=document.getElementById('acloc-name').value.trim();if(!name)return;var acId=document.getElementById('acloc-ac').value;var mo=Math.max.apply(null,S.acLocs.filter(function(l){return l.acId===acId;}).map(function(l){return l.order||0;}).concat([-1]));if(S.eAcLoc){S.eAcLoc.name=name;S.eAcLoc.acId=acId;logAct('Location "'+name+'" updated');}else{S.acLocs.push({id:uid(),acId:acId,name:name,order:mo+1});logAct('Location "'+name+'" added to '+acName(acId));}closeModal('modal-acloc');save();render();}
-function deleteAcLoc(id){if(!confirm('Delete this location and all its items?'))return;var l=S.acLocs.find(function(x){return x.id===id;});S.acItems=S.acItems.filter(function(i){return i.locId!==id;});S.acLocs=S.acLocs.filter(function(x){return x.id!==id;});if(S.bAcLoc===id)S.bAcLoc=null;logAct('Location "'+(l?l.name:id)+'" deleted');save();render();}
-
-/* ── Item type toggle ── */
-function setItemType(type){
-  currentItemType=type;
-  document.getElementById('type-btn-stock').classList.toggle('active',type==='stock');
-  document.getElementById('type-btn-label').classList.toggle('active',type==='label');
-  document.getElementById('stock-fields').style.display=type==='stock'?'':'none';
-  document.getElementById('label-fields').style.display=type==='label'?'':'none';
-}
-
-function populateItemLoc(){
-  var ctx=S.itemCtx;
-  var parentId=document.getElementById('item-parent').value;
-  var locs=ctx==='aircraft'?sortedBy(S.acLocs.filter(function(l){return l.acId===parentId;})):sortedBy(S.locs.filter(function(l){return l.roomId===parentId;}));
-  document.getElementById('item-loc').innerHTML=locs.map(function(l){return'<option value="'+l.id+'">'+l.name+'</option>';}).join('');
-}
-function populateLabelLoc(){
-  var ctx=S.itemCtx;
-  var parentId=document.getElementById('label-parent').value;
-  var locs=ctx==='aircraft'?sortedBy(S.acLocs.filter(function(l){return l.acId===parentId;})):sortedBy(S.locs.filter(function(l){return l.roomId===parentId;}));
-  document.getElementById('label-loc').innerHTML=locs.map(function(l){return'<option value="'+l.id+'">'+l.name+'</option>';}).join('');
-}
-
-function openItemModal(presetRmLocId, presetAcLocId, ctx){
-  S.itemCtx=ctx||'room';
-  S.eItem=null;
-  document.getElementById('mi-title').textContent='Add item';
-  setItemType('stock');
-  document.getElementById('item-name').value='';
-  document.getElementById('item-cat').value='';
-  document.getElementById('item-qty').value=0;
-  document.getElementById('item-thresh').value=5;
-  document.getElementById('item-notes').value='';
-  document.getElementById('item-perishable').checked=false;
-  document.getElementById('item-expiry').value='';
-  document.getElementById('exp-sec').classList.remove('show');
-  document.getElementById('label-notes').value='';
-
-  var isAc=S.itemCtx==='aircraft';
-  var parentLabel=isAc?'Aircraft':'Room';
-  document.getElementById('item-parent-label').textContent=parentLabel;
-  document.getElementById('label-parent-label').textContent=parentLabel;
-
-  var parents=isAc?sortedBy(S.aircraft):sortedBy(S.rooms);
-  var parentHtml=parents.map(function(p){return'<option value="'+p.id+'">'+(isAc?p.tail:p.name)+'</option>';}).join('');
-  document.getElementById('item-parent').innerHTML=parentHtml;
-  document.getElementById('label-parent').innerHTML=parentHtml;
-
-  // preset parent
-  var presetParent=null;
-  if(isAc&&presetAcLocId){var al=S.acLocs.find(function(l){return l.id===presetAcLocId;});if(al)presetParent=al.acId;}
-  else if(!isAc&&presetRmLocId){var rl=S.locs.find(function(l){return l.id===presetRmLocId;});if(rl)presetParent=rl.roomId;}
-  else if(isAc)presetParent=S.bAc;
-  else presetParent=S.bRoom;
-  if(presetParent){document.getElementById('item-parent').value=presetParent;document.getElementById('label-parent').value=presetParent;}
-  populateItemLoc();populateLabelLoc();
-  if(presetAcLocId){document.getElementById('item-loc').value=presetAcLocId;document.getElementById('label-loc').value=presetAcLocId;}
-  if(presetRmLocId){document.getElementById('item-loc').value=presetRmLocId;document.getElementById('label-loc').value=presetRmLocId;}
-  openModal('modal-item');
-}
-
-function editItem(id,ctx){
-  S.itemCtx=ctx||'room';
-  var arr=ctx==='aircraft'?S.acItems:S.items;
-  S.eItem=arr.find(function(i){return i.id===id;});
-  if(!S.eItem)return;
-  document.getElementById('mi-title').textContent='Edit item';
-  var type=S.eItem.type||'stock';
-  setItemType(type);
-  document.getElementById('item-name').value=S.eItem.name;
-  document.getElementById('item-cat').value=S.eItem.cat||'';
-  document.getElementById('item-qty').value=S.eItem.qty||0;
-  document.getElementById('item-thresh').value=S.eItem.thresh||5;
-  document.getElementById('item-notes').value=S.eItem.notes||'';
-  var p=!!S.eItem.perishable;
-  document.getElementById('item-perishable').checked=p;
-  document.getElementById('item-expiry').value=S.eItem.expiry||'';
-  document.getElementById('exp-sec').classList.toggle('show',p);
-  document.getElementById('label-notes').value=S.eItem.notes||'';
-
-  var isAc=ctx==='aircraft';
-  document.getElementById('item-parent-label').textContent=isAc?'Aircraft':'Room';
-  document.getElementById('label-parent-label').textContent=isAc?'Aircraft':'Room';
-  var parents=isAc?sortedBy(S.aircraft):sortedBy(S.rooms);
-  var parentHtml=parents.map(function(pp){return'<option value="'+pp.id+'">'+(isAc?pp.tail:pp.name)+'</option>';}).join('');
-  document.getElementById('item-parent').innerHTML=parentHtml;
-  document.getElementById('label-parent').innerHTML=parentHtml;
-  var loc=isAc?S.acLocs.find(function(l){return l.id===S.eItem.locId;}):S.locs.find(function(l){return l.id===S.eItem.locId;});
-  if(loc){var parentId=isAc?loc.acId:loc.roomId;document.getElementById('item-parent').value=parentId;document.getElementById('label-parent').value=parentId;}
-  populateItemLoc();populateLabelLoc();
-  document.getElementById('item-loc').value=S.eItem.locId;
-  document.getElementById('label-loc').value=S.eItem.locId;
-  openModal('modal-item');
-}
-
-function saveItem(){
-  var name=document.getElementById('item-name').value.trim();if(!name)return;
-  var type=currentItemType;
-  var ctx=S.itemCtx||'room';
-  var arr=ctx==='aircraft'?S.acItems:S.items;
-  var locId=type==='label'?document.getElementById('label-loc').value:document.getElementById('item-loc').value;
-  var li=arr.filter(function(i){return i.locId===locId;});
-  var maxOrder=Math.max.apply(null,li.map(function(i){return i.order||0;}).concat([-1]));
-  var data;
-  if(type==='label'){
-    data={type:'label',ctx:ctx,name:name,locId:locId,notes:document.getElementById('label-notes').value.trim(),cat:'',qty:0,thresh:0,perishable:false,expiry:'',order:S.eItem?S.eItem.order:(maxOrder+1)};
-  }else{
-    var p=document.getElementById('item-perishable').checked;
-    data={type:'stock',ctx:ctx,name:name,cat:document.getElementById('item-cat').value.trim()||'General',locId:locId,qty:parseInt(document.getElementById('item-qty').value)||0,thresh:Math.max(0,parseInt(document.getElementById('item-thresh').value)||0),notes:document.getElementById('item-notes').value.trim(),perishable:p,expiry:p?document.getElementById('item-expiry').value:'',order:S.eItem?S.eItem.order:(maxOrder+1)};
-  }
-  if(S.eItem){Object.assign(S.eItem,data);logAct('"'+name+'" updated');}
-  else{arr.push(Object.assign({id:uid()},data));logAct('"'+name+'" added');}
-  closeModal('modal-item');save();render();
-}
-
-function deleteItem(id,ctx){
-  if(!confirm('Delete this item?'))return;
-  var arr=ctx==='aircraft'?S.acItems:S.items;
-  var i=arr.find(function(x){return x.id===id;});
-  if(ctx==='aircraft')S.acItems=S.acItems.filter(function(x){return x.id!==id;});
-  else S.items=S.items.filter(function(x){return x.id!==id;});
-  logAct('"'+(i?i.name:id)+'" removed');save();render();
-}
-
-/* ── All items ── */
-function renderAllItems(q){
-  var all=S.items.concat(S.acItems);
-  var f=all.filter(function(i){if(!q)return true;var pn=i.ctx==='aircraft'?acName(alAc(i.locId)):rName(lRoom(i.locId));var ln=i.ctx==='aircraft'?alName(i.locId):lName(i.locId);return[i.name,i.cat||'',ln,pn].some(function(s){return s.toLowerCase().indexOf(q.toLowerCase())>-1;});});
-  var body=document.getElementById('all-items-body');if(!body)return;
-  if(!f.length){body.innerHTML='<tr><td colspan="8" class="empty">No items found</td></tr>';return;}
-  body.innerHTML=f.map(function(i){
-    var s=stkSt(i);var e=expSt(i);var isLabel=i.type==='label';
-    var pn=i.ctx==='aircraft'?acName(alAc(i.locId)):rName(lRoom(i.locId));
-    var ln=i.ctx==='aircraft'?alName(i.locId):lName(i.locId);
-    return'<tr><td>'+i.name+(isLabel?'<span class="label-tag" style="margin-left:5px;"><i class="ti ti-tag"></i></span>':'')+'</td><td>'+pn+'</td><td>'+ln+'</td>'+
-      '<td>'+(isLabel?'—':'<div class="qc"><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',1)">+</button></div>')+'</td>'+
-      '<td><span class="st '+s+'">'+stkLbl(s)+'</span></td>'+
-      '<td>'+(e?'<span class="st '+e.cls+'">'+e.label+'</span>':'—')+'</td>'+
-      '<td>'+(i.ctx==='aircraft'?'<i class="ti ti-plane" style="color:var(--accent-light);"></i>':'<i class="ti ti-door" style="color:var(--text3);"></i>')+'</td>'+
-      '<td><button class="btn ib" onclick="editItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-edit"></i></button> <button class="btn ib db" onclick="deleteItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-trash"></i></button></td></tr>';
-  }).join('');
 }
 
 /* ── Search ── */
@@ -874,7 +885,7 @@ function setupSearch(){
     var all=S.items.concat(S.acItems);
     var res=all.filter(function(i){var pn=i.ctx==='aircraft'?acName(alAc(i.locId)):rName(lRoom(i.locId));var ln=i.ctx==='aircraft'?alName(i.locId):lName(i.locId);return[i.name,i.cat||'',ln,pn].some(function(s){return s.toLowerCase().indexOf(q.toLowerCase())>-1;});});
     if(!res.length){box.innerHTML='<div style="padding:12px 14px;font-size:13px;color:var(--text2);">No results found</div>';box.style.display='block';return;}
-    box.innerHTML=res.map(function(i){var s=stkSt(i);var pn=i.ctx==='aircraft'?acName(alAc(i.locId)):rName(lRoom(i.locId));var ln=i.ctx==='aircraft'?alName(i.locId):lName(i.locId);return'<div class="gs-item" onclick="goToItem(\''+i.locId+'\',\''+i.ctx+'\')"><i class="ti ti-box" style="color:var(--accent-light);font-size:16px;"></i><div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+i.name+'</div><div style="font-size:12px;color:var(--text2);">'+pn+' › '+ln+(i.type!=='label'?' · Qty: '+i.qty:'')+'</div></div><span class="st '+s+'">'+stkLbl(s)+'</span></div>';}).join('');
+    box.innerHTML=res.map(function(i){var s=stkSt(i);var pn=i.ctx==='aircraft'?acName(alAc(i.locId)):rName(lRoom(i.locId));var ln=i.ctx==='aircraft'?alName(i.locId):lName(i.locId);return'<div class="gs-item" onclick="goToItem(\''+i.locId+'\',\''+i.ctx+'\')"><i class="ti ti-box" style="color:var(--accent-light);font-size:16px;"></i><div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+i.name+'</div><div style="font-size:12px;color:var(--text2);">'+pn+' › '+ln+(i.subcatId?' › '+scName(i.subcatId):'')+(i.type!=='label'?' · Qty: '+i.qty:'')+'</div></div><span class="st '+s+'">'+stkLbl(s)+'</span></div>';}).join('');
     box.style.display='block';
   });
   document.addEventListener('click',function(e){if(!box.contains(e.target)&&e.target!==inp)box.style.display='none';});
@@ -886,132 +897,19 @@ function goToItem(locId,ctx){
 }
 
 /* ── QR ── */
-function showLocQr(locId,ctx){
-  var l=ctx==='aircraft'?S.acLocs.find(function(x){return x.id===locId;}):S.locs.find(function(x){return x.id===locId;});
-  if(!l)return;
-  document.getElementById('mq-title').textContent='QR — '+l.name;
-  var cont=document.getElementById('modal-qr-content');cont.innerHTML='';
-  var d=document.createElement('div');cont.appendChild(d);
-  try{new QRCode(d,{text:'inv:loc:'+locId,width:160,height:160,correctLevel:QRCode.CorrectLevel.M});}catch(e){}
-  openModal('modal-qr');
-}
-function populateQrParent(){
-  var t=document.getElementById('qr-type-sel').value;
-  var parents=t==='aircraft'?sortedBy(S.aircraft):sortedBy(S.rooms);
-  document.getElementById('qr-parent-sel').innerHTML=parents.map(function(p){return'<option value="'+p.id+'">'+(t==='aircraft'?p.tail:p.name)+'</option>';}).join('');
-  populateQrLoc();
-}
-function populateQrLoc(){
-  var t=document.getElementById('qr-type-sel').value;
-  var parentId=document.getElementById('qr-parent-sel').value;
-  var locs=t==='aircraft'?sortedBy(S.acLocs.filter(function(l){return l.acId===parentId;})):sortedBy(S.locs.filter(function(l){return l.roomId===parentId;}));
-  document.getElementById('qr-loc-sel').innerHTML=locs.map(function(l){return'<option value="'+l.id+'">'+l.name+'</option>';}).join('');
-}
-function generateQR(){
-  var locId=document.getElementById('qr-loc-sel').value;
-  var t=document.getElementById('qr-type-sel').value;
-  var l=t==='aircraft'?S.acLocs.find(function(x){return x.id===locId;}):S.locs.find(function(x){return x.id===locId;});
-  if(!l)return;
-  var out=document.getElementById('qr-output');out.innerHTML='';
-  var d=document.createElement('div');out.appendChild(d);
-  try{new QRCode(d,{text:'inv:loc:'+locId,width:180,height:180,correctLevel:QRCode.CorrectLevel.M});}catch(e){}
-  var p=document.createElement('p');p.className='qrn';p.textContent=l.name+' · ID: '+locId;out.appendChild(p);
-}
+function showLocQr(locId,ctx){var l=ctx==='aircraft'?S.acLocs.find(function(x){return x.id===locId;}):S.locs.find(function(x){return x.id===locId;});if(!l)return;document.getElementById('mq-title').textContent='QR — '+l.name;var cont=document.getElementById('modal-qr-content');cont.innerHTML='';var d=document.createElement('div');cont.appendChild(d);try{new QRCode(d,{text:'inv:loc:'+locId,width:160,height:160,correctLevel:QRCode.CorrectLevel.M});}catch(e){}openModal('modal-qr');}
+function populateQrParent(){var t=document.getElementById('qr-type-sel').value;var parents=t==='aircraft'?sortedBy(S.aircraft):sortedBy(S.rooms);document.getElementById('qr-parent-sel').innerHTML=parents.map(function(p){return'<option value="'+p.id+'">'+(t==='aircraft'?p.tail:p.name)+'</option>';}).join('');populateQrLoc();}
+function populateQrLoc(){var t=document.getElementById('qr-type-sel').value;var parentId=document.getElementById('qr-parent-sel').value;var locs=t==='aircraft'?sortedBy(S.acLocs.filter(function(l){return l.acId===parentId;})):sortedBy(S.locs.filter(function(l){return l.roomId===parentId;}));document.getElementById('qr-loc-sel').innerHTML=locs.map(function(l){return'<option value="'+l.id+'">'+l.name+'</option>';}).join('');}
+function generateQR(){var locId=document.getElementById('qr-loc-sel').value;var t=document.getElementById('qr-type-sel').value;var l=t==='aircraft'?S.acLocs.find(function(x){return x.id===locId;}):S.locs.find(function(x){return x.id===locId;});if(!l)return;var out=document.getElementById('qr-output');out.innerHTML='';var d=document.createElement('div');out.appendChild(d);try{new QRCode(d,{text:'inv:loc:'+locId,width:180,height:180,correctLevel:QRCode.CorrectLevel.M});}catch(e){}var p=document.createElement('p');p.className='qrn';p.textContent=l.name+' · ID: '+locId;out.appendChild(p);}
 function triggerScan(){document.getElementById('scan-result').innerHTML='<div style="font-size:13px;color:var(--text2);padding:.75rem 0;">Enter a location name or ID:<br><input type="text" placeholder="Location name or ID…" style="width:100%;margin-top:8px;padding:7px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;background:var(--bg3);color:var(--text);" oninput="manualScan(this.value)"></div>';}
-function manualScan(val){
-  var id=val.replace('inv:loc:','').trim();
-  var rl=S.locs.find(function(l){return l.id===id||l.name.toLowerCase()===id.toLowerCase();});
-  if(rl){S.bRoom=rl.roomId;S.bLoc=rl.id;showPage('rooms');return;}
-  var al=S.acLocs.find(function(l){return l.id===id||l.name.toLowerCase()===id.toLowerCase();});
-  if(al){S.bAc=al.acId;S.bAcLoc=al.id;showPage('aircraft');}
-}
+function manualScan(val){var id=val.replace('inv:loc:','').trim();var rl=S.locs.find(function(l){return l.id===id||l.name.toLowerCase()===id.toLowerCase();});if(rl){S.bRoom=rl.roomId;S.bLoc=rl.id;showPage('rooms');return;}var al=S.acLocs.find(function(l){return l.id===id||l.name.toLowerCase()===id.toLowerCase();});if(al){S.bAc=al.acId;S.bAcLoc=al.id;showPage('aircraft');}}
+
+/* ── Autocomplete ── */
+function acGetSuggestions(type,q){var all=S.items.concat(S.acItems);var vals=type==='names'?all.map(function(i){return i.name;}):all.map(function(i){return i.cat||'';}).filter(Boolean);var seen={},results=[];vals.forEach(function(v){var lv=v.toLowerCase();if(!seen[lv]&&lv.indexOf(q.toLowerCase())===0&&lv!==q.toLowerCase()){seen[lv]=true;results.push(v);}});vals.forEach(function(v){var lv=v.toLowerCase();if(!seen[lv]&&lv.indexOf(q.toLowerCase())>0){seen[lv]=true;results.push(v);}});return results.slice(0,8);}
+function acShow(inputId,type){var inp=document.getElementById(inputId),box=document.getElementById('ac-'+inputId);var q=inp.value.trim();acIdx=-1;if(!q){box.style.display='none';return;}var suggestions=acGetSuggestions(type,q);if(!suggestions.length){box.style.display='none';return;}box.innerHTML=suggestions.map(function(s){var lo=s.toLowerCase(),lq=q.toLowerCase(),idx=lo.indexOf(lq);var hl=idx>=0?s.slice(0,idx)+'<em>'+s.slice(idx,idx+q.length)+'</em>'+s.slice(idx+q.length):s;return'<div class="ac-item" onmousedown="acPick(\''+inputId+'\',this)">'+hl+'</div>';}).join('');box.style.display='block';}
+function acPick(inputId,el){document.getElementById(inputId).value=el.textContent||el.innerText;document.getElementById('ac-'+inputId).style.display='none';acIdx=-1;}
+function acHide(inputId,delay){setTimeout(function(){var box=document.getElementById('ac-'+inputId);if(box)box.style.display='none';acIdx=-1;},delay||0);}
+function acKey(e,inputId){var box=document.getElementById('ac-'+inputId);if(box.style.display==='none')return;var items=box.querySelectorAll('.ac-item');if(!items.length)return;if(e.key==='ArrowDown'){e.preventDefault();acIdx=Math.min(acIdx+1,items.length-1);items.forEach(function(el,i){el.classList.toggle('active',i===acIdx);});}else if(e.key==='ArrowUp'){e.preventDefault();acIdx=Math.max(acIdx-1,0);items.forEach(function(el,i){el.classList.toggle('active',i===acIdx);});}else if(e.key==='Enter'||e.key==='Tab'){if(acIdx>=0&&items[acIdx]){e.preventDefault();acPick(inputId,items[acIdx]);}}else if(e.key==='Escape'){acHide(inputId,0);}}
 </script>
 </body>
 </html>
-<script>
-// ── Autocomplete ──
-var acIdx=-1;
-
-function acGetSuggestions(type, q) {
-  var all = S.items.concat(S.acItems);
-  var vals;
-  if(type==='names') {
-    vals = all.map(function(i){return i.name;});
-  } else {
-    vals = all.map(function(i){return i.cat||'';}).filter(Boolean);
-  }
-  // unique, case-insensitive filter
-  var seen={}, results=[];
-  vals.forEach(function(v){
-    var lv=v.toLowerCase();
-    if(!seen[lv] && lv.indexOf(q.toLowerCase())===0 && lv!==q.toLowerCase()){
-      seen[lv]=true; results.push(v);
-    }
-  });
-  // also show contains matches after startsWith
-  vals.forEach(function(v){
-    var lv=v.toLowerCase();
-    if(!seen[lv] && lv.indexOf(q.toLowerCase())>0){
-      seen[lv]=true; results.push(v);
-    }
-  });
-  return results.slice(0,8);
-}
-
-function acShow(inputId, type) {
-  var inp = document.getElementById(inputId);
-  var box = document.getElementById('ac-'+inputId);
-  var q = inp.value.trim();
-  acIdx = -1;
-  if(!q){box.style.display='none';return;}
-  var suggestions = acGetSuggestions(type, q);
-  if(!suggestions.length){box.style.display='none';return;}
-  box.innerHTML = suggestions.map(function(s,i){
-    // bold the matching portion
-    var lo=s.toLowerCase(), lq=q.toLowerCase();
-    var idx=lo.indexOf(lq);
-    var highlighted = idx>=0 ? s.slice(0,idx)+'<em>'+s.slice(idx,idx+q.length)+'</em>'+s.slice(idx+q.length) : s;
-    return '<div class="ac-item" data-idx="'+i+'" onmousedown="acPick(\''+inputId+'\',this)">'+highlighted+'</div>';
-  }).join('');
-  box.style.display='block';
-}
-
-function acPick(inputId, el) {
-  var inp = document.getElementById(inputId);
-  // strip HTML tags to get plain text
-  inp.value = el.textContent || el.innerText;
-  document.getElementById('ac-'+inputId).style.display='none';
-  acIdx=-1;
-}
-
-function acHide(inputId, delay) {
-  setTimeout(function(){
-    var box=document.getElementById('ac-'+inputId);
-    if(box) box.style.display='none';
-    acIdx=-1;
-  }, delay||0);
-}
-
-function acKey(e, inputId) {
-  var box = document.getElementById('ac-'+inputId);
-  if(box.style.display==='none') return;
-  var items = box.querySelectorAll('.ac-item');
-  if(!items.length) return;
-  if(e.key==='ArrowDown'){
-    e.preventDefault();
-    acIdx=Math.min(acIdx+1,items.length-1);
-    items.forEach(function(el,i){el.style.background=i===acIdx?'var(--bg4)':'';});
-  } else if(e.key==='ArrowUp'){
-    e.preventDefault();
-    acIdx=Math.max(acIdx-1,0);
-    items.forEach(function(el,i){el.style.background=i===acIdx?'var(--bg4)':'';});
-  } else if(e.key==='Enter'||e.key==='Tab'){
-    if(acIdx>=0&&items[acIdx]){
-      e.preventDefault();
-      acPick(inputId,items[acIdx]);
-    }
-  } else if(e.key==='Escape'){
-    acHide(inputId,0);
-  }
-}
-</script>
