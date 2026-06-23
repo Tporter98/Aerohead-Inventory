@@ -99,14 +99,36 @@ body{background:var(--body-bg);color:var(--text);}
 .card-acts{display:flex;gap:5px;margin-top:10px;flex-wrap:wrap;}
 .bdg{display:inline-block;font-size:11px;padding:2px 7px;border-radius:99px;margin-top:5px;}
 .bdg.low{background:var(--warn-bg);color:var(--warn-text);}
-/* subcategory card accent */
 .card.subcat-card{border-left:3px solid var(--accent);}
+/* fill level bar on cards */
+.fill-bar-wrap{margin-top:7px;}
+.fill-bar-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;}
+.fill-bar-text{font-size:11px;color:var(--text3);}
+.fill-bar-frac{font-size:11px;font-weight:500;}
+.fill-bar-frac.fill-full{color:var(--success-text);}
+.fill-bar-frac.fill-mid{color:var(--warn-text);}
+.fill-bar-frac.fill-low{color:var(--danger-text);}
+.fill-bar-bg{height:3px;border-radius:99px;background:var(--border2);}
+.fill-bar-fill{height:3px;border-radius:99px;}
+.fill-bar-fill.fill-full{background:var(--success-text);}
+.fill-bar-fill.fill-mid{background:var(--warn-text);}
+.fill-bar-fill.fill-low{background:var(--danger-text);}
+/* fill fraction badge on items */
+.fill-frac-badge{font-size:11px;padding:1px 6px;border-radius:99px;margin-left:5px;}
+.fill-frac-badge.fill-full{background:var(--success-bg);color:var(--success-text);}
+.fill-frac-badge.fill-mid{background:var(--warn-bg);color:var(--warn-text);}
+.fill-frac-badge.fill-low{background:var(--danger-bg);color:var(--danger-text);}
 .tw{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);margin-bottom:1rem;overflow-x:auto;}
 table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed;min-width:480px;}
 th{text-align:left;padding:8px 10px;color:var(--text2);font-weight:500;border-bottom:0.5px solid var(--border);background:var(--bg3);}
 td{padding:9px 10px;border-bottom:0.5px solid var(--border);color:var(--text);vertical-align:middle;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 tr:last-child td{border-bottom:none;}
 tr:hover td{background:var(--bg3);}
+.grp-head td{cursor:pointer;}
+.grp-head:hover td{background:var(--bg4);}
+.grp-child td{background:var(--bg2);}
+.grp-child:hover td{background:var(--bg3);}
+.grp-arrow{display:inline-block;transition:transform .15s;font-size:11px;margin-right:4px;color:var(--text3);}
 .st{display:inline-block;font-size:11px;padding:2px 7px;border-radius:99px;}
 .st.ok{background:var(--success-bg);color:var(--success-text);}
 .st.low{background:var(--warn-bg);color:var(--warn-text);}
@@ -117,7 +139,6 @@ tr:hover td{background:var(--bg3);}
 .qc button{width:22px;height:22px;border-radius:50%;border:0.5px solid var(--border2);background:var(--bg3);color:var(--text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;}
 .qc button:hover{border-color:var(--accent-light);color:var(--accent-light);}
 .qn{font-size:13px;font-weight:500;min-width:22px;text-align:center;color:var(--text);}
-/* Items DnD list */
 .items-dnd{display:flex;flex-direction:column;background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:1rem;}
 .dnd-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:0.5px solid var(--border);cursor:grab;transition:background .1s;user-select:none;}
 .dnd-item:last-child{border-bottom:none;}
@@ -129,12 +150,10 @@ tr:hover td{background:var(--bg3);}
 .dnd-meta{font-size:12px;color:var(--text2);}
 .dnd-acts{display:flex;gap:5px;flex-shrink:0;align-items:center;}
 .label-tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:2px 8px;border-radius:99px;background:var(--info-bg);color:var(--info-text);margin-left:6px;}
-/* Location view with subcats + loose items */
 .loc-section{margin-bottom:1.25rem;}
 .loc-section-header{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--bg3);border-radius:var(--radius);margin-bottom:6px;cursor:default;}
 .loc-section-header .sh-title{font-size:13px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:6px;}
 .loc-section-header .sh-acts{display:flex;gap:5px;}
-/* drop zone for dragging into subcategory */
 .subcat-drop-zone{min-height:40px;border:1.5px dashed var(--border2);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text3);margin-bottom:4px;transition:background .1s,border-color .1s;}
 .subcat-drop-zone.drag-active{background:var(--bg4);border-color:var(--accent-light);color:var(--accent-light);}
 .al{display:flex;flex-direction:column;gap:7px;margin-bottom:1.25rem;}
@@ -163,6 +182,8 @@ tr:hover td{background:var(--bg3);}
 .toggle input:checked+.tslider:before{transform:translateX(16px);background:#fff;}
 .exp-sec{display:none;margin-top:8px;}
 .exp-sec.show{display:block;}
+.par-sec{display:none;margin-top:8px;}
+.par-sec.show{display:block;}
 .ma{display:flex;gap:8px;justify-content:flex-end;margin-top:1.25rem;}
 .empty{text-align:center;padding:2rem;color:var(--text2);font-size:13px;}
 .swrap{position:relative;margin-bottom:1rem;}
@@ -277,10 +298,30 @@ tr:hover td{background:var(--bg3);}
 
 <!-- Modals -->
 <div class="ov" id="modal-room"><div class="modal"><h3 id="mr-title">Add room</h3><div class="fg"><label>Room name</label><input type="text" id="room-name" placeholder="e.g. Warehouse"></div><div class="ma"><button class="btn" onclick="closeModal('modal-room')">Cancel</button><button class="btn primary" onclick="saveRoom()">Save</button></div></div></div>
-<div class="ov" id="modal-rmloc"><div class="modal"><h3 id="mrl-title">Add location</h3><div class="fg"><label>Location name</label><input type="text" id="rmloc-name" placeholder="e.g. Cabinet 3"></div><div class="fg"><label>Room</label><select id="rmloc-room"></select></div><div class="ma"><button class="btn" onclick="closeModal('modal-rmloc')">Cancel</button><button class="btn primary" onclick="saveRmLoc()">Save</button></div></div></div>
+<div class="ov" id="modal-rmloc">
+  <div class="modal">
+    <h3 id="mrl-title">Add location</h3>
+    <div class="fg"><label>Location name</label><input type="text" id="rmloc-name" placeholder="e.g. Cabinet 3"></div>
+    <div class="fg"><label>Room</label><select id="rmloc-room"></select></div>
+    <div style="background:var(--bg3);border-radius:var(--radius);padding:10px 12px;margin-bottom:11px;border:0.5px solid var(--border);">
+      <div class="toggle-row"><label class="toggle"><input type="checkbox" id="rmloc-fill-toggle" onchange="toggleRmLocFill()"><span class="tslider"></span></label><span style="font-size:13px;color:var(--text);cursor:pointer;" onclick="document.getElementById('rmloc-fill-toggle').click()">Track fill level</span></div>
+    </div>
+    <div class="ma"><button class="btn" onclick="closeModal('modal-rmloc')">Cancel</button><button class="btn primary" onclick="saveRmLoc()">Save</button></div>
+  </div>
+</div>
 <div class="ov" id="modal-subcat"><div class="modal"><h3 id="msc-title">Add subcategory</h3><div class="fg"><label>Name</label><input type="text" id="subcat-name" placeholder="e.g. Sodas, Snacks, Tools"></div><div class="ma"><button class="btn" onclick="closeModal('modal-subcat')">Cancel</button><button class="btn primary" onclick="saveSubcat()">Save</button></div></div></div>
 <div class="ov" id="modal-aircraft"><div class="modal"><h3 id="mac-title">Add aircraft</h3><div class="fg"><label>Tail number</label><input type="text" id="ac-tail" placeholder="e.g. N711VT"></div><div class="fg"><label>Type (optional)</label><input type="text" id="ac-type" placeholder="e.g. Cessna 172"></div><div class="fg"><label>Notes (optional)</label><input type="text" id="ac-notes"></div><div class="ma"><button class="btn" onclick="closeModal('modal-aircraft')">Cancel</button><button class="btn primary" onclick="saveAircraft()">Save</button></div></div></div>
-<div class="ov" id="modal-acloc"><div class="modal"><h3 id="mal-title">Add location</h3><div class="fg"><label>Location name</label><input type="text" id="acloc-name" placeholder="e.g. Cargo bay"></div><div class="fg"><label>Aircraft</label><select id="acloc-ac"></select></div><div class="ma"><button class="btn" onclick="closeModal('modal-acloc')">Cancel</button><button class="btn primary" onclick="saveAcLoc()">Save</button></div></div></div>
+<div class="ov" id="modal-acloc">
+  <div class="modal">
+    <h3 id="mal-title">Add location</h3>
+    <div class="fg"><label>Location name</label><input type="text" id="acloc-name" placeholder="e.g. Cargo bay"></div>
+    <div class="fg"><label>Aircraft</label><select id="acloc-ac"></select></div>
+    <div style="background:var(--bg3);border-radius:var(--radius);padding:10px 12px;margin-bottom:11px;border:0.5px solid var(--border);">
+      <div class="toggle-row"><label class="toggle"><input type="checkbox" id="acloc-fill-toggle" onchange="toggleAcLocFill()"><span class="tslider"></span></label><span style="font-size:13px;color:var(--text);cursor:pointer;" onclick="document.getElementById('acloc-fill-toggle').click()">Track fill level</span></div>
+    </div>
+    <div class="ma"><button class="btn" onclick="closeModal('modal-acloc')">Cancel</button><button class="btn primary" onclick="saveAcLoc()">Save</button></div>
+  </div>
+</div>
 <div class="ov" id="modal-item">
   <div class="modal">
     <h3 id="mi-title">Add item</h3>
@@ -301,6 +342,10 @@ tr:hover td{background:var(--bg3);}
         <div class="toggle-row"><label class="toggle"><input type="checkbox" id="item-perishable" onchange="toggleExpire()"><span class="tslider"></span></label><span style="font-size:13px;color:var(--text);cursor:pointer;" onclick="document.getElementById('item-perishable').click()">Perishable item</span></div>
         <div class="exp-sec" id="exp-sec"><div class="fg" style="margin-bottom:0;margin-top:8px;"><label>Expiration date</label><input type="date" id="item-expiry"></div></div>
       </div>
+      <div style="background:var(--bg3);border-radius:var(--radius);padding:10px 12px;margin-bottom:11px;border:0.5px solid var(--border);">
+        <div class="toggle-row"><label class="toggle"><input type="checkbox" id="item-par-toggle" onchange="togglePar()"><span class="tslider"></span></label><span style="font-size:13px;color:var(--text);cursor:pointer;" onclick="document.getElementById('item-par-toggle').click()">Track fill level for this item</span></div>
+        <div class="par-sec" id="par-sec"><div class="fg" style="margin-bottom:0;margin-top:8px;"><label>Par quantity (how many should be here)</label><input type="number" id="item-par" min="1" value="1"></div></div>
+      </div>
       <div class="fg"><label>Notes</label><input type="text" id="item-notes" placeholder="Optional"></div>
     </div>
     <div id="label-fields" style="display:none;">
@@ -315,7 +360,6 @@ tr:hover td{background:var(--bg3);}
   </div>
 </div>
 <div class="ov" id="modal-qr"><div class="modal"><h3 id="mq-title">QR code</h3><div class="qra" id="modal-qr-content"></div><p class="qrn">Print and stick on the location.</p><div class="ma"><button class="btn" onclick="closeModal('modal-qr')">Close</button></div></div></div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -335,7 +379,7 @@ var S={
   activity:[],
   eRoom:null,eLoc:null,eSubcat:null,eItem:null,eAircraft:null,eAcLoc:null,eAcSubcat:null,
   bRoom:null,bLoc:null,bAc:null,bAcLoc:null,
-  itemCtx:null, subcatCtx:null
+  itemCtx:null,subcatCtx:null
 };
 var dragSrc=null,cardDragSrc=null,itemDragSrc=null,fbUnsub=null,saveTimer=null,currentItemType='stock',acIdx=-1;
 
@@ -355,7 +399,7 @@ function startApp(){if(!window.fbListen){window.addEventListener('fbReady',start
   });
 }
 function save(){if(saveTimer)clearTimeout(saveTimer);saveTimer=setTimeout(function(){window.fbSave({rooms:S.rooms,locs:S.locs,subcats:S.subcats,items:S.items,aircraft:S.aircraft,acLocs:S.acLocs,acSubcats:S.acSubcats,acItems:S.acItems,activity:S.activity});},800);}
-function seed(){S.rooms=[{id:'r1',name:'Warehouse',order:0}];S.locs=[{id:'l1',roomId:'r1',name:'Cabinet A',order:0}];S.subcats=[];S.items=[{id:'i1',locId:'l1',subcatId:null,name:'Box of screws',cat:'Hardware',qty:5,thresh:10,notes:'',perishable:false,expiry:'',order:0,type:'stock',ctx:'room'}];S.aircraft=[];S.acLocs=[];S.acSubcats=[];S.acItems=[];S.activity=[{text:'Inventory initialized',time:Date.now()}];}
+function seed(){S.rooms=[{id:'r1',name:'Warehouse',order:0}];S.locs=[{id:'l1',roomId:'r1',name:'Cabinet A',order:0,trackFill:false}];S.subcats=[];S.items=[{id:'i1',locId:'l1',subcatId:null,name:'Box of screws',cat:'Hardware',qty:5,thresh:10,par:0,trackPar:false,notes:'',perishable:false,expiry:'',order:0,type:'stock',ctx:'room'}];S.aircraft=[];S.acLocs=[];S.acSubcats=[];S.acItems=[];S.activity=[{text:'Inventory initialized',time:Date.now()}];}
 
 function uid(){return 'x'+Math.random().toString(36).slice(2,9);}
 function expSt(item){if(!item.perishable||!item.expiry)return null;var today=new Date();today.setHours(0,0,0,0);var exp=new Date(item.expiry+'T00:00:00');var diff=Math.floor((exp-today)/86400000);if(diff<0)return{label:'Expired',cls:'out'};if(diff<=7)return{label:'Exp in '+diff+'d',cls:'exp'};if(diff<=30)return{label:'Exp '+fmtDate(item.expiry),cls:'low'};return{label:fmtDate(item.expiry),cls:'ok'};}
@@ -372,11 +416,112 @@ function alAc(id){var l=S.acLocs.find(function(x){return x.id===id;});return l?l
 function logAct(t){S.activity.unshift({text:t,time:Date.now()});if(S.activity.length>30)S.activity.pop();}
 function tAgo(ts){var d=Math.floor((Date.now()-ts)/60000);if(d<1)return'just now';if(d<60)return d+'m ago';if(d<1440)return Math.floor(d/60)+'h ago';return Math.floor(d/1440)+'d ago';}
 function toggleExpire(){document.getElementById('exp-sec').classList.toggle('show',document.getElementById('item-perishable').checked);}
+function togglePar(){document.getElementById('par-sec').classList.toggle('show',document.getElementById('item-par-toggle').checked);}
+function toggleRmLocFill(){}
+function toggleAcLocFill(){}
 function sortedBy(arr){return arr.slice().sort(function(a,b){return(a.order||0)-(b.order||0);});}
-// subcats for a location
 function locSubcats(locId,ctx){var arr=ctx==='aircraft'?S.acSubcats:S.subcats;return sortedBy(arr.filter(function(s){return s.locId===locId;}));}
-// items in a location, optionally filtered by subcatId
 function locItems(locId,subcatId,ctx){var arr=ctx==='aircraft'?S.acItems:S.items;return sortedBy(arr.filter(function(i){if(i.locId!==locId)return false;if(subcatId===undefined)return true;var isc=i.subcatId||null;var wsc=subcatId||null;return isc===wsc;}));}
+
+/* ── Fill level helpers ── */
+function fillCls(qty,par){var pct=par>0?qty/par:1;if(pct>=1)return'fill-full';if(pct>=0.5)return'fill-mid';return'fill-low';}
+function locFillHtml(locId,ctx){
+  var arr=ctx==='aircraft'?S.acItems:S.items;
+  var locArr=ctx==='aircraft'?S.acLocs:S.locs;
+  var loc=locArr.find(function(l){return l.id===locId;});
+  if(!loc||!loc.trackFill)return'';
+  var items=arr.filter(function(i){return i.locId===locId&&i.trackPar&&i.par>0&&i.type!=='label';});
+  if(!items.length)return'';
+  var totalQty=items.reduce(function(s,i){return s+(i.qty||0);},0);
+  var totalPar=items.reduce(function(s,i){return s+(i.par||0);},0);
+  if(!totalPar)return'';
+  var cls=fillCls(totalQty,totalPar);
+  var pct=Math.min(100,Math.round(totalQty/totalPar*100));
+  return'<div class="fill-bar-wrap">'+
+    '<div class="fill-bar-label"><span class="fill-bar-text">Fill</span><span class="fill-bar-frac '+cls+'">'+totalQty+'/'+totalPar+'</span></div>'+
+    '<div class="fill-bar-bg"><div class="fill-bar-fill '+cls+'" style="width:'+pct+'%"></div></div>'+
+  '</div>';
+}
+function itemFillBadge(i){
+  if(!i.trackPar||!i.par||i.par<=0||i.type==='label')return'';
+  var cls=fillCls(i.qty||0,i.par);
+  return'<span class="fill-frac-badge '+cls+'">'+(i.qty||0)+'/'+i.par+'</span>';
+}
+
+/* ── Grouping helpers ── */
+function groupItems(items){
+  var groups={},order=[];
+  items.forEach(function(i){
+    var key=i.name.toLowerCase()+'||'+i.locId;
+    if(!groups[key]){groups[key]=[];order.push(key);}
+    groups[key].push(i);
+  });
+  return order.map(function(k){
+    return groups[k].slice().sort(function(a,b){
+      var ae=a.expiry?new Date(a.expiry+'T00:00:00'):new Date('9999-01-01');
+      var be=b.expiry?new Date(b.expiry+'T00:00:00'):new Date('9999-01-01');
+      return ae-be;
+    });
+  });
+}
+function groupedTableRows(items,showSrc){
+  var groups=groupItems(items);
+  return groups.map(function(grp){
+    var i0=grp[0];
+    var pn=i0.ctx==='aircraft'?acName(alAc(i0.locId)):rName(lRoom(i0.locId));
+    var ln=i0.ctx==='aircraft'?alName(i0.locId):lName(i0.locId);
+    var srcCell=showSrc?'<td>'+(i0.ctx==='aircraft'?'<i class="ti ti-plane" style="color:var(--accent-light);"></i>':'<i class="ti ti-door" style="color:var(--text3);"></i>')+'</td>':'';
+    if(grp.length===1){
+      var s=stkSt(i0);var e=expSt(i0);var isLabel=i0.type==='label';
+      return'<tr>'+
+        '<td>'+i0.name+(isLabel?'<span class="label-tag" style="margin-left:5px;"><i class="ti ti-tag"></i></span>':'')+'</td>'+
+        '<td>'+pn+'</td><td>'+ln+'</td>'+
+        '<td>'+(i0.subcatId?scName(i0.subcatId):'<span style="color:var(--text3);">—</span>')+'</td>'+
+        '<td>'+(isLabel?'—':'<div class="qc"><button onclick="adj(\''+i0.id+'\',\''+i0.ctx+'\',-1)">−</button><span class="qn">'+i0.qty+'</span><button onclick="adj(\''+i0.id+'\',\''+i0.ctx+'\',1)">+</button></div>')+'</td>'+
+        '<td><span class="st '+s+'">'+stkLbl(s)+'</span></td>'+
+        '<td>'+(e?'<span class="st '+e.cls+'">'+e.label+'</span>':'—')+'</td>'+
+        srcCell+
+        '<td><button class="btn ib" onclick="editItem(\''+i0.id+'\',\''+i0.ctx+'\')"><i class="ti ti-edit"></i></button> <button class="btn ib db" onclick="deleteItem(\''+i0.id+'\',\''+i0.ctx+'\')"><i class="ti ti-trash"></i></button></td></tr>';
+    }
+    var gid='g'+i0.id;
+    var totalQty=grp.reduce(function(sum,i){return sum+(i.qty||0);},0);
+    var worstS=grp.some(function(i){return stkSt(i)==='out';})?'out':grp.some(function(i){return stkSt(i)==='low';})?'low':'ok';
+    var worstE=null;
+    grp.forEach(function(i){var e=expSt(i);if(e&&(!worstE||e.cls==='out'||(e.cls==='exp'&&worstE.cls!=='out')||(e.cls==='low'&&worstE.cls==='ok')))worstE=e;});
+    var head='<tr class="grp-head" onclick="toggleGrp(\''+gid+'\')">'+
+      '<td><span class="grp-arrow" id="arr-'+gid+'">›</span>'+i0.name+
+      '<span style="font-size:11px;padding:1px 6px;border-radius:99px;background:var(--bg4);color:var(--text2);border:0.5px solid var(--border2);margin-left:6px;">×'+grp.length+'</span></td>'+
+      '<td>'+pn+'</td><td>'+ln+'</td>'+
+      '<td>'+(i0.subcatId?scName(i0.subcatId):'<span style="color:var(--text3);">—</span>')+'</td>'+
+      '<td>'+totalQty+'</td>'+
+      '<td><span class="st '+worstS+'">'+stkLbl(worstS)+'</span></td>'+
+      '<td>'+(worstE?'<span class="st '+worstE.cls+'">'+worstE.label+'</span>':'—')+'</td>'+
+      srcCell+
+      '<td style="color:var(--text3);font-size:11px;">'+grp.length+' batches</td></tr>';
+    var children=grp.map(function(i,idx){
+      var s=stkSt(i);var e=expSt(i);var isLabel=i.type==='label';
+      var cSrc=showSrc?'<td></td>':'';
+      return'<tr class="grp-child" id="child-'+gid+'" style="display:none;">'+
+        '<td style="padding-left:22px;"><span style="color:var(--text3);margin-right:4px;">└</span>'+i.name+
+        '<span style="font-size:11px;color:var(--text2);margin-left:5px;">batch '+(idx+1)+'</span></td>'+
+        '<td style="color:var(--text2);">'+pn+'</td><td style="color:var(--text2);">'+ln+'</td>'+
+        '<td>'+(i.subcatId?scName(i.subcatId):'<span style="color:var(--text3);">—</span>')+'</td>'+
+        '<td>'+(isLabel?'—':'<div class="qc"><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',1)">+</button></div>')+'</td>'+
+        '<td><span class="st '+s+'">'+stkLbl(s)+'</span></td>'+
+        '<td>'+(e?'<span class="st '+e.cls+'">'+e.label+'</span>':'—')+'</td>'+
+        cSrc+
+        '<td><button class="btn ib" onclick="editItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-edit"></i></button> <button class="btn ib db" onclick="deleteItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-trash"></i></button></td></tr>';
+    }).join('');
+    return head+children;
+  }).join('');
+}
+function toggleGrp(gid){
+  var children=document.querySelectorAll('#child-'+gid);
+  var arr=document.getElementById('arr-'+gid);
+  var open=children[0]&&children[0].style.display!=='none';
+  children.forEach(function(c){c.style.display=open?'none':'table-row';});
+  if(arr)arr.style.transform=open?'':'rotate(90deg)';
+}
 
 function render(){updateSidebar();renderStatCards();renderAlerts();renderActivity();renderRooms();renderAircraft();renderAllItems('');}
 function updateSidebar(){
@@ -417,14 +562,14 @@ function renderAlerts(){
 }
 function renderActivity(){var el=document.getElementById('activity-list');if(!S.activity.length){el.innerHTML='<div class="empty">No activity yet</div>';return;}el.innerHTML=S.activity.slice(0,10).map(function(a){return'<div class="aci"><i class="ti ti-clock" style="color:var(--text2);font-size:15px;"></i><span style="flex:1;">'+a.text+'</span><span style="color:var(--text2);">'+tAgo(a.time)+'</span></div>';}).join('');}
 
-/* ── card HTML builder ── */
-function cardHtml(id,dtype,icon,name,sub,alerts,editFn,qrFn,delFn,clickFn){
+function cardHtml(id,dtype,icon,name,sub,alerts,editFn,qrFn,delFn,clickFn,fillHtml){
   return'<div class="card" draggable="true" data-id="'+id+'" data-type="'+dtype+'" onclick="'+clickFn+'">'+
     '<i class="ti ti-grip-vertical card-drag-handle" onclick="event.stopPropagation()"></i>'+
     '<div class="card-icon"><i class="ti '+icon+'"></i></div>'+
     '<div class="card-name">'+name+'</div>'+
     '<div class="card-sub">'+sub+'</div>'+
     (alerts?'<span class="bdg low">'+alerts+' alert'+(alerts!==1?'s':'')+'</span>':'')+
+    (fillHtml||'')+
     '<div class="card-acts">'+
       (qrFn?'<button class="btn ib" onclick="event.stopPropagation();'+qrFn+'" title="QR"><i class="ti ti-qrcode"></i></button>':'')+
       '<button class="btn ib" onclick="event.stopPropagation();'+editFn+'" title="Edit"><i class="ti ti-edit"></i></button>'+
@@ -432,26 +577,22 @@ function cardHtml(id,dtype,icon,name,sub,alerts,editFn,qrFn,delFn,clickFn){
     '</div></div>';
 }
 
-/* ── Location detail view (shared for rooms + aircraft) ── */
-function renderLocDetail(locId, ctx) {
-  var isAc = ctx === 'aircraft';
-  var loc = isAc ? S.acLocs.find(function(l){return l.id===locId;}) : S.locs.find(function(l){return l.id===locId;});
-  if (!loc) return '';
-  var subcats = locSubcats(locId, ctx);
-  var looseItems = locItems(locId, null, ctx); // items with no subcat
-  var totalItems = (isAc ? S.acItems : S.items).filter(function(i){return i.locId===locId;}).length;
-  var hdr = '<div class="sh"><h2>'+(loc?loc.name:'')+'</h2>'+
+function renderLocDetail(locId,ctx){
+  var isAc=ctx==='aircraft';
+  var loc=isAc?S.acLocs.find(function(l){return l.id===locId;}):S.locs.find(function(l){return l.id===locId;});
+  if(!loc)return'';
+  var subcats=locSubcats(locId,ctx);
+  var looseItems=locItems(locId,null,ctx);
+  var hdr='<div class="sh"><h2>'+(loc?loc.name:'')+'</h2>'+
     '<div style="display:flex;gap:6px;flex-wrap:wrap;">'+
     '<button class="btn" onclick="openSubcatModal(\''+locId+'\',\''+ctx+'\')"><i class="ti ti-folder-plus"></i> Add subcategory</button>'+
     '<button class="btn primary" onclick="openItemModal(\''+locId+'\',\''+locId+'\',\''+ctx+'\')"><i class="ti ti-plus"></i> Add item</button>'+
     '</div></div>';
-  if (!subcats.length && !looseItems.length) return hdr + '<div class="empty">No items here yet.</div>';
-  var html = hdr + '<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag items between subcategories</p>';
-
-  // Subcategories
-  subcats.forEach(function(sc) {
-    var scItems = locItems(locId, sc.id, ctx);
-    html += '<div class="loc-section">'+
+  if(!subcats.length&&!looseItems.length)return hdr+'<div class="empty">No items here yet.</div>';
+  var html=hdr+'<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag items between subcategories</p>';
+  subcats.forEach(function(sc){
+    var scItems=locItems(locId,sc.id,ctx);
+    html+='<div class="loc-section">'+
       '<div class="loc-section-header">'+
         '<div class="sh-title"><i class="ti ti-folder" style="color:var(--accent-light);"></i>'+sc.name+'<span style="font-size:11px;color:var(--text3);font-weight:400;">'+scItems.length+' item'+(scItems.length!==1?'s':'')+'</span></div>'+
         '<div class="sh-acts">'+
@@ -466,28 +607,26 @@ function renderLocDetail(locId, ctx) {
       '<div class="subcat-drop-zone" data-subcat="'+sc.id+'" data-loc="'+locId+'" data-ctx="'+ctx+'">Drop items here</div>'+
     '</div>';
   });
-
-  // Loose items (no subcat)
-  if (looseItems.length || subcats.length) {
-    html += '<div class="loc-section">'+
-      (subcats.length ? '<div class="loc-section-header"><div class="sh-title"><i class="ti ti-inbox" style="color:var(--text3);"></i>Uncategorized</div></div>' : '')+
+  if(looseItems.length||subcats.length){
+    html+='<div class="loc-section">'+
+      (subcats.length?'<div class="loc-section-header"><div class="sh-title"><i class="ti ti-inbox" style="color:var(--text3);"></i>Uncategorized</div></div>':'')+
       '<div class="items-dnd" id="dnd-loose" data-subcat="" data-loc="'+locId+'" data-ctx="'+ctx+'">'+
         looseItems.map(function(i){return itemRowHtml(i,ctx);}).join('')+
       '</div>'+
-      (subcats.length ? '<div class="subcat-drop-zone" data-subcat="" data-loc="'+locId+'" data-ctx="'+ctx+'">Drop items here (uncategorized)</div>' : '')+
+      (subcats.length?'<div class="subcat-drop-zone" data-subcat="" data-loc="'+locId+'" data-ctx="'+ctx+'">Drop items here (uncategorized)</div>':'')+
     '</div>';
   }
-
   return html;
 }
 
-function itemRowHtml(i, ctx) {
+function itemRowHtml(i,ctx){
   var s=stkSt(i);var e=expSt(i);var isLabel=i.type==='label';
-  return '<div class="dnd-item" draggable="true" data-id="'+i.id+'" data-ctx="'+ctx+'">'+
+  var fb=itemFillBadge(i);
+  return'<div class="dnd-item" draggable="true" data-id="'+i.id+'" data-ctx="'+ctx+'">'+
     '<i class="ti ti-grip-vertical drag-handle"></i>'+
     '<div style="flex:1;min-width:0;">'+
       '<div class="dnd-name">'+i.name+(isLabel?'<span class="label-tag"><i class="ti ti-tag"></i> Asset</span>':'')+(i.notes&&!isLabel?' <span style="font-size:11px;color:var(--text2);">— '+i.notes+'</span>':'')+(isLabel&&i.notes?' <span style="font-size:11px;color:var(--text2);">'+i.notes+'</span>':'')+'</div>'+
-      (!isLabel?'<div class="dnd-meta">'+(i.cat||'')+(i.cat?' · ':'')+' Qty: '+i.qty+' <span class="st '+s+'" style="font-size:11px;">'+stkLbl(s)+'</span>'+(e?' <span class="st '+e.cls+'" style="font-size:11px;">'+e.label+'</span>':'')+'</div>':'')+
+      (!isLabel?'<div class="dnd-meta">'+(i.cat||'')+(i.cat?' · ':'')+' Qty: '+i.qty+fb+' <span class="st '+s+'" style="font-size:11px;">'+stkLbl(s)+'</span>'+(e?' <span class="st '+e.cls+'" style="font-size:11px;">'+e.label+'</span>':'')+'</div>':'')+
     '</div>'+
     '<div class="dnd-acts">'+
       (!isLabel?'<div class="qc"><button onclick="adj(\''+i.id+'\',\''+ctx+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',\''+ctx+'\',1)">+</button></div>':'')+
@@ -497,36 +636,18 @@ function itemRowHtml(i, ctx) {
   '</div>';
 }
 
-/* ── Init drag and drop for location detail ── */
-function initLocDnd() {
-  // drag from item rows
+function initLocDnd(){
   document.querySelectorAll('.dnd-item').forEach(function(el){
-    el.addEventListener('dragstart',function(e){
-      itemDragSrc=this;
-      this.classList.add('dragging');
-      e.dataTransfer.effectAllowed='move';
-      e.dataTransfer.setData('text/plain',JSON.stringify({id:this.dataset.id,ctx:this.dataset.ctx}));
-    });
-    el.addEventListener('dragend',function(){
-      this.classList.remove('dragging');
-      document.querySelectorAll('.dnd-item').forEach(function(x){x.classList.remove('drag-over');});
-      document.querySelectorAll('.subcat-drop-zone').forEach(function(z){z.classList.remove('drag-active');});
-    });
-    el.addEventListener('dragover',function(e){
-      e.preventDefault();
-      document.querySelectorAll('.dnd-item').forEach(function(x){x.classList.remove('drag-over');});
-      if(this!==itemDragSrc)this.classList.add('drag-over');
-    });
+    el.addEventListener('dragstart',function(e){itemDragSrc=this;this.classList.add('dragging');e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain',JSON.stringify({id:this.dataset.id,ctx:this.dataset.ctx}));});
+    el.addEventListener('dragend',function(){this.classList.remove('dragging');document.querySelectorAll('.dnd-item').forEach(function(x){x.classList.remove('drag-over');});document.querySelectorAll('.subcat-drop-zone').forEach(function(z){z.classList.remove('drag-active');});});
+    el.addEventListener('dragover',function(e){e.preventDefault();document.querySelectorAll('.dnd-item').forEach(function(x){x.classList.remove('drag-over');});if(this!==itemDragSrc)this.classList.add('drag-over');});
     el.addEventListener('drop',function(e){
-      e.preventDefault();
-      if(this===itemDragSrc)return;
+      e.preventDefault();if(this===itemDragSrc)return;
       var data=JSON.parse(e.dataTransfer.getData('text/plain'));
-      var ctx=data.ctx;
-      var arr=ctx==='aircraft'?S.acItems:S.items;
+      var ctx=data.ctx;var arr=ctx==='aircraft'?S.acItems:S.items;
       var srcItem=arr.find(function(i){return i.id===data.id;});
       var tgtItem=arr.find(function(i){return i.id===this.dataset.id;}.bind(this));
       if(!srcItem||!tgtItem)return;
-      // move to same subcat as target, reorder
       srcItem.subcatId=tgtItem.subcatId||null;
       var siblings=arr.filter(function(i){return i.locId===tgtItem.locId&&(i.subcatId||null)===(tgtItem.subcatId||null);}).sort(function(a,b){return(a.order||0)-(b.order||0);});
       var si=siblings.findIndex(function(i){return i.id===srcItem.id;});
@@ -537,21 +658,17 @@ function initLocDnd() {
       save();renderCurrentLoc();
     });
   });
-
-  // drop zones for subcats
   document.querySelectorAll('.subcat-drop-zone').forEach(function(zone){
     zone.addEventListener('dragover',function(e){e.preventDefault();this.classList.add('drag-active');});
     zone.addEventListener('dragleave',function(){this.classList.remove('drag-active');});
     zone.addEventListener('drop',function(e){
       e.preventDefault();this.classList.remove('drag-active');
       var data=JSON.parse(e.dataTransfer.getData('text/plain'));
-      var ctx=data.ctx;
-      var arr=ctx==='aircraft'?S.acItems:S.items;
+      var ctx=data.ctx;var arr=ctx==='aircraft'?S.acItems:S.items;
       var srcItem=arr.find(function(i){return i.id===data.id;});
       if(!srcItem)return;
       var newSubcatId=this.dataset.subcat||null;
       srcItem.subcatId=newSubcatId;
-      // put at end of target subcat
       var siblings=arr.filter(function(i){return i.locId===srcItem.locId&&(i.subcatId||null)===(newSubcatId||null)&&i.id!==srcItem.id;});
       srcItem.order=(siblings.length>0?Math.max.apply(null,siblings.map(function(x){return x.order||0;}))+1:0);
       save();renderCurrentLoc();
@@ -559,12 +676,11 @@ function initLocDnd() {
   });
 }
 
-function renderCurrentLoc() {
+function renderCurrentLoc(){
   if(S.bLoc){var ct=document.getElementById('rm-content');if(ct)ct.innerHTML=renderLocDetail(S.bLoc,'room');initLocDnd();}
   if(S.bAcLoc){var ct2=document.getElementById('ac-content');if(ct2)ct2.innerHTML=renderLocDetail(S.bAcLoc,'aircraft');initLocDnd();}
 }
 
-/* ── ROOMS browser ── */
 function renderRooms(){
   var bc=document.getElementById('rm-breadcrumb'),ct=document.getElementById('rm-content');
   if(!bc||!ct)return;
@@ -577,7 +693,7 @@ function renderRooms(){
       var lc=S.locs.filter(function(l){return l.roomId===r.id;}).length;
       var ri=S.items.filter(function(i){var l=S.locs.find(function(l){return l.id===i.locId;});return l&&l.roomId===r.id;});
       var sa=ri.filter(function(i){return i.type!=='label'&&stkSt(i)!=='ok';}).length;
-      return cardHtml(r.id,'room','ti-door',r.name,lc+' loc · '+ri.length+' item'+(ri.length!==1?'s':''),sa,'openRoomModal(\''+r.id+'\')',null,'deleteRoom(\''+r.id+'\')','drillRoom(\''+r.id+'\')');
+      return cardHtml(r.id,'room','ti-door',r.name,lc+' loc · '+ri.length+' item'+(ri.length!==1?'s':''),sa,'openRoomModal(\''+r.id+'\')',null,'deleteRoom(\''+r.id+'\')','drillRoom(\''+r.id+'\')',null);
     }).join('')+'</div>';
     initCardDnd('rooms-grid','room');return;
   }
@@ -590,7 +706,8 @@ function renderRooms(){
     ct.innerHTML=hdr2+'<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag to reorder</p><div class="grid" id="rmlocs-grid">'+locs.map(function(l){
       var li=S.items.filter(function(i){return i.locId===l.id;});
       var sa=li.filter(function(i){return i.type!=='label'&&stkSt(i)!=='ok';}).length;
-      return cardHtml(l.id,'rmloc','ti-archive',l.name,li.length+' item'+(li.length!==1?'s':''),sa,'openRmLocModal(null,\''+l.id+'\')','showLocQr(\''+l.id+'\',\'room\')','deleteRmLoc(\''+l.id+'\')','drillLoc(\''+l.id+'\')');
+      var fh=locFillHtml(l.id,'room');
+      return cardHtml(l.id,'rmloc','ti-archive',l.name,li.length+' item'+(li.length!==1?'s':''),sa,'openRmLocModal(null,\''+l.id+'\')','showLocQr(\''+l.id+'\',\'room\')','deleteRmLoc(\''+l.id+'\')','drillLoc(\''+l.id+'\')',fh);
     }).join('')+'</div>';
     initCardDnd('rmlocs-grid','rmloc');return;
   }
@@ -599,7 +716,6 @@ function renderRooms(){
   initLocDnd();
 }
 
-/* ── AIRCRAFT browser ── */
 function renderAircraft(){
   var bc=document.getElementById('ac-breadcrumb'),ct=document.getElementById('ac-content');
   if(!bc||!ct)return;
@@ -612,7 +728,7 @@ function renderAircraft(){
       var lc=S.acLocs.filter(function(l){return l.acId===a.id;}).length;
       var ai=S.acItems.filter(function(i){var l=S.acLocs.find(function(l){return l.id===i.locId;});return l&&l.acId===a.id;});
       var sa=ai.filter(function(i){return i.type!=='label'&&stkSt(i)!=='ok';}).length;
-      return cardHtml(a.id,'aircraft','ti-plane',a.tail,(a.actype?a.actype+' · ':'')+lc+' loc · '+ai.length+' item'+(ai.length!==1?'s':''),sa,'openAircraftModal(\''+a.id+'\')',null,'deleteAircraft(\''+a.id+'\')','drillAc(\''+a.id+'\')');
+      return cardHtml(a.id,'aircraft','ti-plane',a.tail,(a.actype?a.actype+' · ':'')+lc+' loc · '+ai.length+' item'+(ai.length!==1?'s':''),sa,'openAircraftModal(\''+a.id+'\')',null,'deleteAircraft(\''+a.id+'\')','drillAc(\''+a.id+'\')',null);
     }).join('')+'</div>';
     initCardDnd('ac-grid','aircraft');return;
   }
@@ -625,7 +741,8 @@ function renderAircraft(){
     ct.innerHTML=hdr2+'<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag to reorder</p><div class="grid" id="aclocs-grid">'+acLocs.map(function(l){
       var li=S.acItems.filter(function(i){return i.locId===l.id;});
       var sa=li.filter(function(i){return i.type!=='label'&&stkSt(i)!=='ok';}).length;
-      return cardHtml(l.id,'acloc','ti-archive',l.name,li.length+' item'+(li.length!==1?'s':''),sa,'openAcLocModal(null,\''+l.id+'\')','showLocQr(\''+l.id+'\',\'aircraft\')','deleteAcLoc(\''+l.id+'\')','drillAcLoc(\''+l.id+'\')');
+      var fh=locFillHtml(l.id,'aircraft');
+      return cardHtml(l.id,'acloc','ti-archive',l.name,li.length+' item'+(li.length!==1?'s':''),sa,'openAcLocModal(null,\''+l.id+'\')','showLocQr(\''+l.id+'\',\'aircraft\')','deleteAcLoc(\''+l.id+'\')','drillAcLoc(\''+l.id+'\')',fh);
     }).join('')+'</div>';
     initCardDnd('aclocs-grid','acloc');return;
   }
@@ -634,7 +751,6 @@ function renderAircraft(){
   initLocDnd();
 }
 
-/* ── Card DnD ── */
 function initCardDnd(gridId,type){
   var grid=document.getElementById(gridId);if(!grid)return;
   grid.querySelectorAll('.card').forEach(function(card){
@@ -680,8 +796,7 @@ function adj(id,ctx,delta){var arr=ctx==='aircraft'?S.acItems:S.items;var item=a
 function openModal(id){document.getElementById(id).classList.add('open');}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
 
-/* ── Subcategory CRUD ── */
-function openSubcatModal(locId, ctx, editId) {
+function openSubcatModal(locId,ctx,editId){
   S.subcatCtx={locId:locId,ctx:ctx};
   var arr=ctx==='aircraft'?S.acSubcats:S.subcats;
   S.eSubcat=editId?arr.find(function(s){return s.id===editId;}):null;
@@ -696,41 +811,53 @@ function saveSubcat(){
   var mo=Math.max.apply(null,arr.filter(function(s){return s.locId===locId;}).map(function(s){return s.order||0;}).concat([-1]));
   if(S.eSubcat){S.eSubcat.name=name;logAct('Subcategory "'+name+'" updated');}
   else{arr.push({id:uid(),locId:locId,name:name,order:mo+1});logAct('Subcategory "'+name+'" added');}
-  closeModal('modal-subcat');save();render();
-  // re-render current loc
-  setTimeout(renderCurrentLoc,50);
+  closeModal('modal-subcat');save();render();setTimeout(renderCurrentLoc,50);
 }
 function deleteSubcat(id,ctx){
   if(!confirm('Delete this subcategory? Items inside will become uncategorized.'))return;
   var arr=ctx==='aircraft'?S.acSubcats:S.subcats;
   var iArr=ctx==='aircraft'?S.acItems:S.items;
-  // unassign items
   iArr.forEach(function(i){if(i.subcatId===id)i.subcatId=null;});
   if(ctx==='aircraft')S.acSubcats=S.acSubcats.filter(function(s){return s.id!==id;});
   else S.subcats=S.subcats.filter(function(s){return s.id!==id;});
   logAct('Subcategory deleted');save();render();setTimeout(renderCurrentLoc,50);
 }
 
-/* ── Room CRUD ── */
 function openRoomModal(editId){S.eRoom=editId?S.rooms.find(function(r){return r.id===editId;}):null;document.getElementById('mr-title').textContent=S.eRoom?'Edit room':'Add room';document.getElementById('room-name').value=S.eRoom?S.eRoom.name:'';openModal('modal-room');}
 function saveRoom(){var name=document.getElementById('room-name').value.trim();if(!name)return;var mo=Math.max.apply(null,S.rooms.map(function(r){return r.order||0;}).concat([-1]));if(S.eRoom){S.eRoom.name=name;logAct('Room "'+name+'" renamed');}else{S.rooms.push({id:uid(),name:name,order:mo+1});logAct('Room "'+name+'" added');}closeModal('modal-room');save();render();}
 function deleteRoom(id){if(!confirm('Delete this room and all its locations and items?'))return;var r=S.rooms.find(function(x){return x.id===id;});var lIds=S.locs.filter(function(l){return l.roomId===id;}).map(function(l){return l.id;});S.items=S.items.filter(function(i){return lIds.indexOf(i.locId)===-1;});S.subcats=S.subcats.filter(function(s){return lIds.indexOf(s.locId)===-1;});S.locs=S.locs.filter(function(l){return l.roomId!==id;});S.rooms=S.rooms.filter(function(x){return x.id!==id;});if(S.bRoom===id){S.bRoom=null;S.bLoc=null;}logAct('Room "'+(r?r.name:id)+'" deleted');save();render();}
-function openRmLocModal(presetRoomId,editId){S.eLoc=editId?S.locs.find(function(l){return l.id===editId;}):null;document.getElementById('mrl-title').textContent=S.eLoc?'Edit location':'Add location';document.getElementById('rmloc-name').value=S.eLoc?S.eLoc.name:'';var rs=document.getElementById('rmloc-room');rs.innerHTML=sortedBy(S.rooms).map(function(r){return'<option value="'+r.id+'">'+r.name+'</option>';}).join('');rs.value=S.eLoc?S.eLoc.roomId:(presetRoomId||S.bRoom||(S.rooms[0]&&S.rooms[0].id));openModal('modal-rmloc');}
-function saveRmLoc(){var name=document.getElementById('rmloc-name').value.trim();if(!name)return;var roomId=document.getElementById('rmloc-room').value;var mo=Math.max.apply(null,S.locs.filter(function(l){return l.roomId===roomId;}).map(function(l){return l.order||0;}).concat([-1]));if(S.eLoc){S.eLoc.name=name;S.eLoc.roomId=roomId;logAct('Location "'+name+'" updated');}else{S.locs.push({id:uid(),roomId:roomId,name:name,order:mo+1});logAct('Location "'+name+'" added to '+rName(roomId));}closeModal('modal-rmloc');save();render();}
+function openRmLocModal(presetRoomId,editId){
+  S.eLoc=editId?S.locs.find(function(l){return l.id===editId;}):null;
+  document.getElementById('mrl-title').textContent=S.eLoc?'Edit location':'Add location';
+  document.getElementById('rmloc-name').value=S.eLoc?S.eLoc.name:'';
+  var rs=document.getElementById('rmloc-room');
+  rs.innerHTML=sortedBy(S.rooms).map(function(r){return'<option value="'+r.id+'">'+r.name+'</option>';}).join('');
+  rs.value=S.eLoc?S.eLoc.roomId:(presetRoomId||S.bRoom||(S.rooms[0]&&S.rooms[0].id));
+  document.getElementById('rmloc-fill-toggle').checked=S.eLoc?!!(S.eLoc.trackFill):false;
+  openModal('modal-rmloc');
+}
+function saveRmLoc(){var name=document.getElementById('rmloc-name').value.trim();if(!name)return;var roomId=document.getElementById('rmloc-room').value;var trackFill=document.getElementById('rmloc-fill-toggle').checked;var mo=Math.max.apply(null,S.locs.filter(function(l){return l.roomId===roomId;}).map(function(l){return l.order||0;}).concat([-1]));if(S.eLoc){S.eLoc.name=name;S.eLoc.roomId=roomId;S.eLoc.trackFill=trackFill;logAct('Location "'+name+'" updated');}else{S.locs.push({id:uid(),roomId:roomId,name:name,order:mo+1,trackFill:trackFill});logAct('Location "'+name+'" added to '+rName(roomId));}closeModal('modal-rmloc');save();render();}
 function deleteRmLoc(id){if(!confirm('Delete this location and all its items?'))return;var l=S.locs.find(function(x){return x.id===id;});S.items=S.items.filter(function(i){return i.locId!==id;});S.subcats=S.subcats.filter(function(s){return s.locId!==id;});S.locs=S.locs.filter(function(x){return x.id!==id;});if(S.bLoc===id)S.bLoc=null;logAct('Location "'+(l?l.name:id)+'" deleted');save();render();}
 
-/* ── Aircraft CRUD ── */
 function openAircraftModal(editId){S.eAircraft=editId?S.aircraft.find(function(a){return a.id===editId;}):null;document.getElementById('mac-title').textContent=S.eAircraft?'Edit aircraft':'Add aircraft';document.getElementById('ac-tail').value=S.eAircraft?S.eAircraft.tail:'';document.getElementById('ac-type').value=S.eAircraft?S.eAircraft.actype||'':'';document.getElementById('ac-notes').value=S.eAircraft?S.eAircraft.notes||'':'';openModal('modal-aircraft');}
 function saveAircraft(){var tail=document.getElementById('ac-tail').value.trim().toUpperCase();if(!tail)return;var mo=Math.max.apply(null,S.aircraft.map(function(a){return a.order||0;}).concat([-1]));if(S.eAircraft){Object.assign(S.eAircraft,{tail:tail,actype:document.getElementById('ac-type').value.trim(),notes:document.getElementById('ac-notes').value.trim()});logAct('Aircraft '+tail+' updated');}else{S.aircraft.push({id:uid(),tail:tail,actype:document.getElementById('ac-type').value.trim(),notes:document.getElementById('ac-notes').value.trim(),order:mo+1});logAct('Aircraft '+tail+' added');}closeModal('modal-aircraft');save();render();}
 function deleteAircraft(id){if(!confirm('Delete this aircraft and all its locations and items?'))return;var a=S.aircraft.find(function(x){return x.id===id;});var lIds=S.acLocs.filter(function(l){return l.acId===id;}).map(function(l){return l.id;});S.acItems=S.acItems.filter(function(i){return lIds.indexOf(i.locId)===-1;});S.acSubcats=S.acSubcats.filter(function(s){return lIds.indexOf(s.locId)===-1;});S.acLocs=S.acLocs.filter(function(l){return l.acId!==id;});S.aircraft=S.aircraft.filter(function(x){return x.id!==id;});if(S.bAc===id){S.bAc=null;S.bAcLoc=null;}logAct('Aircraft "'+(a?a.tail:id)+'" deleted');save();render();}
-function openAcLocModal(presetAcId,editId){S.eAcLoc=editId?S.acLocs.find(function(l){return l.id===editId;}):null;document.getElementById('mal-title').textContent=S.eAcLoc?'Edit location':'Add location';document.getElementById('acloc-name').value=S.eAcLoc?S.eAcLoc.name:'';var rs=document.getElementById('acloc-ac');rs.innerHTML=sortedBy(S.aircraft).map(function(a){return'<option value="'+a.id+'">'+a.tail+'</option>';}).join('');rs.value=S.eAcLoc?S.eAcLoc.acId:(presetAcId||S.bAc||(S.aircraft[0]&&S.aircraft[0].id));openModal('modal-acloc');}
-function saveAcLoc(){var name=document.getElementById('acloc-name').value.trim();if(!name)return;var acId=document.getElementById('acloc-ac').value;var mo=Math.max.apply(null,S.acLocs.filter(function(l){return l.acId===acId;}).map(function(l){return l.order||0;}).concat([-1]));if(S.eAcLoc){S.eAcLoc.name=name;S.eAcLoc.acId=acId;logAct('Location "'+name+'" updated');}else{S.acLocs.push({id:uid(),acId:acId,name:name,order:mo+1});logAct('Location "'+name+'" added to '+acName(acId));}closeModal('modal-acloc');save();render();}
+function openAcLocModal(presetAcId,editId){
+  S.eAcLoc=editId?S.acLocs.find(function(l){return l.id===editId;}):null;
+  document.getElementById('mal-title').textContent=S.eAcLoc?'Edit location':'Add location';
+  document.getElementById('acloc-name').value=S.eAcLoc?S.eAcLoc.name:'';
+  var rs=document.getElementById('acloc-ac');
+  rs.innerHTML=sortedBy(S.aircraft).map(function(a){return'<option value="'+a.id+'">'+a.tail+'</option>';}).join('');
+  rs.value=S.eAcLoc?S.eAcLoc.acId:(presetAcId||S.bAc||(S.aircraft[0]&&S.aircraft[0].id));
+  document.getElementById('acloc-fill-toggle').checked=S.eAcLoc?!!(S.eAcLoc.trackFill):false;
+  openModal('modal-acloc');
+}
+function saveAcLoc(){var name=document.getElementById('acloc-name').value.trim();if(!name)return;var acId=document.getElementById('acloc-ac').value;var trackFill=document.getElementById('acloc-fill-toggle').checked;var mo=Math.max.apply(null,S.acLocs.filter(function(l){return l.acId===acId;}).map(function(l){return l.order||0;}).concat([-1]));if(S.eAcLoc){S.eAcLoc.name=name;S.eAcLoc.acId=acId;S.eAcLoc.trackFill=trackFill;logAct('Location "'+name+'" updated');}else{S.acLocs.push({id:uid(),acId:acId,name:name,order:mo+1,trackFill:trackFill});logAct('Location "'+name+'" added to '+acName(acId));}closeModal('modal-acloc');save();render();}
 function deleteAcLoc(id){if(!confirm('Delete this location and all its items?'))return;var l=S.acLocs.find(function(x){return x.id===id;});S.acItems=S.acItems.filter(function(i){return i.locId!==id;});S.acSubcats=S.acSubcats.filter(function(s){return s.locId!==id;});S.acLocs=S.acLocs.filter(function(x){return x.id!==id;});if(S.bAcLoc===id)S.bAcLoc=null;logAct('Location "'+(l?l.name:id)+'" deleted');save();render();}
 
-/* ── Item type toggle ── */
 function setItemType(type){currentItemType=type;document.getElementById('type-btn-stock').classList.toggle('active',type==='stock');document.getElementById('type-btn-label').classList.toggle('active',type==='label');document.getElementById('stock-fields').style.display=type==='stock'?'':'none';document.getElementById('label-fields').style.display=type==='label'?'':'none';}
 
-function populateSubcatSelect(selId, locId, ctx, selectedId){
+function populateSubcatSelect(selId,locId,ctx,selectedId){
   var scs=locSubcats(locId,ctx);
   var sel=document.getElementById(selId);
   sel.innerHTML='<option value="">None (uncategorized)</option>'+scs.map(function(s){return'<option value="'+s.id+'">'+s.name+'</option>';}).join('');
@@ -751,7 +878,7 @@ function populateLabelLoc(){
 }
 function populateLabelSubcat(){var locId=document.getElementById('label-loc').value;populateSubcatSelect('label-subcat',locId,S.itemCtx,null);}
 
-function openItemModal(presetRmLocId, presetAcLocId, ctx, presetSubcatId){
+function openItemModal(presetRmLocId,presetAcLocId,ctx,presetSubcatId){
   S.itemCtx=ctx||'room';S.eItem=null;
   document.getElementById('mi-title').textContent='Add item';
   setItemType('stock');
@@ -759,6 +886,8 @@ function openItemModal(presetRmLocId, presetAcLocId, ctx, presetSubcatId){
   document.getElementById('item-qty').value=0;document.getElementById('item-thresh').value=5;
   document.getElementById('item-perishable').checked=false;document.getElementById('item-expiry').value='';
   document.getElementById('exp-sec').classList.remove('show');
+  document.getElementById('item-par-toggle').checked=false;document.getElementById('item-par').value=1;
+  document.getElementById('par-sec').classList.remove('show');
   var isAc=S.itemCtx==='aircraft';
   document.getElementById('item-parent-label').textContent=isAc?'Aircraft':'Room';
   document.getElementById('label-parent-label').textContent=isAc?'Aircraft':'Room';
@@ -790,6 +919,9 @@ function editItem(id,ctx){
   var p=!!S.eItem.perishable;document.getElementById('item-perishable').checked=p;
   document.getElementById('item-expiry').value=S.eItem.expiry||'';
   document.getElementById('exp-sec').classList.toggle('show',p);
+  var tp=!!S.eItem.trackPar;document.getElementById('item-par-toggle').checked=tp;
+  document.getElementById('item-par').value=S.eItem.par||1;
+  document.getElementById('par-sec').classList.toggle('show',tp);
   document.getElementById('label-notes').value=S.eItem.notes||'';
   var isAc=ctx==='aircraft';
   document.getElementById('item-parent-label').textContent=isAc?'Aircraft':'Room';
@@ -816,9 +948,11 @@ function saveItem(){
   var subcatId=type==='label'?document.getElementById('label-subcat').value||null:document.getElementById('item-subcat').value||null;
   var siblings=arr.filter(function(i){return i.locId===locId&&(i.subcatId||null)===(subcatId||null);});
   var maxOrder=Math.max.apply(null,siblings.map(function(i){return i.order||0;}).concat([-1]));
+  var trackPar=document.getElementById('item-par-toggle').checked;
+  var par=trackPar?Math.max(1,parseInt(document.getElementById('item-par').value)||1):0;
   var data;
-  if(type==='label'){data={type:'label',ctx:ctx,name:name,locId:locId,subcatId:subcatId,notes:document.getElementById('label-notes').value.trim(),cat:'',qty:0,thresh:0,perishable:false,expiry:'',order:S.eItem?S.eItem.order:(maxOrder+1)};}
-  else{var p=document.getElementById('item-perishable').checked;data={type:'stock',ctx:ctx,name:name,cat:document.getElementById('item-cat').value.trim()||'General',locId:locId,subcatId:subcatId,qty:parseInt(document.getElementById('item-qty').value)||0,thresh:Math.max(0,parseInt(document.getElementById('item-thresh').value)||0),notes:document.getElementById('item-notes').value.trim(),perishable:p,expiry:p?document.getElementById('item-expiry').value:'',order:S.eItem?S.eItem.order:(maxOrder+1)};}
+  if(type==='label'){data={type:'label',ctx:ctx,name:name,locId:locId,subcatId:subcatId,notes:document.getElementById('label-notes').value.trim(),cat:'',qty:0,thresh:0,par:0,trackPar:false,perishable:false,expiry:'',order:S.eItem?S.eItem.order:(maxOrder+1)};}
+  else{var p=document.getElementById('item-perishable').checked;data={type:'stock',ctx:ctx,name:name,cat:document.getElementById('item-cat').value.trim()||'General',locId:locId,subcatId:subcatId,qty:parseInt(document.getElementById('item-qty').value)||0,thresh:Math.max(0,parseInt(document.getElementById('item-thresh').value)||0),par:par,trackPar:trackPar,notes:document.getElementById('item-notes').value.trim(),perishable:p,expiry:p?document.getElementById('item-expiry').value:'',order:S.eItem?S.eItem.order:(maxOrder+1)};}
   if(S.eItem){Object.assign(S.eItem,data);logAct('"'+name+'" updated');}
   else{arr.push(Object.assign({id:uid()},data));logAct('"'+name+'" added');}
   closeModal('modal-item');save();render();setTimeout(renderCurrentLoc,50);
@@ -833,26 +967,14 @@ function deleteItem(id,ctx){
   logAct('"'+(i?i.name:id)+'" removed');save();render();setTimeout(renderCurrentLoc,50);
 }
 
-/* ── All items ── */
 function renderAllItems(q){
   var all=S.items.concat(S.acItems);
   var f=all.filter(function(i){if(!q)return true;var pn=i.ctx==='aircraft'?acName(alAc(i.locId)):rName(lRoom(i.locId));var ln=i.ctx==='aircraft'?alName(i.locId):lName(i.locId);return[i.name,i.cat||'',ln,pn,scName(i.subcatId)].some(function(s){return s.toLowerCase().indexOf(q.toLowerCase())>-1;});});
   var body=document.getElementById('all-items-body');if(!body)return;
   if(!f.length){body.innerHTML='<tr><td colspan="9" class="empty">No items found</td></tr>';return;}
-  body.innerHTML=f.map(function(i){
-    var s=stkSt(i);var e=expSt(i);var isLabel=i.type==='label';
-    var pn=i.ctx==='aircraft'?acName(alAc(i.locId)):rName(lRoom(i.locId));
-    var ln=i.ctx==='aircraft'?alName(i.locId):lName(i.locId);
-    return'<tr><td>'+i.name+(isLabel?'<span class="label-tag" style="margin-left:5px;"><i class="ti ti-tag"></i></span>':'')+'</td><td>'+pn+'</td><td>'+ln+'</td><td>'+(i.subcatId?scName(i.subcatId):'<span style="color:var(--text3);">—</span>')+'</td>'+
-      '<td>'+(isLabel?'—':'<div class="qc"><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',1)">+</button></div>')+'</td>'+
-      '<td><span class="st '+s+'">'+stkLbl(s)+'</span></td>'+
-      '<td>'+(e?'<span class="st '+e.cls+'">'+e.label+'</span>':'—')+'</td>'+
-      '<td>'+(i.ctx==='aircraft'?'<i class="ti ti-plane" style="color:var(--accent-light);"></i>':'<i class="ti ti-door" style="color:var(--text3);"></i>')+'</td>'+
-      '<td><button class="btn ib" onclick="editItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-edit"></i></button> <button class="btn ib db" onclick="deleteItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-trash"></i></button></td></tr>';
-  }).join('');
+  body.innerHTML=groupedTableRows(f,true);
 }
 
-/* ── Filter ── */
 function showFilter(type){
   S.curFilter=type;
   var titles={low:'Low stock',out:'Out of stock',expiring:'Expiring soon'};
@@ -868,16 +990,9 @@ function showFilter(type){
   else if(type==='expiring')filtered=allItems.filter(function(i){var e=expSt(i);return e&&e.cls!=='ok';});
   else filtered=[];
   if(!filtered.length){ct.innerHTML='<div class="empty">No items in this category</div>';return;}
-  ct.innerHTML='<div class="tw"><table><thead><tr><th style="width:22%">Item</th><th style="width:14%">Parent</th><th style="width:13%">Location</th><th style="width:11%">Subcat</th><th style="width:10%">Qty</th><th style="width:11%">Stock</th><th style="width:11%">Expires</th><th style="width:8%"></th></tr></thead><tbody>'+
-    filtered.map(function(i){var s=stkSt(i);var e=expSt(i);var pn=i.ctx==='aircraft'?acName(alAc(i.locId)):rName(lRoom(i.locId));var ln=i.ctx==='aircraft'?alName(i.locId):lName(i.locId);
-      return'<tr><td>'+i.name+'</td><td>'+pn+'</td><td>'+ln+'</td><td>'+(i.subcatId?scName(i.subcatId):'—')+'</td>'+
-        '<td>'+(i.type==='label'?'—':'<div class="qc"><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',1)">+</button></div>')+'</td>'+
-        '<td><span class="st '+s+'">'+stkLbl(s)+'</span></td><td>'+(e?'<span class="st '+e.cls+'">'+e.label+'</span>':'—')+'</td>'+
-        '<td><button class="btn ib" onclick="editItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-edit"></i></button> <button class="btn ib db" onclick="deleteItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-trash"></i></button></td></tr>';
-    }).join('')+'</tbody></table></div>';
+  ct.innerHTML='<div class="tw"><table><thead><tr><th style="width:22%">Item</th><th style="width:14%">Parent</th><th style="width:13%">Location</th><th style="width:11%">Subcat</th><th style="width:10%">Qty</th><th style="width:11%">Stock</th><th style="width:11%">Expires</th><th style="width:8%"></th></tr></thead><tbody>'+groupedTableRows(filtered,false)+'</tbody></table></div>';
 }
 
-/* ── Search ── */
 function setupSearch(){
   var inp=document.getElementById('gs-input'),box=document.getElementById('gs-results');
   inp.addEventListener('input',function(){
@@ -896,7 +1011,6 @@ function goToItem(locId,ctx){
   else{var rl=S.locs.find(function(l){return l.id===locId;});if(!rl)return;S.bRoom=rl.roomId;S.bLoc=locId;showPage('rooms');}
 }
 
-/* ── QR ── */
 function showLocQr(locId,ctx){var l=ctx==='aircraft'?S.acLocs.find(function(x){return x.id===locId;}):S.locs.find(function(x){return x.id===locId;});if(!l)return;document.getElementById('mq-title').textContent='QR — '+l.name;var cont=document.getElementById('modal-qr-content');cont.innerHTML='';var d=document.createElement('div');cont.appendChild(d);try{new QRCode(d,{text:'inv:loc:'+locId,width:160,height:160,correctLevel:QRCode.CorrectLevel.M});}catch(e){}openModal('modal-qr');}
 function populateQrParent(){var t=document.getElementById('qr-type-sel').value;var parents=t==='aircraft'?sortedBy(S.aircraft):sortedBy(S.rooms);document.getElementById('qr-parent-sel').innerHTML=parents.map(function(p){return'<option value="'+p.id+'">'+(t==='aircraft'?p.tail:p.name)+'</option>';}).join('');populateQrLoc();}
 function populateQrLoc(){var t=document.getElementById('qr-type-sel').value;var parentId=document.getElementById('qr-parent-sel').value;var locs=t==='aircraft'?sortedBy(S.acLocs.filter(function(l){return l.acId===parentId;})):sortedBy(S.locs.filter(function(l){return l.roomId===parentId;}));document.getElementById('qr-loc-sel').innerHTML=locs.map(function(l){return'<option value="'+l.id+'">'+l.name+'</option>';}).join('');}
@@ -904,7 +1018,6 @@ function generateQR(){var locId=document.getElementById('qr-loc-sel').value;var 
 function triggerScan(){document.getElementById('scan-result').innerHTML='<div style="font-size:13px;color:var(--text2);padding:.75rem 0;">Enter a location name or ID:<br><input type="text" placeholder="Location name or ID…" style="width:100%;margin-top:8px;padding:7px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;background:var(--bg3);color:var(--text);" oninput="manualScan(this.value)"></div>';}
 function manualScan(val){var id=val.replace('inv:loc:','').trim();var rl=S.locs.find(function(l){return l.id===id||l.name.toLowerCase()===id.toLowerCase();});if(rl){S.bRoom=rl.roomId;S.bLoc=rl.id;showPage('rooms');return;}var al=S.acLocs.find(function(l){return l.id===id||l.name.toLowerCase()===id.toLowerCase();});if(al){S.bAc=al.acId;S.bAcLoc=al.id;showPage('aircraft');}}
 
-/* ── Autocomplete ── */
 function acGetSuggestions(type,q){var all=S.items.concat(S.acItems);var vals=type==='names'?all.map(function(i){return i.name;}):all.map(function(i){return i.cat||'';}).filter(Boolean);var seen={},results=[];vals.forEach(function(v){var lv=v.toLowerCase();if(!seen[lv]&&lv.indexOf(q.toLowerCase())===0&&lv!==q.toLowerCase()){seen[lv]=true;results.push(v);}});vals.forEach(function(v){var lv=v.toLowerCase();if(!seen[lv]&&lv.indexOf(q.toLowerCase())>0){seen[lv]=true;results.push(v);}});return results.slice(0,8);}
 function acShow(inputId,type){var inp=document.getElementById(inputId),box=document.getElementById('ac-'+inputId);var q=inp.value.trim();acIdx=-1;if(!q){box.style.display='none';return;}var suggestions=acGetSuggestions(type,q);if(!suggestions.length){box.style.display='none';return;}box.innerHTML=suggestions.map(function(s){var lo=s.toLowerCase(),lq=q.toLowerCase(),idx=lo.indexOf(lq);var hl=idx>=0?s.slice(0,idx)+'<em>'+s.slice(idx,idx+q.length)+'</em>'+s.slice(idx+q.length):s;return'<div class="ac-item" onmousedown="acPick(\''+inputId+'\',this)">'+hl+'</div>';}).join('');box.style.display='block';}
 function acPick(inputId,el){document.getElementById(inputId).value=el.textContent||el.innerText;document.getElementById('ac-'+inputId).style.display='none';acIdx=-1;}
