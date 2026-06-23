@@ -100,7 +100,6 @@ body{background:var(--body-bg);color:var(--text);}
 .bdg{display:inline-block;font-size:11px;padding:2px 7px;border-radius:99px;margin-top:5px;}
 .bdg.low{background:var(--warn-bg);color:var(--warn-text);}
 .card.subcat-card{border-left:3px solid var(--accent);}
-/* fill level bar on cards */
 .fill-bar-wrap{margin-top:7px;}
 .fill-bar-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;}
 .fill-bar-text{font-size:11px;color:var(--text3);}
@@ -113,7 +112,6 @@ body{background:var(--body-bg);color:var(--text);}
 .fill-bar-fill.fill-full{background:var(--success-text);}
 .fill-bar-fill.fill-mid{background:var(--warn-text);}
 .fill-bar-fill.fill-low{background:var(--danger-text);}
-/* fill fraction badge on items */
 .fill-frac-badge{font-size:11px;padding:1px 6px;border-radius:99px;margin-left:5px;}
 .fill-frac-badge.fill-full{background:var(--success-bg);color:var(--success-text);}
 .fill-frac-badge.fill-mid{background:var(--warn-bg);color:var(--warn-text);}
@@ -124,11 +122,6 @@ th{text-align:left;padding:8px 10px;color:var(--text2);font-weight:500;border-bo
 td{padding:9px 10px;border-bottom:0.5px solid var(--border);color:var(--text);vertical-align:middle;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 tr:last-child td{border-bottom:none;}
 tr:hover td{background:var(--bg3);}
-.grp-head td{cursor:pointer;}
-.grp-head:hover td{background:var(--bg4);}
-.grp-child td{background:var(--bg2);}
-.grp-child:hover td{background:var(--bg3);}
-.grp-arrow{display:inline-block;transition:transform .15s;font-size:11px;margin-right:4px;color:var(--text3);}
 .st{display:inline-block;font-size:11px;padding:2px 7px;border-radius:99px;}
 .st.ok{background:var(--success-bg);color:var(--success-text);}
 .st.low{background:var(--warn-bg);color:var(--warn-text);}
@@ -184,6 +177,13 @@ tr:hover td{background:var(--bg3);}
 .exp-sec.show{display:block;}
 .par-sec{display:none;margin-top:8px;}
 .par-sec.show{display:block;}
+.batch-row{display:flex;align-items:center;gap:6px;margin-bottom:7px;}
+.batch-row input[type=number]{width:70px;flex-shrink:0;}
+.batch-row input[type=date]{flex:1;}
+.batch-del{width:26px;height:26px;border-radius:50%;border:0.5px solid rgba(248,113,113,0.3);background:transparent;color:var(--danger-text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.batch-del:hover{background:var(--danger-bg);}
+.batch-add-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:var(--radius);border:0.5px solid var(--border2);background:var(--bg3);color:var(--text2);font-size:12px;font-family:inherit;cursor:pointer;margin-top:2px;}
+.batch-add-btn:hover{background:var(--bg4);color:var(--text);}
 .ma{display:flex;gap:8px;justify-content:flex-end;margin-top:1.25rem;}
 .empty{text-align:center;padding:2rem;color:var(--text2);font-size:13px;}
 .swrap{position:relative;margin-bottom:1rem;}
@@ -304,7 +304,7 @@ tr:hover td{background:var(--bg3);}
     <div class="fg"><label>Location name</label><input type="text" id="rmloc-name" placeholder="e.g. Cabinet 3"></div>
     <div class="fg"><label>Room</label><select id="rmloc-room"></select></div>
     <div style="background:var(--bg3);border-radius:var(--radius);padding:10px 12px;margin-bottom:11px;border:0.5px solid var(--border);">
-      <div class="toggle-row"><label class="toggle"><input type="checkbox" id="rmloc-fill-toggle" onchange="toggleRmLocFill()"><span class="tslider"></span></label><span style="font-size:13px;color:var(--text);cursor:pointer;" onclick="document.getElementById('rmloc-fill-toggle').click()">Track fill level</span></div>
+      <div class="toggle-row"><label class="toggle"><input type="checkbox" id="rmloc-fill-toggle"><span class="tslider"></span></label><span style="font-size:13px;color:var(--text);cursor:pointer;" onclick="document.getElementById('rmloc-fill-toggle').click()">Track fill level</span></div>
     </div>
     <div class="ma"><button class="btn" onclick="closeModal('modal-rmloc')">Cancel</button><button class="btn primary" onclick="saveRmLoc()">Save</button></div>
   </div>
@@ -317,7 +317,7 @@ tr:hover td{background:var(--bg3);}
     <div class="fg"><label>Location name</label><input type="text" id="acloc-name" placeholder="e.g. Cargo bay"></div>
     <div class="fg"><label>Aircraft</label><select id="acloc-ac"></select></div>
     <div style="background:var(--bg3);border-radius:var(--radius);padding:10px 12px;margin-bottom:11px;border:0.5px solid var(--border);">
-      <div class="toggle-row"><label class="toggle"><input type="checkbox" id="acloc-fill-toggle" onchange="toggleAcLocFill()"><span class="tslider"></span></label><span style="font-size:13px;color:var(--text);cursor:pointer;" onclick="document.getElementById('acloc-fill-toggle').click()">Track fill level</span></div>
+      <div class="toggle-row"><label class="toggle"><input type="checkbox" id="acloc-fill-toggle"><span class="tslider"></span></label><span style="font-size:13px;color:var(--text);cursor:pointer;" onclick="document.getElementById('acloc-fill-toggle').click()">Track fill level</span></div>
     </div>
     <div class="ma"><button class="btn" onclick="closeModal('modal-acloc')">Cancel</button><button class="btn primary" onclick="saveAcLoc()">Save</button></div>
   </div>
@@ -340,7 +340,11 @@ tr:hover td{background:var(--bg3);}
       <div class="fgr"><div class="fg"><label>Quantity</label><input type="number" id="item-qty" min="0" value="0"></div><div class="fg"><label>Low stock at</label><input type="number" id="item-thresh" min="0" value="5"></div></div>
       <div style="background:var(--bg3);border-radius:var(--radius);padding:10px 12px;margin-bottom:11px;border:0.5px solid var(--border);">
         <div class="toggle-row"><label class="toggle"><input type="checkbox" id="item-perishable" onchange="toggleExpire()"><span class="tslider"></span></label><span style="font-size:13px;color:var(--text);cursor:pointer;" onclick="document.getElementById('item-perishable').click()">Perishable item</span></div>
-        <div class="exp-sec" id="exp-sec"><div class="fg" style="margin-bottom:0;margin-top:8px;"><label>Expiration date</label><input type="date" id="item-expiry"></div></div>
+        <div class="exp-sec" id="exp-sec">
+          <div style="font-size:11px;color:var(--text3);margin:8px 0 6px;">Batches — qty &amp; expiration date (soonest first)</div>
+          <div id="batch-list"></div>
+          <button class="batch-add-btn" onclick="addBatch()"><i class="ti ti-plus"></i> Add batch</button>
+        </div>
       </div>
       <div style="background:var(--bg3);border-radius:var(--radius);padding:10px 12px;margin-bottom:11px;border:0.5px solid var(--border);">
         <div class="toggle-row"><label class="toggle"><input type="checkbox" id="item-par-toggle" onchange="togglePar()"><span class="tslider"></span></label><span style="font-size:13px;color:var(--text);cursor:pointer;" onclick="document.getElementById('item-par-toggle').click()">Track fill level for this item</span></div>
@@ -360,6 +364,7 @@ tr:hover td{background:var(--bg3);}
   </div>
 </div>
 <div class="ov" id="modal-qr"><div class="modal"><h3 id="mq-title">QR code</h3><div class="qra" id="modal-qr-content"></div><p class="qrn">Print and stick on the location.</p><div class="ma"><button class="btn" onclick="closeModal('modal-qr')">Close</button></div></div></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -399,10 +404,41 @@ function startApp(){if(!window.fbListen){window.addEventListener('fbReady',start
   });
 }
 function save(){if(saveTimer)clearTimeout(saveTimer);saveTimer=setTimeout(function(){window.fbSave({rooms:S.rooms,locs:S.locs,subcats:S.subcats,items:S.items,aircraft:S.aircraft,acLocs:S.acLocs,acSubcats:S.acSubcats,acItems:S.acItems,activity:S.activity});},800);}
-function seed(){S.rooms=[{id:'r1',name:'Warehouse',order:0}];S.locs=[{id:'l1',roomId:'r1',name:'Cabinet A',order:0,trackFill:false}];S.subcats=[];S.items=[{id:'i1',locId:'l1',subcatId:null,name:'Box of screws',cat:'Hardware',qty:5,thresh:10,par:0,trackPar:false,notes:'',perishable:false,expiry:'',order:0,type:'stock',ctx:'room'}];S.aircraft=[];S.acLocs=[];S.acSubcats=[];S.acItems=[];S.activity=[{text:'Inventory initialized',time:Date.now()}];}
+function seed(){S.rooms=[{id:'r1',name:'Warehouse',order:0}];S.locs=[{id:'l1',roomId:'r1',name:'Cabinet A',order:0,trackFill:false}];S.subcats=[];S.items=[{id:'i1',locId:'l1',subcatId:null,name:'Box of screws',cat:'Hardware',qty:5,thresh:10,par:0,trackPar:false,notes:'',perishable:false,batches:[],order:0,type:'stock',ctx:'room'}];S.aircraft=[];S.acLocs=[];S.acSubcats=[];S.acItems=[];S.activity=[{text:'Inventory initialized',time:Date.now()}];}
 
 function uid(){return 'x'+Math.random().toString(36).slice(2,9);}
-function expSt(item){if(!item.perishable||!item.expiry)return null;var today=new Date();today.setHours(0,0,0,0);var exp=new Date(item.expiry+'T00:00:00');var diff=Math.floor((exp-today)/86400000);if(diff<0)return{label:'Expired',cls:'out'};if(diff<=7)return{label:'Exp in '+diff+'d',cls:'exp'};if(diff<=30)return{label:'Exp '+fmtDate(item.expiry),cls:'low'};return{label:fmtDate(item.expiry),cls:'ok'};}
+
+/* ── Batch / expiry helpers ── */
+function sortedBatches(batches){return(batches||[]).slice().sort(function(a,b){if(!a.date)return 1;if(!b.date)return -1;return a.date<b.date?-1:a.date>b.date?1:0;});}
+function soonestBatch(item){if(!item.perishable)return null;var bs=sortedBatches(item.batches);if(bs.length)return bs[0];if(item.expiry)return{date:item.expiry,qty:item.qty};return null;}
+function expSt(item){
+  if(!item.perishable)return null;
+  var b=soonestBatch(item);
+  if(!b||!b.date)return null;
+  var today=new Date();today.setHours(0,0,0,0);
+  var exp=new Date(b.date+'T00:00:00');
+  var diff=Math.floor((exp-today)/86400000);
+  if(diff<0)return{label:'Expired',cls:'out'};
+  if(diff<=7)return{label:'Exp in '+diff+'d',cls:'exp'};
+  if(diff<=30)return{label:'Exp '+fmtDate(b.date),cls:'low'};
+  return{label:fmtDate(b.date),cls:'ok'};
+}
+function expStMulti(item){
+  if(!item.perishable)return null;
+  var bs=sortedBatches(item.batches);
+  if(!bs.length){if(item.expiry)return expSt(item);return null;}
+  var today=new Date();today.setHours(0,0,0,0);
+  var results=[];
+  bs.forEach(function(b){
+    if(!b.date)return;
+    var exp=new Date(b.date+'T00:00:00');
+    var diff=Math.floor((exp-today)/86400000);
+    var cls=diff<0?'out':diff<=7?'exp':diff<=30?'low':'ok';
+    var label=diff<0?'Expired':diff<=7?'Exp in '+diff+'d':'Exp '+fmtDate(b.date);
+    results.push({label:label,cls:cls,qty:b.qty,date:b.date});
+  });
+  return results.length?results:null;
+}
 function fmtDate(d){if(!d)return'';var p=d.split('-');return p[1]+'/'+p[2]+'/'+p[0].slice(2);}
 function stkSt(i){if(i.type==='label')return'lbl';if(i.qty===0&&(i.thresh||0)===0)return'ok';if(i.qty===0)return'out';if((i.thresh||0)>0&&i.qty<=i.thresh)return'low';return'ok';}
 function stkLbl(s){return s==='out'?'Out of stock':s==='low'?'Low stock':s==='lbl'?'Asset':'In stock';}
@@ -415,13 +451,47 @@ function lRoom(id){var l=S.locs.find(function(x){return x.id===id;});return l?l.
 function alAc(id){var l=S.acLocs.find(function(x){return x.id===id;});return l?l.acId:null;}
 function logAct(t){S.activity.unshift({text:t,time:Date.now()});if(S.activity.length>30)S.activity.pop();}
 function tAgo(ts){var d=Math.floor((Date.now()-ts)/60000);if(d<1)return'just now';if(d<60)return d+'m ago';if(d<1440)return Math.floor(d/60)+'h ago';return Math.floor(d/1440)+'d ago';}
-function toggleExpire(){document.getElementById('exp-sec').classList.toggle('show',document.getElementById('item-perishable').checked);}
+function toggleExpire(){
+  var checked=document.getElementById('item-perishable').checked;
+  document.getElementById('exp-sec').classList.toggle('show',checked);
+  if(checked&&document.getElementById('batch-list').children.length===0)addBatch();
+}
 function togglePar(){document.getElementById('par-sec').classList.toggle('show',document.getElementById('item-par-toggle').checked);}
-function toggleRmLocFill(){}
-function toggleAcLocFill(){}
 function sortedBy(arr){return arr.slice().sort(function(a,b){return(a.order||0)-(b.order||0);});}
 function locSubcats(locId,ctx){var arr=ctx==='aircraft'?S.acSubcats:S.subcats;return sortedBy(arr.filter(function(s){return s.locId===locId;}));}
 function locItems(locId,subcatId,ctx){var arr=ctx==='aircraft'?S.acItems:S.items;return sortedBy(arr.filter(function(i){if(i.locId!==locId)return false;if(subcatId===undefined)return true;var isc=i.subcatId||null;var wsc=subcatId||null;return isc===wsc;}));}
+
+/* ── Batch UI ── */
+function addBatch(qty,date){
+  var list=document.getElementById('batch-list');
+  var row=document.createElement('div');
+  row.className='batch-row';
+  var qtyIn=document.createElement('input');
+  qtyIn.type='number';qtyIn.min='0';qtyIn.value=qty||'';qtyIn.placeholder='Qty';
+  var dateIn=document.createElement('input');
+  dateIn.type='date';dateIn.value=date||'';
+  var del=document.createElement('button');
+  del.className='batch-del';del.innerHTML='&times;';
+  del.onclick=function(){list.removeChild(row);};
+  row.appendChild(qtyIn);row.appendChild(dateIn);row.appendChild(del);
+  list.appendChild(row);
+}
+function getBatches(){
+  var rows=document.getElementById('batch-list').querySelectorAll('.batch-row');
+  var batches=[];
+  rows.forEach(function(row){
+    var inputs=row.querySelectorAll('input');
+    var qty=parseInt(inputs[0].value)||0;
+    var date=inputs[1].value||'';
+    if(date)batches.push({qty:qty,date:date});
+  });
+  return sortedBatches(batches);
+}
+function renderBatchList(batches){
+  var list=document.getElementById('batch-list');
+  list.innerHTML='';
+  sortedBatches(batches).forEach(function(b){addBatch(b.qty,b.date);});
+}
 
 /* ── Fill level helpers ── */
 function fillCls(qty,par){var pct=par>0?qty/par:1;if(pct>=1)return'fill-full';if(pct>=0.5)return'fill-mid';return'fill-low';}
@@ -437,90 +507,12 @@ function locFillHtml(locId,ctx){
   if(!totalPar)return'';
   var cls=fillCls(totalQty,totalPar);
   var pct=Math.min(100,Math.round(totalQty/totalPar*100));
-  return'<div class="fill-bar-wrap">'+
-    '<div class="fill-bar-label"><span class="fill-bar-text">Fill</span><span class="fill-bar-frac '+cls+'">'+totalQty+'/'+totalPar+'</span></div>'+
-    '<div class="fill-bar-bg"><div class="fill-bar-fill '+cls+'" style="width:'+pct+'%"></div></div>'+
-  '</div>';
+  return'<div class="fill-bar-wrap"><div class="fill-bar-label"><span class="fill-bar-text">Fill</span><span class="fill-bar-frac '+cls+'">'+totalQty+'/'+totalPar+'</span></div><div class="fill-bar-bg"><div class="fill-bar-fill '+cls+'" style="width:'+pct+'%"></div></div></div>';
 }
 function itemFillBadge(i){
   if(!i.trackPar||!i.par||i.par<=0||i.type==='label')return'';
   var cls=fillCls(i.qty||0,i.par);
   return'<span class="fill-frac-badge '+cls+'">'+(i.qty||0)+'/'+i.par+'</span>';
-}
-
-/* ── Grouping helpers ── */
-function groupItems(items){
-  var groups={},order=[];
-  items.forEach(function(i){
-    var key=i.name.toLowerCase()+'||'+i.locId;
-    if(!groups[key]){groups[key]=[];order.push(key);}
-    groups[key].push(i);
-  });
-  return order.map(function(k){
-    return groups[k].slice().sort(function(a,b){
-      var ae=a.expiry?new Date(a.expiry+'T00:00:00'):new Date('9999-01-01');
-      var be=b.expiry?new Date(b.expiry+'T00:00:00'):new Date('9999-01-01');
-      return ae-be;
-    });
-  });
-}
-function groupedTableRows(items,showSrc){
-  var groups=groupItems(items);
-  return groups.map(function(grp){
-    var i0=grp[0];
-    var pn=i0.ctx==='aircraft'?acName(alAc(i0.locId)):rName(lRoom(i0.locId));
-    var ln=i0.ctx==='aircraft'?alName(i0.locId):lName(i0.locId);
-    var srcCell=showSrc?'<td>'+(i0.ctx==='aircraft'?'<i class="ti ti-plane" style="color:var(--accent-light);"></i>':'<i class="ti ti-door" style="color:var(--text3);"></i>')+'</td>':'';
-    if(grp.length===1){
-      var s=stkSt(i0);var e=expSt(i0);var isLabel=i0.type==='label';
-      return'<tr>'+
-        '<td>'+i0.name+(isLabel?'<span class="label-tag" style="margin-left:5px;"><i class="ti ti-tag"></i></span>':'')+'</td>'+
-        '<td>'+pn+'</td><td>'+ln+'</td>'+
-        '<td>'+(i0.subcatId?scName(i0.subcatId):'<span style="color:var(--text3);">—</span>')+'</td>'+
-        '<td>'+(isLabel?'—':'<div class="qc"><button onclick="adj(\''+i0.id+'\',\''+i0.ctx+'\',-1)">−</button><span class="qn">'+i0.qty+'</span><button onclick="adj(\''+i0.id+'\',\''+i0.ctx+'\',1)">+</button></div>')+'</td>'+
-        '<td><span class="st '+s+'">'+stkLbl(s)+'</span></td>'+
-        '<td>'+(e?'<span class="st '+e.cls+'">'+e.label+'</span>':'—')+'</td>'+
-        srcCell+
-        '<td><button class="btn ib" onclick="editItem(\''+i0.id+'\',\''+i0.ctx+'\')"><i class="ti ti-edit"></i></button> <button class="btn ib db" onclick="deleteItem(\''+i0.id+'\',\''+i0.ctx+'\')"><i class="ti ti-trash"></i></button></td></tr>';
-    }
-    var gid='g'+i0.id;
-    var totalQty=grp.reduce(function(sum,i){return sum+(i.qty||0);},0);
-    var worstS=grp.some(function(i){return stkSt(i)==='out';})?'out':grp.some(function(i){return stkSt(i)==='low';})?'low':'ok';
-    var worstE=null;
-    grp.forEach(function(i){var e=expSt(i);if(e&&(!worstE||e.cls==='out'||(e.cls==='exp'&&worstE.cls!=='out')||(e.cls==='low'&&worstE.cls==='ok')))worstE=e;});
-    var head='<tr class="grp-head" onclick="toggleGrp(\''+gid+'\')">'+
-      '<td><span class="grp-arrow" id="arr-'+gid+'">›</span>'+i0.name+
-      '<span style="font-size:11px;padding:1px 6px;border-radius:99px;background:var(--bg4);color:var(--text2);border:0.5px solid var(--border2);margin-left:6px;">×'+grp.length+'</span></td>'+
-      '<td>'+pn+'</td><td>'+ln+'</td>'+
-      '<td>'+(i0.subcatId?scName(i0.subcatId):'<span style="color:var(--text3);">—</span>')+'</td>'+
-      '<td>'+totalQty+'</td>'+
-      '<td><span class="st '+worstS+'">'+stkLbl(worstS)+'</span></td>'+
-      '<td>'+(worstE?'<span class="st '+worstE.cls+'">'+worstE.label+'</span>':'—')+'</td>'+
-      srcCell+
-      '<td style="color:var(--text3);font-size:11px;">'+grp.length+' batches</td></tr>';
-    var children=grp.map(function(i,idx){
-      var s=stkSt(i);var e=expSt(i);var isLabel=i.type==='label';
-      var cSrc=showSrc?'<td></td>':'';
-      return'<tr class="grp-child" id="child-'+gid+'" style="display:none;">'+
-        '<td style="padding-left:22px;"><span style="color:var(--text3);margin-right:4px;">└</span>'+i.name+
-        '<span style="font-size:11px;color:var(--text2);margin-left:5px;">batch '+(idx+1)+'</span></td>'+
-        '<td style="color:var(--text2);">'+pn+'</td><td style="color:var(--text2);">'+ln+'</td>'+
-        '<td>'+(i.subcatId?scName(i.subcatId):'<span style="color:var(--text3);">—</span>')+'</td>'+
-        '<td>'+(isLabel?'—':'<div class="qc"><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',1)">+</button></div>')+'</td>'+
-        '<td><span class="st '+s+'">'+stkLbl(s)+'</span></td>'+
-        '<td>'+(e?'<span class="st '+e.cls+'">'+e.label+'</span>':'—')+'</td>'+
-        cSrc+
-        '<td><button class="btn ib" onclick="editItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-edit"></i></button> <button class="btn ib db" onclick="deleteItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-trash"></i></button></td></tr>';
-    }).join('');
-    return head+children;
-  }).join('');
-}
-function toggleGrp(gid){
-  var children=document.querySelectorAll('#child-'+gid);
-  var arr=document.getElementById('arr-'+gid);
-  var open=children[0]&&children[0].style.display!=='none';
-  children.forEach(function(c){c.style.display=open?'none':'table-row';});
-  if(arr)arr.style.transform=open?'':'rotate(90deg)';
 }
 
 function render(){updateSidebar();renderStatCards();renderAlerts();renderActivity();renderRooms();renderAircraft();renderAllItems('');}
@@ -622,11 +614,14 @@ function renderLocDetail(locId,ctx){
 function itemRowHtml(i,ctx){
   var s=stkSt(i);var e=expSt(i);var isLabel=i.type==='label';
   var fb=itemFillBadge(i);
+  var batches=i.perishable?sortedBatches(i.batches||[]):[];
+  var batchInfo='';
+  if(batches.length>1)batchInfo=' <span style="font-size:11px;color:var(--text3);">'+batches.length+' batches</span>';
   return'<div class="dnd-item" draggable="true" data-id="'+i.id+'" data-ctx="'+ctx+'">'+
     '<i class="ti ti-grip-vertical drag-handle"></i>'+
     '<div style="flex:1;min-width:0;">'+
       '<div class="dnd-name">'+i.name+(isLabel?'<span class="label-tag"><i class="ti ti-tag"></i> Asset</span>':'')+(i.notes&&!isLabel?' <span style="font-size:11px;color:var(--text2);">— '+i.notes+'</span>':'')+(isLabel&&i.notes?' <span style="font-size:11px;color:var(--text2);">'+i.notes+'</span>':'')+'</div>'+
-      (!isLabel?'<div class="dnd-meta">'+(i.cat||'')+(i.cat?' · ':'')+' Qty: '+i.qty+fb+' <span class="st '+s+'" style="font-size:11px;">'+stkLbl(s)+'</span>'+(e?' <span class="st '+e.cls+'" style="font-size:11px;">'+e.label+'</span>':'')+'</div>':'')+
+      (!isLabel?'<div class="dnd-meta">'+(i.cat||'')+(i.cat?' · ':'')+' Qty: '+i.qty+fb+' <span class="st '+s+'" style="font-size:11px;">'+stkLbl(s)+'</span>'+(e?' <span class="st '+e.cls+'" style="font-size:11px;">'+e.label+'</span>':'')+batchInfo+'</div>':'')+
     '</div>'+
     '<div class="dnd-acts">'+
       (!isLabel?'<div class="qc"><button onclick="adj(\''+i.id+'\',\''+ctx+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',\''+ctx+'\',1)">+</button></div>':'')+
@@ -706,14 +701,12 @@ function renderRooms(){
     ct.innerHTML=hdr2+'<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag to reorder</p><div class="grid" id="rmlocs-grid">'+locs.map(function(l){
       var li=S.items.filter(function(i){return i.locId===l.id;});
       var sa=li.filter(function(i){return i.type!=='label'&&stkSt(i)!=='ok';}).length;
-      var fh=locFillHtml(l.id,'room');
-      return cardHtml(l.id,'rmloc','ti-archive',l.name,li.length+' item'+(li.length!==1?'s':''),sa,'openRmLocModal(null,\''+l.id+'\')','showLocQr(\''+l.id+'\',\'room\')','deleteRmLoc(\''+l.id+'\')','drillLoc(\''+l.id+'\')',fh);
+      return cardHtml(l.id,'rmloc','ti-archive',l.name,li.length+' item'+(li.length!==1?'s':''),sa,'openRmLocModal(null,\''+l.id+'\')','showLocQr(\''+l.id+'\',\'room\')','deleteRmLoc(\''+l.id+'\')','drillLoc(\''+l.id+'\')',locFillHtml(l.id,'room'));
     }).join('')+'</div>';
     initCardDnd('rmlocs-grid','rmloc');return;
   }
   bc.innerHTML='<span class="bc-link" onclick="S.bRoom=null;S.bLoc=null;renderRooms()">Rooms</span><span class="bc-sep">›</span><span class="bc-link" onclick="S.bLoc=null;renderRooms()">'+(room?room.name:'')+'</span><span class="bc-sep">›</span><span class="bc-cur">'+lName(S.bLoc)+'</span>';
-  ct.innerHTML=renderLocDetail(S.bLoc,'room');
-  initLocDnd();
+  ct.innerHTML=renderLocDetail(S.bLoc,'room');initLocDnd();
 }
 
 function renderAircraft(){
@@ -741,14 +734,12 @@ function renderAircraft(){
     ct.innerHTML=hdr2+'<p class="hint"><i class="ti ti-grip-vertical" style="vertical-align:-2px;"></i> Drag to reorder</p><div class="grid" id="aclocs-grid">'+acLocs.map(function(l){
       var li=S.acItems.filter(function(i){return i.locId===l.id;});
       var sa=li.filter(function(i){return i.type!=='label'&&stkSt(i)!=='ok';}).length;
-      var fh=locFillHtml(l.id,'aircraft');
-      return cardHtml(l.id,'acloc','ti-archive',l.name,li.length+' item'+(li.length!==1?'s':''),sa,'openAcLocModal(null,\''+l.id+'\')','showLocQr(\''+l.id+'\',\'aircraft\')','deleteAcLoc(\''+l.id+'\')','drillAcLoc(\''+l.id+'\')',fh);
+      return cardHtml(l.id,'acloc','ti-archive',l.name,li.length+' item'+(li.length!==1?'s':''),sa,'openAcLocModal(null,\''+l.id+'\')','showLocQr(\''+l.id+'\',\'aircraft\')','deleteAcLoc(\''+l.id+'\')','drillAcLoc(\''+l.id+'\')',locFillHtml(l.id,'aircraft'));
     }).join('')+'</div>';
     initCardDnd('aclocs-grid','acloc');return;
   }
   bc.innerHTML='<span class="bc-link" onclick="S.bAc=null;S.bAcLoc=null;renderAircraft()">Aircraft</span><span class="bc-sep">›</span><span class="bc-link" onclick="S.bAcLoc=null;renderAircraft()">'+(acObj?acObj.tail:'')+'</span><span class="bc-sep">›</span><span class="bc-cur">'+alName(S.bAcLoc)+'</span>';
-  ct.innerHTML=renderLocDetail(S.bAcLoc,'aircraft');
-  initLocDnd();
+  ct.innerHTML=renderLocDetail(S.bAcLoc,'aircraft');initLocDnd();
 }
 
 function initCardDnd(gridId,type){
@@ -796,86 +787,29 @@ function adj(id,ctx,delta){var arr=ctx==='aircraft'?S.acItems:S.items;var item=a
 function openModal(id){document.getElementById(id).classList.add('open');}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
 
-function openSubcatModal(locId,ctx,editId){
-  S.subcatCtx={locId:locId,ctx:ctx};
-  var arr=ctx==='aircraft'?S.acSubcats:S.subcats;
-  S.eSubcat=editId?arr.find(function(s){return s.id===editId;}):null;
-  document.getElementById('msc-title').textContent=S.eSubcat?'Edit subcategory':'Add subcategory';
-  document.getElementById('subcat-name').value=S.eSubcat?S.eSubcat.name:'';
-  openModal('modal-subcat');
-}
-function saveSubcat(){
-  var name=document.getElementById('subcat-name').value.trim();if(!name)return;
-  var ctx=S.subcatCtx.ctx,locId=S.subcatCtx.locId;
-  var arr=ctx==='aircraft'?S.acSubcats:S.subcats;
-  var mo=Math.max.apply(null,arr.filter(function(s){return s.locId===locId;}).map(function(s){return s.order||0;}).concat([-1]));
-  if(S.eSubcat){S.eSubcat.name=name;logAct('Subcategory "'+name+'" updated');}
-  else{arr.push({id:uid(),locId:locId,name:name,order:mo+1});logAct('Subcategory "'+name+'" added');}
-  closeModal('modal-subcat');save();render();setTimeout(renderCurrentLoc,50);
-}
-function deleteSubcat(id,ctx){
-  if(!confirm('Delete this subcategory? Items inside will become uncategorized.'))return;
-  var arr=ctx==='aircraft'?S.acSubcats:S.subcats;
-  var iArr=ctx==='aircraft'?S.acItems:S.items;
-  iArr.forEach(function(i){if(i.subcatId===id)i.subcatId=null;});
-  if(ctx==='aircraft')S.acSubcats=S.acSubcats.filter(function(s){return s.id!==id;});
-  else S.subcats=S.subcats.filter(function(s){return s.id!==id;});
-  logAct('Subcategory deleted');save();render();setTimeout(renderCurrentLoc,50);
-}
+function openSubcatModal(locId,ctx,editId){S.subcatCtx={locId:locId,ctx:ctx};var arr=ctx==='aircraft'?S.acSubcats:S.subcats;S.eSubcat=editId?arr.find(function(s){return s.id===editId;}):null;document.getElementById('msc-title').textContent=S.eSubcat?'Edit subcategory':'Add subcategory';document.getElementById('subcat-name').value=S.eSubcat?S.eSubcat.name:'';openModal('modal-subcat');}
+function saveSubcat(){var name=document.getElementById('subcat-name').value.trim();if(!name)return;var ctx=S.subcatCtx.ctx,locId=S.subcatCtx.locId;var arr=ctx==='aircraft'?S.acSubcats:S.subcats;var mo=Math.max.apply(null,arr.filter(function(s){return s.locId===locId;}).map(function(s){return s.order||0;}).concat([-1]));if(S.eSubcat){S.eSubcat.name=name;logAct('Subcategory "'+name+'" updated');}else{arr.push({id:uid(),locId:locId,name:name,order:mo+1});logAct('Subcategory "'+name+'" added');}closeModal('modal-subcat');save();render();setTimeout(renderCurrentLoc,50);}
+function deleteSubcat(id,ctx){if(!confirm('Delete this subcategory? Items inside will become uncategorized.'))return;var arr=ctx==='aircraft'?S.acSubcats:S.subcats;var iArr=ctx==='aircraft'?S.acItems:S.items;iArr.forEach(function(i){if(i.subcatId===id)i.subcatId=null;});if(ctx==='aircraft')S.acSubcats=S.acSubcats.filter(function(s){return s.id!==id;});else S.subcats=S.subcats.filter(function(s){return s.id!==id;});logAct('Subcategory deleted');save();render();setTimeout(renderCurrentLoc,50);}
 
 function openRoomModal(editId){S.eRoom=editId?S.rooms.find(function(r){return r.id===editId;}):null;document.getElementById('mr-title').textContent=S.eRoom?'Edit room':'Add room';document.getElementById('room-name').value=S.eRoom?S.eRoom.name:'';openModal('modal-room');}
 function saveRoom(){var name=document.getElementById('room-name').value.trim();if(!name)return;var mo=Math.max.apply(null,S.rooms.map(function(r){return r.order||0;}).concat([-1]));if(S.eRoom){S.eRoom.name=name;logAct('Room "'+name+'" renamed');}else{S.rooms.push({id:uid(),name:name,order:mo+1});logAct('Room "'+name+'" added');}closeModal('modal-room');save();render();}
 function deleteRoom(id){if(!confirm('Delete this room and all its locations and items?'))return;var r=S.rooms.find(function(x){return x.id===id;});var lIds=S.locs.filter(function(l){return l.roomId===id;}).map(function(l){return l.id;});S.items=S.items.filter(function(i){return lIds.indexOf(i.locId)===-1;});S.subcats=S.subcats.filter(function(s){return lIds.indexOf(s.locId)===-1;});S.locs=S.locs.filter(function(l){return l.roomId!==id;});S.rooms=S.rooms.filter(function(x){return x.id!==id;});if(S.bRoom===id){S.bRoom=null;S.bLoc=null;}logAct('Room "'+(r?r.name:id)+'" deleted');save();render();}
-function openRmLocModal(presetRoomId,editId){
-  S.eLoc=editId?S.locs.find(function(l){return l.id===editId;}):null;
-  document.getElementById('mrl-title').textContent=S.eLoc?'Edit location':'Add location';
-  document.getElementById('rmloc-name').value=S.eLoc?S.eLoc.name:'';
-  var rs=document.getElementById('rmloc-room');
-  rs.innerHTML=sortedBy(S.rooms).map(function(r){return'<option value="'+r.id+'">'+r.name+'</option>';}).join('');
-  rs.value=S.eLoc?S.eLoc.roomId:(presetRoomId||S.bRoom||(S.rooms[0]&&S.rooms[0].id));
-  document.getElementById('rmloc-fill-toggle').checked=S.eLoc?!!(S.eLoc.trackFill):false;
-  openModal('modal-rmloc');
-}
+function openRmLocModal(presetRoomId,editId){S.eLoc=editId?S.locs.find(function(l){return l.id===editId;}):null;document.getElementById('mrl-title').textContent=S.eLoc?'Edit location':'Add location';document.getElementById('rmloc-name').value=S.eLoc?S.eLoc.name:'';var rs=document.getElementById('rmloc-room');rs.innerHTML=sortedBy(S.rooms).map(function(r){return'<option value="'+r.id+'">'+r.name+'</option>';}).join('');rs.value=S.eLoc?S.eLoc.roomId:(presetRoomId||S.bRoom||(S.rooms[0]&&S.rooms[0].id));document.getElementById('rmloc-fill-toggle').checked=S.eLoc?!!(S.eLoc.trackFill):false;openModal('modal-rmloc');}
 function saveRmLoc(){var name=document.getElementById('rmloc-name').value.trim();if(!name)return;var roomId=document.getElementById('rmloc-room').value;var trackFill=document.getElementById('rmloc-fill-toggle').checked;var mo=Math.max.apply(null,S.locs.filter(function(l){return l.roomId===roomId;}).map(function(l){return l.order||0;}).concat([-1]));if(S.eLoc){S.eLoc.name=name;S.eLoc.roomId=roomId;S.eLoc.trackFill=trackFill;logAct('Location "'+name+'" updated');}else{S.locs.push({id:uid(),roomId:roomId,name:name,order:mo+1,trackFill:trackFill});logAct('Location "'+name+'" added to '+rName(roomId));}closeModal('modal-rmloc');save();render();}
 function deleteRmLoc(id){if(!confirm('Delete this location and all its items?'))return;var l=S.locs.find(function(x){return x.id===id;});S.items=S.items.filter(function(i){return i.locId!==id;});S.subcats=S.subcats.filter(function(s){return s.locId!==id;});S.locs=S.locs.filter(function(x){return x.id!==id;});if(S.bLoc===id)S.bLoc=null;logAct('Location "'+(l?l.name:id)+'" deleted');save();render();}
 
 function openAircraftModal(editId){S.eAircraft=editId?S.aircraft.find(function(a){return a.id===editId;}):null;document.getElementById('mac-title').textContent=S.eAircraft?'Edit aircraft':'Add aircraft';document.getElementById('ac-tail').value=S.eAircraft?S.eAircraft.tail:'';document.getElementById('ac-type').value=S.eAircraft?S.eAircraft.actype||'':'';document.getElementById('ac-notes').value=S.eAircraft?S.eAircraft.notes||'':'';openModal('modal-aircraft');}
 function saveAircraft(){var tail=document.getElementById('ac-tail').value.trim().toUpperCase();if(!tail)return;var mo=Math.max.apply(null,S.aircraft.map(function(a){return a.order||0;}).concat([-1]));if(S.eAircraft){Object.assign(S.eAircraft,{tail:tail,actype:document.getElementById('ac-type').value.trim(),notes:document.getElementById('ac-notes').value.trim()});logAct('Aircraft '+tail+' updated');}else{S.aircraft.push({id:uid(),tail:tail,actype:document.getElementById('ac-type').value.trim(),notes:document.getElementById('ac-notes').value.trim(),order:mo+1});logAct('Aircraft '+tail+' added');}closeModal('modal-aircraft');save();render();}
 function deleteAircraft(id){if(!confirm('Delete this aircraft and all its locations and items?'))return;var a=S.aircraft.find(function(x){return x.id===id;});var lIds=S.acLocs.filter(function(l){return l.acId===id;}).map(function(l){return l.id;});S.acItems=S.acItems.filter(function(i){return lIds.indexOf(i.locId)===-1;});S.acSubcats=S.acSubcats.filter(function(s){return lIds.indexOf(s.locId)===-1;});S.acLocs=S.acLocs.filter(function(l){return l.acId!==id;});S.aircraft=S.aircraft.filter(function(x){return x.id!==id;});if(S.bAc===id){S.bAc=null;S.bAcLoc=null;}logAct('Aircraft "'+(a?a.tail:id)+'" deleted');save();render();}
-function openAcLocModal(presetAcId,editId){
-  S.eAcLoc=editId?S.acLocs.find(function(l){return l.id===editId;}):null;
-  document.getElementById('mal-title').textContent=S.eAcLoc?'Edit location':'Add location';
-  document.getElementById('acloc-name').value=S.eAcLoc?S.eAcLoc.name:'';
-  var rs=document.getElementById('acloc-ac');
-  rs.innerHTML=sortedBy(S.aircraft).map(function(a){return'<option value="'+a.id+'">'+a.tail+'</option>';}).join('');
-  rs.value=S.eAcLoc?S.eAcLoc.acId:(presetAcId||S.bAc||(S.aircraft[0]&&S.aircraft[0].id));
-  document.getElementById('acloc-fill-toggle').checked=S.eAcLoc?!!(S.eAcLoc.trackFill):false;
-  openModal('modal-acloc');
-}
+function openAcLocModal(presetAcId,editId){S.eAcLoc=editId?S.acLocs.find(function(l){return l.id===editId;}):null;document.getElementById('mal-title').textContent=S.eAcLoc?'Edit location':'Add location';document.getElementById('acloc-name').value=S.eAcLoc?S.eAcLoc.name:'';var rs=document.getElementById('acloc-ac');rs.innerHTML=sortedBy(S.aircraft).map(function(a){return'<option value="'+a.id+'">'+a.tail+'</option>';}).join('');rs.value=S.eAcLoc?S.eAcLoc.acId:(presetAcId||S.bAc||(S.aircraft[0]&&S.aircraft[0].id));document.getElementById('acloc-fill-toggle').checked=S.eAcLoc?!!(S.eAcLoc.trackFill):false;openModal('modal-acloc');}
 function saveAcLoc(){var name=document.getElementById('acloc-name').value.trim();if(!name)return;var acId=document.getElementById('acloc-ac').value;var trackFill=document.getElementById('acloc-fill-toggle').checked;var mo=Math.max.apply(null,S.acLocs.filter(function(l){return l.acId===acId;}).map(function(l){return l.order||0;}).concat([-1]));if(S.eAcLoc){S.eAcLoc.name=name;S.eAcLoc.acId=acId;S.eAcLoc.trackFill=trackFill;logAct('Location "'+name+'" updated');}else{S.acLocs.push({id:uid(),acId:acId,name:name,order:mo+1,trackFill:trackFill});logAct('Location "'+name+'" added to '+acName(acId));}closeModal('modal-acloc');save();render();}
 function deleteAcLoc(id){if(!confirm('Delete this location and all its items?'))return;var l=S.acLocs.find(function(x){return x.id===id;});S.acItems=S.acItems.filter(function(i){return i.locId!==id;});S.acSubcats=S.acSubcats.filter(function(s){return s.locId!==id;});S.acLocs=S.acLocs.filter(function(x){return x.id!==id;});if(S.bAcLoc===id)S.bAcLoc=null;logAct('Location "'+(l?l.name:id)+'" deleted');save();render();}
 
 function setItemType(type){currentItemType=type;document.getElementById('type-btn-stock').classList.toggle('active',type==='stock');document.getElementById('type-btn-label').classList.toggle('active',type==='label');document.getElementById('stock-fields').style.display=type==='stock'?'':'none';document.getElementById('label-fields').style.display=type==='label'?'':'none';}
-
-function populateSubcatSelect(selId,locId,ctx,selectedId){
-  var scs=locSubcats(locId,ctx);
-  var sel=document.getElementById(selId);
-  sel.innerHTML='<option value="">None (uncategorized)</option>'+scs.map(function(s){return'<option value="'+s.id+'">'+s.name+'</option>';}).join('');
-  if(selectedId)sel.value=selectedId;
-}
-function populateItemLoc(){
-  var ctx=S.itemCtx,parentId=document.getElementById('item-parent').value;
-  var locs=ctx==='aircraft'?sortedBy(S.acLocs.filter(function(l){return l.acId===parentId;})):sortedBy(S.locs.filter(function(l){return l.roomId===parentId;}));
-  document.getElementById('item-loc').innerHTML=locs.map(function(l){return'<option value="'+l.id+'">'+l.name+'</option>';}).join('');
-  populateItemSubcat();
-}
+function populateSubcatSelect(selId,locId,ctx,selectedId){var scs=locSubcats(locId,ctx);var sel=document.getElementById(selId);sel.innerHTML='<option value="">None (uncategorized)</option>'+scs.map(function(s){return'<option value="'+s.id+'">'+s.name+'</option>';}).join('');if(selectedId)sel.value=selectedId;}
+function populateItemLoc(){var ctx=S.itemCtx,parentId=document.getElementById('item-parent').value;var locs=ctx==='aircraft'?sortedBy(S.acLocs.filter(function(l){return l.acId===parentId;})):sortedBy(S.locs.filter(function(l){return l.roomId===parentId;}));document.getElementById('item-loc').innerHTML=locs.map(function(l){return'<option value="'+l.id+'">'+l.name+'</option>';}).join('');populateItemSubcat();}
 function populateItemSubcat(){var locId=document.getElementById('item-loc').value;populateSubcatSelect('item-subcat',locId,S.itemCtx,null);}
-function populateLabelLoc(){
-  var ctx=S.itemCtx,parentId=document.getElementById('label-parent').value;
-  var locs=ctx==='aircraft'?sortedBy(S.acLocs.filter(function(l){return l.acId===parentId;})):sortedBy(S.locs.filter(function(l){return l.roomId===parentId;}));
-  document.getElementById('label-loc').innerHTML=locs.map(function(l){return'<option value="'+l.id+'">'+l.name+'</option>';}).join('');
-  populateLabelSubcat();
-}
+function populateLabelLoc(){var ctx=S.itemCtx,parentId=document.getElementById('label-parent').value;var locs=ctx==='aircraft'?sortedBy(S.acLocs.filter(function(l){return l.acId===parentId;})):sortedBy(S.locs.filter(function(l){return l.roomId===parentId;}));document.getElementById('label-loc').innerHTML=locs.map(function(l){return'<option value="'+l.id+'">'+l.name+'</option>';}).join('');populateLabelSubcat();}
 function populateLabelSubcat(){var locId=document.getElementById('label-loc').value;populateSubcatSelect('label-subcat',locId,S.itemCtx,null);}
 
 function openItemModal(presetRmLocId,presetAcLocId,ctx,presetSubcatId){
@@ -884,8 +818,9 @@ function openItemModal(presetRmLocId,presetAcLocId,ctx,presetSubcatId){
   setItemType('stock');
   ['item-name','item-cat','item-notes','label-notes'].forEach(function(id){document.getElementById(id).value='';});
   document.getElementById('item-qty').value=0;document.getElementById('item-thresh').value=5;
-  document.getElementById('item-perishable').checked=false;document.getElementById('item-expiry').value='';
+  document.getElementById('item-perishable').checked=false;
   document.getElementById('exp-sec').classList.remove('show');
+  document.getElementById('batch-list').innerHTML='';
   document.getElementById('item-par-toggle').checked=false;document.getElementById('item-par').value=1;
   document.getElementById('par-sec').classList.remove('show');
   var isAc=S.itemCtx==='aircraft';
@@ -916,9 +851,12 @@ function editItem(id,ctx){
   document.getElementById('item-qty').value=S.eItem.qty||0;
   document.getElementById('item-thresh').value=S.eItem.thresh||0;
   document.getElementById('item-notes').value=S.eItem.notes||'';
-  var p=!!S.eItem.perishable;document.getElementById('item-perishable').checked=p;
-  document.getElementById('item-expiry').value=S.eItem.expiry||'';
+  var p=!!S.eItem.perishable;
+  document.getElementById('item-perishable').checked=p;
   document.getElementById('exp-sec').classList.toggle('show',p);
+  var batches=S.eItem.batches||[];
+  if(!batches.length&&S.eItem.expiry){batches=[{qty:S.eItem.qty||0,date:S.eItem.expiry}];}
+  renderBatchList(batches);
   var tp=!!S.eItem.trackPar;document.getElementById('item-par-toggle').checked=tp;
   document.getElementById('item-par').value=S.eItem.par||1;
   document.getElementById('par-sec').classList.toggle('show',tp);
@@ -950,29 +888,37 @@ function saveItem(){
   var maxOrder=Math.max.apply(null,siblings.map(function(i){return i.order||0;}).concat([-1]));
   var trackPar=document.getElementById('item-par-toggle').checked;
   var par=trackPar?Math.max(1,parseInt(document.getElementById('item-par').value)||1):0;
+  var p=document.getElementById('item-perishable').checked;
+  var batches=p?getBatches():[];
+  var soonest=batches.length?batches[0].date:'';
   var data;
-  if(type==='label'){data={type:'label',ctx:ctx,name:name,locId:locId,subcatId:subcatId,notes:document.getElementById('label-notes').value.trim(),cat:'',qty:0,thresh:0,par:0,trackPar:false,perishable:false,expiry:'',order:S.eItem?S.eItem.order:(maxOrder+1)};}
-  else{var p=document.getElementById('item-perishable').checked;data={type:'stock',ctx:ctx,name:name,cat:document.getElementById('item-cat').value.trim()||'General',locId:locId,subcatId:subcatId,qty:parseInt(document.getElementById('item-qty').value)||0,thresh:Math.max(0,parseInt(document.getElementById('item-thresh').value)||0),par:par,trackPar:trackPar,notes:document.getElementById('item-notes').value.trim(),perishable:p,expiry:p?document.getElementById('item-expiry').value:'',order:S.eItem?S.eItem.order:(maxOrder+1)};}
+  if(type==='label'){data={type:'label',ctx:ctx,name:name,locId:locId,subcatId:subcatId,notes:document.getElementById('label-notes').value.trim(),cat:'',qty:0,thresh:0,par:0,trackPar:false,perishable:false,expiry:'',batches:[],order:S.eItem?S.eItem.order:(maxOrder+1)};}
+  else{data={type:'stock',ctx:ctx,name:name,cat:document.getElementById('item-cat').value.trim()||'General',locId:locId,subcatId:subcatId,qty:parseInt(document.getElementById('item-qty').value)||0,thresh:Math.max(0,parseInt(document.getElementById('item-thresh').value)||0),par:par,trackPar:trackPar,notes:document.getElementById('item-notes').value.trim(),perishable:p,expiry:soonest,batches:batches,order:S.eItem?S.eItem.order:(maxOrder+1)};}
   if(S.eItem){Object.assign(S.eItem,data);logAct('"'+name+'" updated');}
   else{arr.push(Object.assign({id:uid()},data));logAct('"'+name+'" added');}
   closeModal('modal-item');save();render();setTimeout(renderCurrentLoc,50);
 }
 
-function deleteItem(id,ctx){
-  if(!confirm('Delete this item?'))return;
-  var arr=ctx==='aircraft'?S.acItems:S.items;
-  var i=arr.find(function(x){return x.id===id;});
-  if(ctx==='aircraft')S.acItems=S.acItems.filter(function(x){return x.id!==id;});
-  else S.items=S.items.filter(function(x){return x.id!==id;});
-  logAct('"'+(i?i.name:id)+'" removed');save();render();setTimeout(renderCurrentLoc,50);
-}
+function deleteItem(id,ctx){if(!confirm('Delete this item?'))return;var arr=ctx==='aircraft'?S.acItems:S.items;var i=arr.find(function(x){return x.id===id;});if(ctx==='aircraft')S.acItems=S.acItems.filter(function(x){return x.id!==id;});else S.items=S.items.filter(function(x){return x.id!==id;});logAct('"'+(i?i.name:id)+'" removed');save();render();setTimeout(renderCurrentLoc,50);}
 
 function renderAllItems(q){
   var all=S.items.concat(S.acItems);
   var f=all.filter(function(i){if(!q)return true;var pn=i.ctx==='aircraft'?acName(alAc(i.locId)):rName(lRoom(i.locId));var ln=i.ctx==='aircraft'?alName(i.locId):lName(i.locId);return[i.name,i.cat||'',ln,pn,scName(i.subcatId)].some(function(s){return s.toLowerCase().indexOf(q.toLowerCase())>-1;});});
   var body=document.getElementById('all-items-body');if(!body)return;
   if(!f.length){body.innerHTML='<tr><td colspan="9" class="empty">No items found</td></tr>';return;}
-  body.innerHTML=groupedTableRows(f,true);
+  body.innerHTML=f.map(function(i){
+    var s=stkSt(i);var e=expSt(i);var isLabel=i.type==='label';
+    var pn=i.ctx==='aircraft'?acName(alAc(i.locId)):rName(lRoom(i.locId));
+    var ln=i.ctx==='aircraft'?alName(i.locId):lName(i.locId);
+    var batches=i.perishable?sortedBatches(i.batches||[]):[];
+    var expCell=e?'<span class="st '+e.cls+'">'+e.label+'</span>'+(batches.length>1?' <span style="font-size:11px;color:var(--text3);">+'+( batches.length-1)+' more</span>':''):'—';
+    return'<tr><td>'+i.name+(isLabel?'<span class="label-tag" style="margin-left:5px;"><i class="ti ti-tag"></i></span>':'')+'</td><td>'+pn+'</td><td>'+ln+'</td><td>'+(i.subcatId?scName(i.subcatId):'<span style="color:var(--text3);">—</span>')+'</td>'+
+      '<td>'+(isLabel?'—':'<div class="qc"><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',1)">+</button></div>')+'</td>'+
+      '<td><span class="st '+s+'">'+stkLbl(s)+'</span></td>'+
+      '<td>'+expCell+'</td>'+
+      '<td>'+(i.ctx==='aircraft'?'<i class="ti ti-plane" style="color:var(--accent-light);"></i>':'<i class="ti ti-door" style="color:var(--text3);"></i>')+'</td>'+
+      '<td><button class="btn ib" onclick="editItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-edit"></i></button> <button class="btn ib db" onclick="deleteItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-trash"></i></button></td></tr>';
+  }).join('');
 }
 
 function showFilter(type){
@@ -990,7 +936,15 @@ function showFilter(type){
   else if(type==='expiring')filtered=allItems.filter(function(i){var e=expSt(i);return e&&e.cls!=='ok';});
   else filtered=[];
   if(!filtered.length){ct.innerHTML='<div class="empty">No items in this category</div>';return;}
-  ct.innerHTML='<div class="tw"><table><thead><tr><th style="width:22%">Item</th><th style="width:14%">Parent</th><th style="width:13%">Location</th><th style="width:11%">Subcat</th><th style="width:10%">Qty</th><th style="width:11%">Stock</th><th style="width:11%">Expires</th><th style="width:8%"></th></tr></thead><tbody>'+groupedTableRows(filtered,false)+'</tbody></table></div>';
+  ct.innerHTML='<div class="tw"><table><thead><tr><th style="width:22%">Item</th><th style="width:14%">Parent</th><th style="width:13%">Location</th><th style="width:11%">Subcat</th><th style="width:10%">Qty</th><th style="width:11%">Stock</th><th style="width:11%">Expires</th><th style="width:8%"></th></tr></thead><tbody>'+
+    filtered.map(function(i){var s=stkSt(i);var e=expSt(i);var pn=i.ctx==='aircraft'?acName(alAc(i.locId)):rName(lRoom(i.locId));var ln=i.ctx==='aircraft'?alName(i.locId):lName(i.locId);
+      var batches=i.perishable?sortedBatches(i.batches||[]):[];
+      var expCell=e?'<span class="st '+e.cls+'">'+e.label+'</span>'+(batches.length>1?' <span style="font-size:11px;color:var(--text3);">+'+( batches.length-1)+' more</span>':''):'—';
+      return'<tr><td>'+i.name+'</td><td>'+pn+'</td><td>'+ln+'</td><td>'+(i.subcatId?scName(i.subcatId):'—')+'</td>'+
+        '<td>'+(i.type==='label'?'—':'<div class="qc"><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',\''+i.ctx+'\',1)">+</button></div>')+'</td>'+
+        '<td><span class="st '+s+'">'+stkLbl(s)+'</span></td><td>'+expCell+'</td>'+
+        '<td><button class="btn ib" onclick="editItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-edit"></i></button> <button class="btn ib db" onclick="deleteItem(\''+i.id+'\',\''+i.ctx+'\')"><i class="ti ti-trash"></i></button></td></tr>';
+    }).join('')+'</tbody></table></div>';
 }
 
 function setupSearch(){
@@ -1005,11 +959,7 @@ function setupSearch(){
   });
   document.addEventListener('click',function(e){if(!box.contains(e.target)&&e.target!==inp)box.style.display='none';});
 }
-function goToItem(locId,ctx){
-  document.getElementById('gs-input').value='';document.getElementById('gs-results').style.display='none';
-  if(ctx==='aircraft'){var l=S.acLocs.find(function(l){return l.id===locId;});if(!l)return;S.bAc=l.acId;S.bAcLoc=locId;showPage('aircraft');}
-  else{var rl=S.locs.find(function(l){return l.id===locId;});if(!rl)return;S.bRoom=rl.roomId;S.bLoc=locId;showPage('rooms');}
-}
+function goToItem(locId,ctx){document.getElementById('gs-input').value='';document.getElementById('gs-results').style.display='none';if(ctx==='aircraft'){var l=S.acLocs.find(function(l){return l.id===locId;});if(!l)return;S.bAc=l.acId;S.bAcLoc=locId;showPage('aircraft');}else{var rl=S.locs.find(function(l){return l.id===locId;});if(!rl)return;S.bRoom=rl.roomId;S.bLoc=locId;showPage('rooms');}}
 
 function showLocQr(locId,ctx){var l=ctx==='aircraft'?S.acLocs.find(function(x){return x.id===locId;}):S.locs.find(function(x){return x.id===locId;});if(!l)return;document.getElementById('mq-title').textContent='QR — '+l.name;var cont=document.getElementById('modal-qr-content');cont.innerHTML='';var d=document.createElement('div');cont.appendChild(d);try{new QRCode(d,{text:'inv:loc:'+locId,width:160,height:160,correctLevel:QRCode.CorrectLevel.M});}catch(e){}openModal('modal-qr');}
 function populateQrParent(){var t=document.getElementById('qr-type-sel').value;var parents=t==='aircraft'?sortedBy(S.aircraft):sortedBy(S.rooms);document.getElementById('qr-parent-sel').innerHTML=parents.map(function(p){return'<option value="'+p.id+'">'+(t==='aircraft'?p.tail:p.name)+'</option>';}).join('');populateQrLoc();}
