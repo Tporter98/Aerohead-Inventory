@@ -82,6 +82,8 @@ body{background:var(--body-bg);color:var(--text);}
 .btn.ib{padding:5px 8px;}
 .btn.db{border-color:rgba(248,113,113,0.3);color:var(--danger-text);}
 .btn.db:hover{background:var(--danger-bg);}
+.btn.transfer{border-color:rgba(61,127,212,0.4);color:var(--info-text);background:var(--info-bg);font-size:12px;padding:4px 9px;}
+.btn.transfer:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
 .breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2);margin-bottom:1rem;flex-wrap:wrap;}
 .bc-link{cursor:pointer;color:var(--info-text);}
 .bc-link:hover{text-decoration:underline;}
@@ -177,10 +179,13 @@ tr:hover td{background:var(--bg3);}
 .exp-sec.show{display:block;}
 .par-sec{display:none;margin-top:8px;}
 .par-sec.show{display:block;}
-.batch-row{display:flex;align-items:center;gap:6px;margin-bottom:7px;}
-.batch-row input[type=number]{width:70px;flex-shrink:0;}
-.batch-row input[type=date]{flex:1;}
-.batch-del{width:26px;height:26px;border-radius:50%;border:0.5px solid rgba(248,113,113,0.3);background:transparent;color:var(--danger-text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+/* NEW: circle batch row */
+.batch-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.batch-row input[type=date]{flex:1;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;background:var(--bg3);color:var(--text);}
+.batch-circle-btn{width:36px;height:36px;border-radius:50%;border:0.5px solid var(--border2);background:var(--bg3);color:var(--text);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;flex-shrink:0;line-height:1;}
+.batch-circle-btn:hover{border-color:var(--accent-light);color:var(--accent-light);}
+.batch-qty-num{font-size:15px;font-weight:500;min-width:28px;text-align:center;color:var(--text);}
+.batch-del{width:36px;height:36px;border-radius:50%;border:0.5px solid rgba(248,113,113,0.3);background:transparent;color:var(--danger-text);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .batch-del:hover{background:var(--danger-bg);}
 .batch-add-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:var(--radius);border:0.5px solid var(--border2);background:var(--bg3);color:var(--text2);font-size:12px;font-family:inherit;cursor:pointer;margin-top:2px;}
 .batch-add-btn:hover{background:var(--bg4);color:var(--text);}
@@ -203,6 +208,10 @@ tr:hover td{background:var(--bg3);}
 .ac-item{padding:8px 10px;font-size:13px;color:var(--text);cursor:pointer;}
 .ac-item:hover,.ac-item.active{background:var(--bg3);}
 .ac-item em{color:var(--accent-light);font-style:normal;font-weight:600;}
+/* Transfer modal */
+.transfer-preview{background:var(--bg3);border-radius:var(--radius);padding:10px 14px;margin-bottom:12px;font-size:12px;color:var(--text2);}
+.transfer-preview strong{color:var(--text);}
+.transfer-info{background:var(--info-bg);border:0.5px solid rgba(96,165,250,0.3);border-radius:var(--radius);padding:10px 14px;margin-bottom:12px;font-size:12px;color:var(--info-text);}
 @media(max-width:640px){
   .sidebar{width:56px;}
   .sidebar-logo span,.slink-label,.slink-badge,.sidebar-section-label,.sidebar-bottom button span{display:none;}
@@ -365,6 +374,48 @@ tr:hover td{background:var(--bg3);}
 </div>
 <div class="ov" id="modal-qr"><div class="modal"><h3 id="mq-title">QR code</h3><div class="qra" id="modal-qr-content"></div><p class="qrn">Print and stick on the location.</p><div class="ma"><button class="btn" onclick="closeModal('modal-qr')">Close</button></div></div></div>
 
+<!-- Transfer In Modal -->
+<div class="ov" id="modal-transfer">
+  <div class="modal">
+    <h3 id="mt-title">Transfer in</h3>
+    <p id="mt-subtitle" style="font-size:12px;color:var(--text2);margin-bottom:1rem;margin-top:-8px;"></p>
+    <div class="fg">
+      <label>Source type</label>
+      <select id="tr-type" onchange="trPopulateParent()">
+        <option value="room">Room</option>
+        <option value="aircraft">Aircraft</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label>Source room / aircraft</label>
+      <select id="tr-parent" onchange="trPopulateLoc()"></select>
+    </div>
+    <div class="fg">
+      <label>Source location</label>
+      <select id="tr-loc" onchange="trPopulateBatches()"></select>
+    </div>
+    <div class="fg">
+      <label>Batch to pull from</label>
+      <select id="tr-batch" onchange="trUpdatePreview()"></select>
+    </div>
+    <div class="fg">
+      <label>Quantity to transfer</label>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <button class="batch-circle-btn" onclick="trAdjQty(-1)">−</button>
+        <span id="tr-qty-display" style="font-size:18px;font-weight:500;min-width:32px;text-align:center;color:var(--text);">1</span>
+        <button class="batch-circle-btn" onclick="trAdjQty(1)">+</button>
+        <span id="tr-qty-max" style="font-size:12px;color:var(--text2);"></span>
+      </div>
+    </div>
+    <div class="transfer-info" id="tr-expiry-info" style="display:none;"></div>
+    <div class="transfer-preview" id="tr-preview"></div>
+    <div class="ma">
+      <button class="btn" onclick="closeModal('modal-transfer')">Cancel</button>
+      <button class="btn primary" onclick="confirmTransfer()">Confirm transfer</button>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -387,6 +438,8 @@ var S={
   itemCtx:null,subcatCtx:null
 };
 var dragSrc=null,cardDragSrc=null,itemDragSrc=null,fbUnsub=null,saveTimer=null,currentItemType='stock',acIdx=-1;
+// Transfer state
+var TR={itemId:null,itemCtx:null,qty:1,maxQty:0,srcBatchIdx:-1};
 
 function applyTheme(t){document.body.className=t;document.getElementById('theme-icon').className='ti ti-'+(t==='dark'?'sun':'moon');document.getElementById('theme-label').textContent=t==='dark'?'Light mode':'Dark mode';localStorage.setItem(TK,t);}
 function toggleTheme(){applyTheme(document.body.className==='dark'?'light':'dark');}
@@ -423,22 +476,6 @@ function expSt(item){
   if(diff<=30)return{label:'Exp '+fmtDate(b.date),cls:'low'};
   return{label:fmtDate(b.date),cls:'ok'};
 }
-function expStMulti(item){
-  if(!item.perishable)return null;
-  var bs=sortedBatches(item.batches);
-  if(!bs.length){if(item.expiry)return expSt(item);return null;}
-  var today=new Date();today.setHours(0,0,0,0);
-  var results=[];
-  bs.forEach(function(b){
-    if(!b.date)return;
-    var exp=new Date(b.date+'T00:00:00');
-    var diff=Math.floor((exp-today)/86400000);
-    var cls=diff<0?'out':diff<=7?'exp':diff<=30?'low':'ok';
-    var label=diff<0?'Expired':diff<=7?'Exp in '+diff+'d':'Exp '+fmtDate(b.date);
-    results.push({label:label,cls:cls,qty:b.qty,date:b.date});
-  });
-  return results.length?results:null;
-}
 function fmtDate(d){if(!d)return'';var p=d.split('-');return p[1]+'/'+p[2]+'/'+p[0].slice(2);}
 function stkSt(i){if(i.type==='label')return'lbl';if(i.qty===0&&(i.thresh||0)===0)return'ok';if(i.qty===0)return'out';if((i.thresh||0)>0&&i.qty<=i.thresh)return'low';return'ok';}
 function stkLbl(s){return s==='out'?'Out of stock':s==='low'?'Low stock':s==='lbl'?'Asset':'In stock';}
@@ -451,6 +488,7 @@ function lRoom(id){var l=S.locs.find(function(x){return x.id===id;});return l?l.
 function alAc(id){var l=S.acLocs.find(function(x){return x.id===id;});return l?l.acId:null;}
 function logAct(t){S.activity.unshift({text:t,time:Date.now()});if(S.activity.length>30)S.activity.pop();}
 function tAgo(ts){var d=Math.floor((Date.now()-ts)/60000);if(d<1)return'just now';if(d<60)return d+'m ago';if(d<1440)return Math.floor(d/60)+'h ago';return Math.floor(d/1440)+'d ago';}
+
 function toggleExpire(){
   var checked=document.getElementById('item-perishable').checked;
   document.getElementById('exp-sec').classList.toggle('show',checked);
@@ -461,32 +499,76 @@ function sortedBy(arr){return arr.slice().sort(function(a,b){return(a.order||0)-
 function locSubcats(locId,ctx){var arr=ctx==='aircraft'?S.acSubcats:S.subcats;return sortedBy(arr.filter(function(s){return s.locId===locId;}));}
 function locItems(locId,subcatId,ctx){var arr=ctx==='aircraft'?S.acItems:S.items;return sortedBy(arr.filter(function(i){if(i.locId!==locId)return false;if(subcatId===undefined)return true;var isc=i.subcatId||null;var wsc=subcatId||null;return isc===wsc;}));}
 
-/* ── Batch UI ── */
+/* ── Batch UI (circle buttons) ── */
+function syncQtyFromBatches(){
+  // Auto-calculate total qty from all batch quantities
+  var rows=document.getElementById('batch-list').querySelectorAll('.batch-row');
+  var total=0;
+  rows.forEach(function(row){
+    var numEl=row.querySelector('.batch-qty-num');
+    if(numEl)total+=parseInt(numEl.textContent)||0;
+  });
+  document.getElementById('item-qty').value=total;
+}
+
 function addBatch(qty,date){
   var list=document.getElementById('batch-list');
   var row=document.createElement('div');
   row.className='batch-row';
-  var qtyIn=document.createElement('input');
-  qtyIn.type='number';qtyIn.min='0';qtyIn.value=qty||'';qtyIn.placeholder='Qty';
+
+  var minusBtn=document.createElement('button');
+  minusBtn.type='button';
+  minusBtn.className='batch-circle-btn';
+  minusBtn.textContent='−';
+
+  var numSpan=document.createElement('span');
+  numSpan.className='batch-qty-num';
+  numSpan.textContent=qty||'0';
+
+  var plusBtn=document.createElement('button');
+  plusBtn.type='button';
+  plusBtn.className='batch-circle-btn';
+  plusBtn.textContent='+';
+
+  minusBtn.onclick=function(){
+    var cur=parseInt(numSpan.textContent)||0;
+    if(cur>0){numSpan.textContent=cur-1;syncQtyFromBatches();}
+  };
+  plusBtn.onclick=function(){
+    var cur=parseInt(numSpan.textContent)||0;
+    numSpan.textContent=cur+1;
+    syncQtyFromBatches();
+  };
+
   var dateIn=document.createElement('input');
   dateIn.type='date';dateIn.value=date||'';
+
   var del=document.createElement('button');
+  del.type='button';
   del.className='batch-del';del.innerHTML='&times;';
-  del.onclick=function(){list.removeChild(row);};
-  row.appendChild(qtyIn);row.appendChild(dateIn);row.appendChild(del);
+  del.onclick=function(){list.removeChild(row);syncQtyFromBatches();};
+
+  row.appendChild(minusBtn);
+  row.appendChild(numSpan);
+  row.appendChild(plusBtn);
+  row.appendChild(dateIn);
+  row.appendChild(del);
   list.appendChild(row);
 }
+
 function getBatches(){
   var rows=document.getElementById('batch-list').querySelectorAll('.batch-row');
   var batches=[];
   rows.forEach(function(row){
-    var inputs=row.querySelectorAll('input');
-    var qty=parseInt(inputs[0].value)||0;
-    var date=inputs[1].value||'';
+    var numEl=row.querySelector('.batch-qty-num');
+    var dateIn=row.querySelector('input[type=date]');
+    var qty=parseInt(numEl?numEl.textContent:0)||0;
+    var date=dateIn?dateIn.value:'';
     if(date)batches.push({qty:qty,date:date});
   });
   return sortedBatches(batches);
 }
+
 function renderBatchList(batches){
   var list=document.getElementById('batch-list');
   list.innerHTML='';
@@ -625,10 +707,166 @@ function itemRowHtml(i,ctx){
     '</div>'+
     '<div class="dnd-acts">'+
       (!isLabel?'<div class="qc"><button onclick="adj(\''+i.id+'\',\''+ctx+'\',-1)">−</button><span class="qn">'+i.qty+'</span><button onclick="adj(\''+i.id+'\',\''+ctx+'\',1)">+</button></div>':'')+
+      (!isLabel?'<button class="btn transfer" onclick="openTransferModal(\''+i.id+'\',\''+ctx+'\')" title="Transfer in"><i class="ti ti-transfer-in"></i></button>':'')+
       '<button class="btn ib" onclick="editItem(\''+i.id+'\',\''+ctx+'\')"><i class="ti ti-edit"></i></button>'+
       '<button class="btn ib db" onclick="deleteItem(\''+i.id+'\',\''+ctx+'\')"><i class="ti ti-trash"></i></button>'+
     '</div>'+
   '</div>';
+}
+
+/* ── Transfer In ── */
+function openTransferModal(itemId,ctx){
+  var arr=ctx==='aircraft'?S.acItems:S.items;
+  var item=arr.find(function(i){return i.id===itemId;});
+  if(!item)return;
+  TR.itemId=itemId;TR.itemCtx=ctx;TR.qty=1;TR.maxQty=0;TR.srcBatchIdx=-1;
+  var destLocName=ctx==='aircraft'?alName(item.locId):lName(item.locId);
+  document.getElementById('mt-title').textContent='Transfer in — '+item.name;
+  document.getElementById('mt-subtitle').textContent='Destination: '+destLocName;
+  // Default source type to opposite of destination, or same
+  document.getElementById('tr-type').value='room';
+  trPopulateParent();
+  TR.qty=1;
+  document.getElementById('tr-qty-display').textContent='1';
+  document.getElementById('tr-expiry-info').style.display='none';
+  document.getElementById('tr-preview').textContent='';
+  openModal('modal-transfer');
+}
+
+function trPopulateParent(){
+  var type=document.getElementById('tr-type').value;
+  var parents=type==='aircraft'?sortedBy(S.aircraft):sortedBy(S.rooms);
+  document.getElementById('tr-parent').innerHTML=parents.map(function(p){
+    return'<option value="'+p.id+'">'+(type==='aircraft'?p.tail:p.name)+'</option>';
+  }).join('');
+  trPopulateLoc();
+}
+
+function trPopulateLoc(){
+  var type=document.getElementById('tr-type').value;
+  var parentId=document.getElementById('tr-parent').value;
+  var locs=type==='aircraft'?sortedBy(S.acLocs.filter(function(l){return l.acId===parentId;})):sortedBy(S.locs.filter(function(l){return l.roomId===parentId;}));
+  document.getElementById('tr-loc').innerHTML=locs.map(function(l){return'<option value="'+l.id+'">'+l.name+'</option>';}).join('');
+  trPopulateBatches();
+}
+
+function trPopulateBatches(){
+  var type=document.getElementById('tr-type').value;
+  var locId=document.getElementById('tr-loc').value;
+  if(!locId){document.getElementById('tr-batch').innerHTML='';trUpdatePreview();return;}
+  // Find matching item by name in source location
+  var arr=type==='aircraft'?S.acItems:S.items;
+  var destArr=TR.itemCtx==='aircraft'?S.acItems:S.items;
+  var destItem=destArr.find(function(i){return i.id===TR.itemId;});
+  if(!destItem){document.getElementById('tr-batch').innerHTML='<option>No matching item</option>';return;}
+  var srcItem=arr.find(function(i){return i.locId===locId&&i.name===destItem.name&&i.type!=='label';});
+  if(!srcItem){document.getElementById('tr-batch').innerHTML='<option value="">No "'+destItem.name+'" at this location</option>';TR.maxQty=0;trUpdatePreview();return;}
+  TR.srcItemId=srcItem.id;TR.srcCtx=type;
+  var sel=document.getElementById('tr-batch');
+  if(srcItem.perishable&&srcItem.batches&&srcItem.batches.length){
+    var sorted=sortedBatches(srcItem.batches);
+    sel.innerHTML=sorted.map(function(b,idx){
+      return'<option value="'+idx+'">Exp '+fmtDate(b.date)+' — '+b.qty+' available</option>';
+    }).join('');
+    TR.srcBatchIdx=0;TR.maxQty=sorted[0]?sorted[0].qty:0;
+  } else {
+    sel.innerHTML='<option value="-1">No batches — '+srcItem.qty+' available</option>';
+    TR.srcBatchIdx=-1;TR.maxQty=srcItem.qty;
+  }
+  TR.qty=Math.min(TR.qty||1,TR.maxQty);
+  if(TR.qty<1&&TR.maxQty>0)TR.qty=1;
+  document.getElementById('tr-qty-display').textContent=TR.qty;
+  document.getElementById('tr-qty-max').textContent='of '+TR.maxQty+' available';
+  trUpdatePreview();
+}
+
+function trAdjQty(delta){
+  TR.qty=Math.max(1,Math.min(TR.maxQty,TR.qty+delta));
+  document.getElementById('tr-qty-display').textContent=TR.qty;
+  trUpdatePreview();
+}
+
+function trUpdatePreview(){
+  var destArr=TR.itemCtx==='aircraft'?S.acItems:S.items;
+  var destItem=destArr.find(function(i){return i.id===TR.itemId;});
+  var srcArr=TR.srcCtx==='aircraft'?S.acItems:S.items;
+  var srcItem=srcArr?srcArr.find(function(i){return i.id===TR.srcItemId;}):null;
+  var infoEl=document.getElementById('tr-expiry-info');
+  var prevEl=document.getElementById('tr-preview');
+  if(!destItem||!srcItem||TR.maxQty===0){infoEl.style.display='none';prevEl.innerHTML='<span style="color:var(--text3);">Select a source to see preview.</span>';return;}
+  // Expiry info
+  var batchIdx=parseInt(document.getElementById('tr-batch').value);
+  var expDate='';
+  if(srcItem.perishable&&srcItem.batches&&srcItem.batches.length&&batchIdx>=0){
+    var sorted=sortedBatches(srcItem.batches);
+    var batch=sorted[batchIdx];
+    if(batch){expDate=batch.date;TR.maxQty=batch.qty;TR.srcBatchIdx=batchIdx;}
+  }
+  if(expDate){
+    infoEl.style.display='block';
+    infoEl.innerHTML='<strong>Expiry will carry over</strong><br>'+TR.qty+' units (exp '+fmtDate(expDate)+') will be added as a new batch at the destination.';
+  } else {
+    infoEl.style.display='none';
+  }
+  var srcNew=srcItem.qty-TR.qty;
+  var destNew=destItem.qty+TR.qty;
+  var srcLocName=TR.srcCtx==='aircraft'?alName(srcItem.locId):lName(srcItem.locId);
+  var destLocName=TR.itemCtx==='aircraft'?alName(destItem.locId):lName(destItem.locId);
+  prevEl.innerHTML=
+    '<strong>After transfer</strong><br>'+
+    srcLocName+': <strong>'+srcItem.qty+'</strong> → <strong style="color:var(--danger-text);">'+Math.max(0,srcNew)+'</strong><br>'+
+    destLocName+': <strong>'+destItem.qty+'</strong> → <strong style="color:var(--success-text);">'+destNew+'</strong>';
+}
+
+function confirmTransfer(){
+  if(!TR.itemId||!TR.srcItemId||TR.qty<1||TR.maxQty<1){alert('Please select a valid source and quantity.');return;}
+  var destArr=TR.itemCtx==='aircraft'?S.acItems:S.items;
+  var destItem=destArr.find(function(i){return i.id===TR.itemId;});
+  var srcArr=TR.srcCtx==='aircraft'?S.acItems:S.items;
+  var srcItem=srcArr.find(function(i){return i.id===TR.srcItemId;});
+  if(!destItem||!srcItem)return;
+  var qty=TR.qty;
+  // Handle source batch deduction
+  if(srcItem.perishable&&srcItem.batches&&srcItem.batches.length&&TR.srcBatchIdx>=0){
+    var sorted=sortedBatches(srcItem.batches);
+    var batch=sorted[TR.srcBatchIdx];
+    if(batch){
+      var expDate=batch.date;
+      batch.qty=Math.max(0,batch.qty-qty);
+      // Remove batch if empty
+      srcItem.batches=srcItem.batches.filter(function(b){return b.qty>0;});
+      // Add to destination as new batch with same expiry
+      if(!destItem.batches)destItem.batches=[];
+      // Merge with existing batch of same date if present
+      var existingBatch=destItem.batches.find(function(b){return b.date===expDate;});
+      if(existingBatch){existingBatch.qty+=qty;}
+      else{destItem.batches.push({qty:qty,date:expDate});}
+      // Ensure dest is perishable
+      destItem.perishable=true;
+      if(!destItem.expiry||expDate<destItem.expiry)destItem.expiry=expDate;
+    }
+  } else {
+    // Non-batch: just subtract from src
+    srcItem.qty=Math.max(0,srcItem.qty-qty);
+  }
+  // Update src qty from batches if perishable
+  if(srcItem.perishable&&srcItem.batches){
+    srcItem.qty=srcItem.batches.reduce(function(s,b){return s+(b.qty||0);},0);
+  } else {
+    srcItem.qty=Math.max(0,srcItem.qty-qty);
+  }
+  // Update dest qty
+  destItem.qty=destItem.qty+qty;
+  // Update dest expiry to soonest batch
+  if(destItem.perishable&&destItem.batches&&destItem.batches.length){
+    var sb=sortedBatches(destItem.batches);
+    destItem.expiry=sb[0]?sb[0].date:'';
+  }
+  var srcLocName=TR.srcCtx==='aircraft'?alName(srcItem.locId):lName(srcItem.locId);
+  var destLocName=TR.itemCtx==='aircraft'?alName(destItem.locId):lName(destItem.locId);
+  logAct(qty+'x '+destItem.name+' transferred: '+srcLocName+' → '+destLocName);
+  closeModal('modal-transfer');
+  save();render();setTimeout(renderCurrentLoc,50);
 }
 
 function initLocDnd(){
@@ -891,9 +1129,16 @@ function saveItem(){
   var p=document.getElementById('item-perishable').checked;
   var batches=p?getBatches():[];
   var soonest=batches.length?batches[0].date:'';
+  // Auto-calculate qty from batches if perishable
+  var qty;
+  if(p&&batches.length){
+    qty=batches.reduce(function(s,b){return s+(b.qty||0);},0);
+  } else {
+    qty=parseInt(document.getElementById('item-qty').value)||0;
+  }
   var data;
   if(type==='label'){data={type:'label',ctx:ctx,name:name,locId:locId,subcatId:subcatId,notes:document.getElementById('label-notes').value.trim(),cat:'',qty:0,thresh:0,par:0,trackPar:false,perishable:false,expiry:'',batches:[],order:S.eItem?S.eItem.order:(maxOrder+1)};}
-  else{data={type:'stock',ctx:ctx,name:name,cat:document.getElementById('item-cat').value.trim()||'General',locId:locId,subcatId:subcatId,qty:parseInt(document.getElementById('item-qty').value)||0,thresh:Math.max(0,parseInt(document.getElementById('item-thresh').value)||0),par:par,trackPar:trackPar,notes:document.getElementById('item-notes').value.trim(),perishable:p,expiry:soonest,batches:batches,order:S.eItem?S.eItem.order:(maxOrder+1)};}
+  else{data={type:'stock',ctx:ctx,name:name,cat:document.getElementById('item-cat').value.trim()||'General',locId:locId,subcatId:subcatId,qty:qty,thresh:Math.max(0,parseInt(document.getElementById('item-thresh').value)||0),par:par,trackPar:trackPar,notes:document.getElementById('item-notes').value.trim(),perishable:p,expiry:soonest,batches:batches,order:S.eItem?S.eItem.order:(maxOrder+1)};}
   if(S.eItem){Object.assign(S.eItem,data);logAct('"'+name+'" updated');}
   else{arr.push(Object.assign({id:uid()},data));logAct('"'+name+'" added');}
   closeModal('modal-item');save();render();setTimeout(renderCurrentLoc,50);
